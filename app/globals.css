@@ -1,34 +1,33 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: 'SecondaryFont';
-  src: url('/assets/font/secondary-font.ttf') format('truetype');
+  font-family: "SecondaryFont";
+  src: url("/assets/font/secondary-font.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 :root {
-  --background: #F8FBFF;
-  --foreground: #232E5A;
-  --white: #FFFFFF;
+  --background: #f8fbff;
+  --foreground: #232e5a;
+  --white: #ffffff;
   /* Custom Colors */
-  --color-primary: #232E5A;
-  --color-secondary-bg: #F8FBFF;
-  --color-accent: #D9991F;
+  --color-primary: #232e5a;
+  --color-secondary-bg: #f8fbff;
+  --color-accent: #d9991f;
   --color-paragraph: #424242;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-white: var(--white);  
+  --color-white: var(--white);
   --color-primary: var(--color-primary);
   --color-secondary: var(--color-secondary-bg);
   --color-accent: var(--color-accent);
   --color-paragraph: var(--color-paragraph);
-  
   --font-serif: var(--font-source-serif), serif;
-  --font-secondary: 'SecondaryFont', sans-serif;
+  --font-secondary: "SecondaryFont", sans-serif;
 }
 
 body {
@@ -37,7 +36,12 @@ body {
   font-family: var(--font-serif);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--color-primary);
 }
 
@@ -45,7 +49,7 @@ p {
   color: var(--color-paragraph);
 }
 
-.containers{
+.containers {
   width: 100%;
   max-width: 1440px;
 }

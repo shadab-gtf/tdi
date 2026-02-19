@@ -1,110 +1,127 @@
-import React from 'react';
-import Link from 'next/link';
-import { Facebook, Twitter, Instagram, Linkedin, Phone, Mail, MapPin } from 'lucide-react';
+import Image from "next/image";
 
 const Footer = () => {
-    return (
-        <footer className="bg-[#232E5A] text-white pt-20 pb-10">
-            <div className="container mx-auto px-6 max-w-7xl">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-
-                    {/* Column 1: About */}
-                    <div className="space-y-6">
-                        <div className="mb-6">
-                            {/* Logo Placeholder */}
-                            <div className="inline-block border border-white/20 p-2 rounded-sm bg-[#232E5A]">
-                                <div className="font-serif text-2xl font-bold leading-none tracking-wider">tdi</div>
-                                <div className="font-serif text-lg leading-none tracking-widest text-[#D9991F]">city</div>
-                                <div className="text-[10px] tracking-[0.2em] mt-1 border-t border-white/20 pt-1 w-full text-center">KUNDLI</div>
-                            </div>
-                        </div>
-                        <p className="text-gray-300 text-sm leading-relaxed font-sans">
-                            TDI City Kundli is a thoroughly planned and luxurious township that offers a lifestyle of elegance and comfort. Experience world-class amenities and a vibrant community.
-                        </p>
-                        <div className="flex gap-4 pt-4">
-                            <a href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#D9991F] hover:border-[#D9991F] transition-all">
-                                <Facebook size={18} />
-                            </a>
-                            <a href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#D9991F] hover:border-[#D9991F] transition-all">
-                                <Twitter size={18} />
-                            </a>
-                            <a href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#D9991F] hover:border-[#D9991F] transition-all">
-                                <Instagram size={18} />
-                            </a>
-                            <a href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#D9991F] hover:border-[#D9991F] transition-all">
-                                <Linkedin size={18} />
-                            </a>
-                        </div>
-                    </div>
-
-                    {/* Column 2: Quick Links */}
-                    <div>
-                        <h4 className="text-xl font-serif font-medium mb-8 flex items-center gap-3">
-                            <span className="w-8 h-[1px] bg-[#D9991F]"></span> Quick Links
-                        </h4>
-                        <ul className="space-y-4">
-                            {['Township Overview', 'Our Projects', 'Amenities', 'Gallery', 'Contact Us'].map((item) => (
-                                <li key={item}>
-                                    <Link href="#" className="text-gray-300 hover:text-[#D9991F] transition-colors text-sm font-sans flex items-center gap-2 group">
-                                        <span className="w-1 h-1 bg-[#D9991F] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                                        {item}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Column 3: Projects */}
-                    <div>
-                        <h4 className="text-xl font-serif font-medium mb-8 flex items-center gap-3">
-                            <span className="w-8 h-[1px] bg-[#D9991F]"></span> Our Projects
-                        </h4>
-                        <ul className="space-y-4">
-                            {['Tuscan City', 'Rodeo Drive', 'TDI Mall', 'Samarpan Hospital', 'TDI International School'].map((item) => (
-                                <li key={item}>
-                                    <Link href="#" className="text-gray-300 hover:text-[#D9991F] transition-colors text-sm font-sans flex items-center gap-2 group">
-                                        <span className="w-1 h-1 bg-[#D9991F] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                                        {item}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Column 4: Contact */}
-                    <div>
-                        <h4 className="text-xl font-serif font-medium mb-8 flex items-center gap-3">
-                            <span className="w-8 h-[1px] bg-[#D9991F]"></span> Contact Us
-                        </h4>
-                        <ul className="space-y-6 text-sm text-gray-300 font-sans">
-                            <li className="flex items-start gap-4">
-                                <MapPin className="text-[#D9991F] mt-1 shrink-0" size={18} />
-                                <span>Sector-58, 59, 60, 64 in Kundli, Sonipat, Haryana</span>
-                            </li>
-                            <li className="flex items-center gap-4">
-                                <Phone className="text-[#D9991F] shrink-0" size={18} />
-                                <span>+91 123 456 7890</span>
-                            </li>
-                            <li className="flex items-center gap-4">
-                                <Mail className="text-[#D9991F] shrink-0" size={18} />
-                                <span>info@tdicity.com</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                {/* Bottom Bar */}
-                <div className="border-t border-white/10 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400 font-sans">
-                    <p>© 2026 TDI City. All Rights Reserved.</p>
-                    <div className="flex gap-8">
-                        <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-                        <Link href="#" className="hover:text-white transition-colors">Terms & Conditions</Link>
-                        <Link href="#" className="hover:text-white transition-colors">Sitemap</Link>
-                    </div>
-                </div>
+  return (
+    <div className="bg-foreground/95 relative pt-[80px] pb-[9px]">
+      <div className="absolute opacity-5 top-0 left-0 right-0 bottom-0 bg-[url('/assets/images/footer-bg.svg')] bg-cover bg-center"></div>
+      <div className="containers mx-auto">
+        <div className="flex justify-between pb-[40px] font-serif leading-[25px]">
+          <div className="logo w-2/12">
+            <Image
+              src="/assets/images/footer-logo.svg"
+              alt="Logo"
+              width={100}
+              height={100}
+            />
+          </div>
+          <div className="w-2/12 text-white">
+            <p className="mb-[25px] text-white! text-[20px]"> Links</p>
+            <ul className="flex flex-col gap-[20px]">
+              <li className="text-[14px]">
+                <a href="">Our Profile</a>
+              </li>
+              <li className="text-[14px]">
+                <a href="">CSR</a>
+              </li>
+              <li className="text-[14px]">
+                <a href="">Leadership</a>
+              </li>
+              <li className="text-[14px]">
+                <a href="">Awards</a>
+              </li>
+              <li className="text-[14px]">
+                <a href="">Partners</a>
+              </li>
+            </ul>
+          </div>
+          <div className="w-2/12 text-white">
+            <p className="mb-[25px] text-white! text-[20px]">Featured</p>
+            <ul className="flex flex-col gap-[20px]">
+              <li className="text-[14px]">
+                <a href="">Media Center</a>
+              </li>
+              <li className="text-[14px]">
+                <a href="">Testimonial</a>
+              </li>
+              <li className="text-[14px]">
+                <a href="">Gallery</a>
+              </li>
+            </ul>
+          </div>
+          <div className="w-2/12 text-white">
+            <p className="mb-[25px] text-white! text-[20px]">Our Project</p>
+            <ul className="flex flex-col gap-[20px]">
+              <li className="text-[14px]">
+                <a href="">Residential</a>
+              </li>
+              <li className="text-[14px]">
+                <a href="">Commercial</a>
+              </li>
+              <li className="text-[14px]">
+                <a href="">Educational</a>
+              </li>
+              <li className="text-[14px]">
+                <a href="">Healthcare</a>
+              </li>
+            </ul>
+          </div>
+          <div className="w-2/12 text-white">
+            <p className="mb-[25px] text-white! text-[20px]">Media Center</p>
+            <ul className="flex flex-col gap-[20px]">
+              <li className="text-[14px]">
+                <a href="">News</a>
+              </li>
+              <li className="text-[14px]">
+                <a href="">Blogs</a>
+              </li>
+              <li className="text-[14px]">
+                <a href="">Press Releases</a>
+              </li>
+              <li className="text-[14px]">
+                <a href="">FAQ&apos;s</a>
+              </li>
+            </ul>
+          </div>
+          <div className="w-2/12 text-white">
+            <p className="mb-[25px] text-white! text-[20px]">Policies</p>
+            <ul className="flex flex-col gap-[20px]">
+              <li className="text-[14px]">
+                <a href="">Disclaimer</a>
+              </li>
+              <li className="text-[14px]">
+                <a href="">Privacy Policy</a>
+              </li>
+              <li className="text-[14px]">
+                <a href="">Terms & Conditions</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="flex justify-between pb-[15px] border-b border-b-white/50 leading-[25px] font-serif">
+          <div className="address flex flex-col gap-[16px] text-center w-4/12">
+            <p className="text-[20px] text-white!">Address</p>
+            <p className="text-[16px] text-white!">Delhi, India</p>
+          </div>
+          <div className="contact flex flex-col gap-[16px] text-center w-4/12">
+            <p className="text-[20px] text-white!">Contact</p>
+            <p className="text-[16px] text-white!">
+              +1 234 567 890 — John smith{" "}
+            </p>
+          </div>
+          <div className="socail flex flex-col gap-[16px] text-center w-4/12">
+            <p className="text-[20px] text-white!">Social Media</p>
+            <div className="text-[16px] flex justify-between items-center">
+              <p className="mb-0 text-white!">Instagram</p>
+              <p className="mb-0 text-white!">Facebook</p>
+              <p className="mb-0 text-white!">Youtube</p>
+              <p className="mb-0 text-white!">Linkedin</p>
             </div>
-        </footer>
-    );
+          </div>
+        </div>
+        <p className="text-[14px] text-white! leading-[25px] font-serif pt-[9px]">©2026 All rights reserved by gtf technologies</p>
+      </div>
+    </div>
+  );
 };
 
 export default Footer;
