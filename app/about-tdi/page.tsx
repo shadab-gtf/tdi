@@ -1,5 +1,6 @@
 import HeroMedia from "@/components/Hero";
 import GlobalAnimation from "@/components/GlobalAnimation/GlobalAnimation";
+import AboutTDISection from "@/components/about/About-tdi";
 
 export default function AboutTDI() {
     return (
@@ -7,8 +8,9 @@ export default function AboutTDI() {
             <GlobalAnimation />
             <HeroMedia
                 type="image"
-                src="/assets/images/hero.png"
+                src="/assets/images/about/hero-tdi.png"
             />
+            <AboutTDISection />
         </main>
     );
 }
