@@ -8,8 +8,8 @@ gsap.registerPlugin(ScrollTrigger);
 export const initGlobalPAnimation = (scope?: HTMLElement) => {
 
   const elements = scope
-    ? scope.querySelectorAll("p")
-    : document.querySelectorAll("p");
+    ? scope.querySelectorAll("p:not(footer p)")
+    : document.querySelectorAll("p:not(footer p)");
 
   elements.forEach((p) => {
 

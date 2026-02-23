@@ -1,106 +1,138 @@
-import React from 'react';
-import Link from 'next/link';
-import { Facebook, Twitter, Instagram, Linkedin, Phone, Mail, MapPin } from 'lucide-react';
+"use client";
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import footerBg from "@/public/assets/images/footer.png";
+import logo from "@/public/assets/images/logo.png";
 
 const Footer = () => {
+    const pathname = usePathname();
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    };
+
+    const getLinkClassName = (href: string) => {
+        const isActive = pathname === href;
+        return `transition-colors hover:text-[var(--color-accent)] ${isActive ? "text-[var(--color-accent)] font-medium" : "text-white/80"
+            }`;
+    };
+
     return (
-        <footer className="bg-[#232E5A] text-white pt-20 pb-10">
-            <div className="container mx-auto px-6 max-w-7xl">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <footer className="relative w-full bg-[#2D3565] text-white overflow-hidden">
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src={footerBg}
+                    alt="Footer Background"
+                    fill
+                    className="object-contain opacity-10"
+                />
+            </div>
 
-                    {/* Column 1: About */}
-                    <div className="space-y-6">
-                        <div className="mb-6">
-                            {/* Logo Placeholder */}
-                            <div className="inline-block border border-white/20 p-2 rounded-sm bg-[#232E5A]">
-                                <div className="font-serif text-2xl font-bold leading-none tracking-wider">tdi</div>
-                                <div className="font-serif text-lg leading-none tracking-widest text-[#D9991F]">city</div>
-                                <div className="text-[10px] tracking-[0.2em] mt-1 border-t border-white/20 pt-1 w-full text-center">KUNDLI</div>
-                            </div>
-                        </div>
-                        <p className="text-gray-300 text-sm leading-relaxed font-sans">
-                            TDI City Kundli is a thoroughly planned and luxurious township that offers a lifestyle of elegance and comfort. Experience world-class amenities and a vibrant community.
-                        </p>
-                        <div className="flex gap-4 pt-4">
-                            <a href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#D9991F] hover:border-[#D9991F] transition-all">
-                                <Facebook size={18} />
-                            </a>
-                            <a href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#D9991F] hover:border-[#D9991F] transition-all">
-                                <Twitter size={18} />
-                            </a>
-                            <a href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#D9991F] hover:border-[#D9991F] transition-all">
-                                <Instagram size={18} />
-                            </a>
-                            <a href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#D9991F] hover:border-[#D9991F] transition-all">
-                                <Linkedin size={18} />
-                            </a>
+            <div className="relative z-10 container mx-auto px-4 pt-16 md:pt-20 pb-7" >
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-10 md:mb-20 px-2 md:px-12">
+                    <div className="lg:col-span-2 flex justify-center lg:justify-start items-start">
+                        <div className="relative ">
+                            <Image
+                                src={logo}
+                                alt="TDI Logo"
+                                width={132}
+                                height={177}
+                                className="object-contain"
+                            />
                         </div>
                     </div>
 
-                    {/* Column 2: Quick Links */}
-                    <div>
-                        <h4 className="text-xl font-serif font-medium mb-8 flex items-center gap-3">
-                            <span className="w-8 h-[1px] bg-[#D9991F]"></span> Quick Links
-                        </h4>
-                        <ul className="space-y-4">
-                            {['Township Overview', 'Our Projects', 'Amenities', 'Gallery', 'Contact Us'].map((item) => (
-                                <li key={item}>
-                                    <Link href="#" className="text-gray-300 hover:text-[#D9991F] transition-colors text-sm font-sans flex items-center gap-2 group">
-                                        <span className="w-1 h-1 bg-[#D9991F] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                                        {item}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    <div className="lg:col-span-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                        {/* Links Column */}
+                        <div className="space-y-6">
+                            <h4 className="font-serif text-lg md:text-xl mb-4 text-white!">Links</h4>
+                            <ul className="space-y-4 text-sm font-light text-white! font-serif">
+                                <li><Link href="/profile" className={getLinkClassName("/profile")}>Our Profile</Link></li>
+                                <li><Link href="/csr" className={getLinkClassName("/csr")}>CSR</Link></li>
+                                <li><Link href="/leadership" className={getLinkClassName("/leadership")}>Leadership</Link></li>
+                                <li><Link href="/awards" className={getLinkClassName("/awards")}>Awards</Link></li>
+                                <li><Link href="/partners" className={getLinkClassName("/partners")}>Partners</Link></li>
+                            </ul>
+                        </div>
 
-                    {/* Column 3: Projects */}
-                    <div>
-                        <h4 className="text-xl font-serif font-medium mb-8 flex items-center gap-3">
-                            <span className="w-8 h-[1px] bg-[#D9991F]"></span> Our Projects
-                        </h4>
-                        <ul className="space-y-4">
-                            {['Tuscan City', 'Rodeo Drive', 'TDI Mall', 'Samarpan Hospital', 'TDI International School'].map((item) => (
-                                <li key={item}>
-                                    <Link href="#" className="text-gray-300 hover:text-[#D9991F] transition-colors text-sm font-sans flex items-center gap-2 group">
-                                        <span className="w-1 h-1 bg-[#D9991F] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                                        {item}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                        {/* Featured Column */}
+                        <div className="space-y-6">
+                            <h4 className="font-serif text-lg md:text-xl mb-4 text-white!">Featured</h4>
+                            <ul className="space-y-4 text-sm font-light text-white! font-serif">
+                                <li><Link href="/media" className={getLinkClassName("/media")}>Media Center</Link></li>
+                                <li><Link href="/testimonials" className={getLinkClassName("/testimonials")}>Testimonial</Link></li>
+                                <li><Link href="/gallery" className={getLinkClassName("/gallery")}>Gallery</Link></li>
+                            </ul>
+                        </div>
+                        <div className="space-y-6">
+                            <h4 className="font-serif text-lg md:text-xl mb-4 text-white!">Our Projects</h4>
+                            <ul className="space-y-4 text-sm font-light text-white! font-serif">
+                                <li><Link href="/residential" className={getLinkClassName("/residential")}>Residential</Link></li>
+                                <li><Link href="/commercial" className={getLinkClassName("/commercial")}>Commercial</Link></li>
+                                <li><Link href="/educational" className={getLinkClassName("/educational")}>Educational</Link></li>
+                                <li><Link href="/healthcare" className={getLinkClassName("/healthcare")}>Healthcare</Link></li>
+                            </ul>
+                        </div>
+                        <div className="space-y-6">
+                            <h4 className="font-serif text-lg md:text-xl mb-4 text-white!">Media Center</h4>
+                            <ul className="space-y-4 text-sm font-light text-white! font-serif">
+                                <li><Link href="/news" className={getLinkClassName("/news")}>News</Link></li>
+                                <li><Link href="/blogs" className={getLinkClassName("/blogs")}>Blogs</Link></li>
+                                <li><Link href="/press-release" className={getLinkClassName("/press-release")}>Press Release</Link></li>
+                                <li><Link href="/faq" className={getLinkClassName("/faq")}>FAQ's</Link></li>
+                            </ul>
+                        </div>
 
-                    {/* Column 4: Contact */}
-                    <div>
-                        <h4 className="text-xl font-serif font-medium mb-8 flex items-center gap-3">
-                            <span className="w-8 h-[1px] bg-[#D9991F]"></span> Contact Us
-                        </h4>
-                        <ul className="space-y-6 text-sm text-gray-300 font-sans">
-                            <li className="flex items-start gap-4">
-                                <MapPin className="text-[#D9991F] mt-1 shrink-0" size={18} />
-                                <span>Sector-58, 59, 60, 64 in Kundli, Sonipat, Haryana</span>
-                            </li>
-                            <li className="flex items-center gap-4">
-                                <Phone className="text-[#D9991F] shrink-0" size={18} />
-                                <span>+91 123 456 7890</span>
-                            </li>
-                            <li className="flex items-center gap-4">
-                                <Mail className="text-[#D9991F] shrink-0" size={18} />
-                                <span>info@tdicity.com</span>
-                            </li>
-                        </ul>
+                        <div className="space-y-6">
+                            <h4 className="font-serif text-lg md:text-xl mb-4 text-white!">Policies</h4>
+                            <ul className="space-y-4 text-sm font-light text-white! font-serif">
+                                <li><Link href="/disclaimer" className={getLinkClassName("/disclaimer")}>Disclaimer</Link></li>
+                                <li><Link href="/privacy" className={getLinkClassName("/privacy")}>Privacy Policy</Link></li>
+                                <li><Link href="/terms" className={getLinkClassName("/terms")}>Terms & Conditions</Link></li>
+                            </ul>
+                        </div>
+
+
                     </div>
                 </div>
 
-                {/* Bottom Bar */}
-                <div className="border-t border-white/10 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400 font-sans">
-                    <p>© 2026 TDI City. All Rights Reserved.</p>
-                    <div className="flex gap-8">
-                        <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-                        <Link href="#" className="hover:text-white transition-colors">Terms & Conditions</Link>
-                        <Link href="#" className="hover:text-white transition-colors">Sitemap</Link>
+                {/* Bottom Section */}
+                <div className="border-b border-white/10 py-5 mb-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center relative z-10">
+                    <div className="flex flex-col items-center">
+                        <h4 className="font-serif text-lg md:text-xl mb-4 text-white!">Address</h4>
+                        <p className="text-base font-light text-white! font-serif">Delhi, India</p>
                     </div>
+
+                    <div className="flex flex-col items-center border-t md:border-t-0 md:border-l border-white/20 md:border-r py-8 md:py-0">
+                        <h4 className="font-serif text-lg md:text-xl mb-4 text-white!">Contact</h4>
+                        <p className="text-base font-light text-white! font-serif">+1 234 567 890</p>
+                    </div>
+
+                    <div className="flex flex-col items-center">
+                        <h4 className="font-serif text-lg md:text-xl mb-4 text-white!">Social Media</h4>
+                        <div className="flex gap-6 mt-1">
+                            {/* Social links usually use external URLs, so active state is rare, but logic remains same */}
+                            <Link href="https://instagram.com" className="hover:text-[var(--color-accent)] transition-colors">Instagram</Link>
+                            <Link href="https://facebook.com" className="hover:text-[var(--color-accent)] transition-colors">Facebook</Link>
+                            <Link href="https://youtube.com" className="hover:text-[var(--color-accent)] transition-colors">Youtube</Link>
+                            <Link href="https://linkedin.com" className="hover:text-[var(--color-accent)] transition-colors">Linkedin</Link>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="flex flex-col md:flex-row justify-between items-center text-xs font-serif px-2 md:px-12">
+                    <p className="text-base font-light text-white! font-serif">©2026 All Rights Reserved By GTF Technologies</p>
+                    <button
+                        onClick={scrollToTop}
+                        className="flex items-center gap-2 hover:text-[var(--color-accent)] cursor-pointer transition-colors mt-4 md:mt-0 group"
+                    >
+                        Back To Top
+                    </button>
                 </div>
             </div>
         </footer>

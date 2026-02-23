@@ -6,14 +6,14 @@ import Image from "next/image";
 import { ChevronDown, Search, ArrowRight, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import MegaMenu, { menuData } from "./MegaMenu";
-
+import { usePathname } from "next/navigation";
 const Header = () => {
     const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isProjectsExpanded, setIsProjectsExpanded] = useState(false);
     const [isMenuLocked, setIsMenuLocked] = useState(false);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
+    const pathname = usePathname();
     const handleMouseEnter = () => {
         if (timeoutRef.current) {
             clearTimeout(timeoutRef.current);
@@ -46,7 +46,7 @@ const Header = () => {
     };
 
     const navLinks = [
-        { name: "TOWNSHIP OVERVIEW", href: "/township-overview" },
+        { name: "TOWNSHIP OVERVIEW", href: "/about" },
         { name: "OUR PROJECTS", href: "/our-projects", hasMegaMenu: true },
         { name: "AMENITIES", href: "/amenities" },
         { name: "ABOUT TDI", href: "/about-tdi" },
@@ -55,7 +55,7 @@ const Header = () => {
     return (
         <>
             <header className="fixed w-full top-0 z-[60] bg-[#232E5A] text-white shadow-md transition-all duration-300 md:h-24 h-20 flex items-center">
-                <div className="containers mx-auto px-6 md:px-10 flex items-center font-serif justify-between h-full">
+                <div className="containers mx-auto px-6 flex items-center font-serif justify-between h-full">
                     <div className="flex justify-evenly items-center gap-14">
 
                         <Link href="/" className="relative z-50 block h-16 w-auto">
@@ -80,9 +80,11 @@ const Header = () => {
                                         <div className="flex items-center gap-1">
                                             <Link
                                                 href={link.href}
-                                                className={`text-xs xl:text-sm font-medium tracking-wide hover:text-[#D9991F] transition-colors
-                                                     ${isMegaMenuOpen ? "text-[#D9991F]" : "text-white"}
-                                                   `}
+                                                className={`text-xs xl:text-sm font-medium tracking-wide transition-colors
+                                                  ${pathname === link.href
+                                                        ? "text-[var(--color-accent)]"
+                                                        : "text-white hover:text-[var(--color-accent)]"}
+                                                `}
                                             >
                                                 {link.name}
                                             </Link>
@@ -98,7 +100,11 @@ const Header = () => {
                                     ) : (
                                         <Link
                                             href={link.href}
-                                            className="text-xs xl:text-sm font-medium tracking-wide hover:text-[#D9991F] transition-colors"
+                                            className={`text-xs xl:text-sm font-medium tracking-wide transition-colors
+                                                   ${pathname === link.href
+                                                    ? "text-[var(--color-accent)]"
+                                                    : "text-white hover:text-[var(--color-accent)]"}
+                                                `}
                                         >
                                             {link.name}
                                         </Link>
@@ -120,7 +126,11 @@ const Header = () => {
 
                         <Link
                             href="/enquire"
-                            className="flex items-center gap-2 text-xs xl:text-sm font-medium tracking-wide hover:text-[#D9991F] transition-colors uppercase whitespace-nowrap"
+                            className={`flex items-center gap-2 text-xs xl:text-sm font-medium tracking-wide transition-colors uppercase whitespace-nowrap
+                                   ${pathname === "/enquire"
+                                    ? "text-[var(--color-accent)]"
+                                    : "text-white hover:text-[var(--color-accent)]"}
+                                                `}
                         >
                             ENQUIRE NOW
                             <ArrowRight className="w-4 h-4" />

@@ -1,0 +1,16 @@
+import InfiniteScrollingLogosAnimation from "./InfiniteScrollingLogosAnimation";
+
+export default function Brands() {
+    return (
+        <section className="py-12 md:py-20 bg-[var(--color-secondary)]">
+            <div className="flex justify-center flex-col items-center gap-5 max-w-4xl mx-auto px-4  mb-20">
+
+                <h3 className="text-center text-[20px] font-regular text-[var(--color-accent)]! font-serif tracking-tight ">Brands</h3>
+                {/* <div className="w-[100px] h-[2px] bg-[var(--color-primary)]"></div> */}
+                <h4 className="text-center text-[25px] font-regular font-serif tracking-tight ">Trusted names shaping a complete lifestyle.</h4>
+                <p className="text-center  font-regular font-serif tracking-tight ">From retail destinations and educational institutions to lifestyle spaces and everyday conveniences, the township is supported by leading brands that enhance the quality, accessibility, and experience of community living.</p>
+            </div>
+            <InfiniteScrollingLogosAnimation />
+        </section>
+    );
+}
