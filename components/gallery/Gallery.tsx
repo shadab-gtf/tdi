@@ -107,11 +107,9 @@ const Lightbox = ({ images, currentIndex, onClose, onPrev, onNext }: LightboxPro
             onClick={onClose}
             style={{ background: "rgba(5,5,5,0.96)" }}
         >
-            {/* Decorative corner lines */}
             <div className="pointer-events-none absolute inset-6 border border-white/5" />
             <div className="pointer-events-none absolute inset-8 border border-white/[0.03]" />
 
-            {/* Close */}
             <motion.button
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -165,7 +163,7 @@ const Lightbox = ({ images, currentIndex, onClose, onPrev, onNext }: LightboxPro
                     sizes="90vw"
                     priority
                 />
-                {/* subtle vignette */}
+
                 <div className="absolute inset-0 shadow-[inset_0_0_80px_rgba(0,0,0,0.4)] pointer-events-none" />
             </motion.div>
 
@@ -254,12 +252,12 @@ const GalleryCard = ({ image, index, categoryKey, onClick }: CardProps) => {
                 </p>
             </div>
 
-            <div className="absolute top-4 right-4 z-20 w-8 h-8 flex items-center justify-center border border-white/0 group-hover:border-white/40 bg-white/0 group-hover:bg-white/10 backdrop-blur-sm transition-all duration-400 ease-out opacity-0 group-hover:opacity-100">
+            {/* <div className="absolute top-4 right-4 z-20 w-8 h-8 flex items-center justify-center border border-white/0 group-hover:border-white/40 bg-white/0 group-hover:bg-white/10 backdrop-blur-sm transition-all duration-400 ease-out opacity-0 group-hover:opacity-100">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M15 3H21V9" /><path d="M9 21H3V15" />
                     <path d="M21 3L14 10" /><path d="M3 21L10 14" />
                 </svg>
-            </div>
+            </div> */}
 
             <div className="absolute inset-0 border border-white/0 group-hover:border-white/20 transition-colors duration-500 z-20 pointer-events-none" />
         </motion.div>
@@ -268,7 +266,7 @@ const GalleryCard = ({ image, index, categoryKey, onClick }: CardProps) => {
 
 const Gallery = () => {
     const [activeCategory, setActiveCategory] = useState("Township Overview");
-    const [categoryKey, setCategoryKey] = useState(0); // increment to force remount
+    const [categoryKey, setCategoryKey] = useState(0);
     const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
     const [isTransitioning, setIsTransitioning] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
@@ -298,7 +296,6 @@ const Gallery = () => {
         setActiveCategory(cat);
         setCategoryKey((k) => k + 1);
         setLightboxIndex(null);
-        // Reset filters when changing tabs to "Events" or leaving "Events"
         setSelectedProject("All");
         setSelectedYear("All");
         setSelectedQuarter("All");
@@ -373,48 +370,47 @@ const Gallery = () => {
 
                                 <div className="flex gap-12">
 
-                                    {/* Project */}
                                     <div className="flex items-center gap-3">
-                                        <span>Project:</span>
+                                        <span className="md:text-lg text-base font-serif">Project:</span>
                                         <select
                                             value={selectedProject}
                                             onChange={(e) => setSelectedProject(e.target.value)}
-                                            className="border-b border-[#C5B9A5] bg-transparent outline-none cursor-pointer"
+                                            className="border-b font-serif border-[#C5B9A5] bg-transparent outline-none cursor-pointer"
                                         >
-                                            <option value="All">All Projects</option>
-                                            <option value="Kundli">Kundli</option>
-                                            <option value="Sonipat">Sonipat</option>
+                                            <option className="text-base font-serif" value="All">All Projects</option>
+                                            <option className="text-base font-serif" value="Kundli">Kundli</option>
+                                            <option className="text-base font-serif" value="Sonipat">Sonipat</option>
                                         </select>
                                     </div>
 
                                     {/* Year */}
                                     <div className="flex items-center gap-3">
-                                        <span>Year:</span>
+                                        <span className="md:text-lg text-base font-serif">Year:</span>
                                         <select
                                             value={selectedYear}
                                             onChange={(e) => setSelectedYear(e.target.value)}
-                                            className="border-b border-[#C5B9A5] bg-transparent outline-none cursor-pointer"
+                                            className="border-b font-serif border-[#C5B9A5] bg-transparent outline-none cursor-pointer"
                                         >
-                                            <option value="All">All Years</option>
-                                            <option value="2025">2025</option>
-                                            <option value="2024">2024</option>
-                                            <option value="2023">2023</option>
+                                            <option className="text-base font-serif" value="All">All Years</option>
+                                            <option className="text-base font-serif" value="2025">2025</option>
+                                            <option className="text-base font-serif" value="2024">2024</option>
+                                            <option className="text-base font-serif" value="2023">2023</option>
                                         </select>
                                     </div>
 
                                     {/* Quarter */}
                                     <div className="flex items-center gap-3">
-                                        <span>Quarter:</span>
+                                        <span className="md:text-lg text-base font-serif">Quarter:</span>
                                         <select
                                             value={selectedQuarter}
                                             onChange={(e) => setSelectedQuarter(e.target.value)}
-                                            className="border-b border-[#C5B9A5] bg-transparent outline-none cursor-pointer"
+                                            className="border-b font-serif border-[#C5B9A5] bg-transparent outline-none cursor-pointer"
                                         >
-                                            <option value="All">All Quarters</option>
-                                            <option value="Jan - Mar">Jan - Mar</option>
-                                            <option value="April - June">April - June</option>
-                                            <option value="June - Sep">June - Sep</option>
-                                            <option value="Oct - Dec">Oct - Dec</option>
+                                            <option className="text-base font-serif" value="All">All Quarters</option>
+                                            <option className="text-base font-serif" value="Jan - Mar">Jan - Mar</option>
+                                            <option className="text-base font-serif" value="April - June">April - June</option>
+                                            <option className="text-base font-serif" value="June - Sep">June - Sep</option>
+                                            <option className="text-base font-serif" value="Oct - Dec">Oct - Dec</option>
                                         </select>
                                     </div>
 
