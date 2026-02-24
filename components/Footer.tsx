@@ -23,7 +23,7 @@ const Footer = () => {
     };
 
     return (
-        <footer className="relative w-full bg-[#2D3565] text-white overflow-hidden">
+        <footer className="relative w-full bg-[#2D3565] pt-16 md:pt-20 pb-7 text-white overflow-hidden">
             <div className="absolute inset-0 z-0">
                 <Image
                     src={footerBg}
@@ -33,7 +33,7 @@ const Footer = () => {
                 />
             </div>
 
-            <div className="relative z-10 container mx-auto px-4 pt-16 md:pt-20 pb-7" >
+            <div className="relative z-10 containers mx-auto" >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-10 md:mb-20 px-2 md:px-12">
                     <div className="lg:col-span-2 flex justify-center lg:justify-start items-start">
                         <div className="relative ">

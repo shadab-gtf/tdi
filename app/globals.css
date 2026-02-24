@@ -30,6 +30,9 @@
   --font-serif: var(--font-source-serif), serif;
   --font-secondary: 'SecondaryFont', sans-serif;
 }
+.blog-detail__title{
+  font-family: var(--font-secondary);
+}
 
 body {
   background: var(--background);
@@ -48,9 +51,10 @@ p {
 .containers{
   width: 100%;
   max-width: 1440px;
+  padding: 0 40px;
 }
 
-/* ── Range Slider (dual thumb) ───────────────────────────── */
+/* ── Range Slider (dual thumb) ──── */
 
 .range-slider {
   -webkit-appearance: none;
@@ -110,4 +114,9 @@ p {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+@media (max-width: 768px) {
+  .containers{
+    padding: 0 20px;
+  }
 }

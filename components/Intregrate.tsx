@@ -37,7 +37,7 @@ const Intregrate = () => {
 
     return (
         <section ref={containerRef} className="w-full bg-[var(--background)] py-20 overflow-hidden">
-            <div className="max-w-7xl mx-auto">
+            <div className="containers mx-auto">
                 {/* Header */}
                 <div className="text-center max-w-4xl mx-auto mb-16 md:mb-24">
                     <h2 className="text-2xl md:text-[25px] font-serif text-[var(--foreground)] mb-6">

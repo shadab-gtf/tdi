@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown, Search, ArrowRight, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import MegaMenu, { menuData } from "./MegaMenu";
 import { usePathname } from "next/navigation";
+import gsap from "gsap";
 const Header = () => {
     const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -14,6 +15,52 @@ const Header = () => {
     const [isMenuLocked, setIsMenuLocked] = useState(false);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
     const pathname = usePathname();
+    const headerRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        const updateHeader = () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY <= 10) {
+                // At top — always show
+                gsap.to(headerRef.current, {
+                    yPercent: 0,
+                    duration: 0.4,
+                    ease: "power3.out",
+                });
+            } else if (currentScrollY > lastScrollY) {
+                // Scrolling DOWN — hide
+                gsap.to(headerRef.current, {
+                    yPercent: -100,
+                    duration: 0.4,
+                    ease: "power3.out",
+                });
+            } else {
+                // Scrolling UP — show
+                gsap.to(headerRef.current, {
+                    yPercent: 0,
+                    duration: 0.4,
+                    ease: "power3.out",
+                });
+            }
+
+            lastScrollY = currentScrollY;
+            ticking = false;
+        };
+
+        const onScroll = () => {
+            if (!ticking) {
+                requestAnimationFrame(updateHeader);
+                ticking = true;
+            }
+        };
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
     const handleMouseEnter = () => {
         if (timeoutRef.current) {
             clearTimeout(timeoutRef.current);
@@ -54,7 +101,7 @@ const Header = () => {
 
     return (
         <>
-            <header className="fixed w-full top-0 z-[60] bg-[#232E5A] text-white shadow-md transition-all duration-300 md:h-24 h-20 flex items-center">
+            <header ref={headerRef} className="fixed w-full top-0 z-[60] bg-[#232E5A] text-white shadow-md md:h-24 h-20 flex items-center will-change-transform">
                 <div className="containers mx-auto px-6 flex items-center font-serif justify-between h-full">
                     <div className="flex justify-evenly items-center gap-14">
 
@@ -70,7 +117,7 @@ const Header = () => {
                             />
                         </Link>
 
-                        <nav className="hidden lg:flex items-center gap-6 xl:gap-10 h-full">
+                        <nav className="hidden lg:flex items-center gap-16 xl:gap-16 h-full">
                             {navLinks.map((link, index) => (
                                 <div
                                     key={index}

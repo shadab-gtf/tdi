@@ -54,7 +54,7 @@ const BLOCKS: BlockData[] = [
     },
 ];
 
-/* ── Reusable block ───────*/
+
 
 function AboutBlock({ data, index }: { data: BlockData; index: number }) {
     const blockRef = useRef<HTMLDivElement>(null);
