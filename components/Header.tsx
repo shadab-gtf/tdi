@@ -3,12 +3,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronDown, Search, ArrowRight, Menu, X } from "lucide-react";
+import { ChevronDown, Search, ArrowRight, Menu, X, Command } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import MegaMenu, { menuData } from "./MegaMenu";
 import { usePathname } from "next/navigation";
+import SearchModal from "./SearchModal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,10 +18,22 @@ const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isMenuLocked, setIsMenuLocked] = useState(false);
     const [isProjectsExpanded, setIsProjectsExpanded] = useState(false);
+    const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
     const headerRef = useRef<HTMLElement>(null);
     const pathname = usePathname();
     const isActive = isMegaMenuOpen || isMobileMenuOpen;
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+                e.preventDefault();
+                setIsSearchModalOpen((prev) => !prev);
+            }
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, []);
 
     useEffect(() => {
         if (!headerRef.current) return;
@@ -165,11 +178,12 @@ const Header = () => {
                     </div>
 
                     <div className="hidden lg:flex items-center gap-4 xl:gap-8">
-                        <div className="relative group">
+                        <div className="relative group" onClick={() => setIsSearchModalOpen(true)}>
                             <input
                                 type="text"
                                 placeholder="Search here"
-                                className="bg-transparent border-b border-white/30 text-white placeholder-white/70 py-1 w-32 xl:w-48 focus:outline-none focus:border-[#D9991F] focus:w-48 xl:focus:w-64 transition-all duration-300 text-sm "
+                                // className="bg-transparent border-b border-white/30 text-white placeholder-white/70 py-1 w-32 xl:w-48 focus:outline-none focus:border-[#D9991F] focus:w-48 xl:focus:w-64 transition-all duration-300 text-sm "
+                                className="bg-transparent border-b border-white/30 text-white placeholder-white/70 py-1 w-32 xl:w-48 focus:outline-none focus:border-[#D9991F] transition-all duration-300 text-sm "
                             />
                             <Search className="w-4 h-4 text-white absolute right-0 top-2 pointer-events-none" />
                         </div>
@@ -187,12 +201,14 @@ const Header = () => {
                     </div>
                     {/* Mobile Menu Button */}
                     <div className="flex items-center gap-4 lg:hidden z-50">
-                        <Link
-                            href="/enquire"
-                            className="text-xs font-light tracking-wide text-white hover:text-[#D9991F] transition-colors uppercase border border-white/30 px-3 py-1.5 rounded-full"
-                        >
-                            ENQUIRE NOW
-                        </Link>
+                        <div className="relative group" onClick={() => setIsSearchModalOpen(true)}>
+                            <input
+                                type="text"
+                                placeholder="Search here"
+                                className="bg-transparent border-b border-white/30 text-white placeholder-white/70 py-1 w-32 xl:w-48 focus:outline-none focus:border-[#D9991F]  transition-all duration-300 text-sm "
+                            />
+                            <Search className="w-4 h-4 text-white absolute right-0 top-2 pointer-events-none" />
+                        </div>
                         <button
                             className="p-1 text-white"
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -298,6 +314,10 @@ const Header = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
+            <SearchModal
+                isOpen={isSearchModalOpen}
+                onClose={() => setIsSearchModalOpen(false)}
+            />
         </>
     );
 };
