@@ -168,3 +168,47 @@ p {
   transition-duration: 1s !important;
   transition-timing-function: cubic-bezier(.215, .61, .355, 1);
 }
+/* reveal from top  */
+[data-aos="reveal-top"] {
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  transform: translateY(-30px);
+  opacity: 0;
+  transition-property: clip-path, transform, opacity;
+}
+
+[data-aos="reveal-top"].aos-animate {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* reveal from bottom */
+[data-aos="reveal-bottom"] {
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  transform: translateY(30px);
+  opacity: 0;
+  transition-property: clip-path, transform, opacity;
+}
+
+[data-aos="reveal-bottom"].aos-animate {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  transform: translateY(0);
+  opacity: 1;
+}
+/* ── Properties Swiper Pagination ── */
+.properties-mobile-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: #D3D3D3;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.properties-mobile-swiper .swiper-pagination-bullet-active {
+  background: var(--color-primary);
+  width: 8px;
+}
+
+.properties-mobile-swiper .swiper-pagination {
+  bottom: 0 !important;
+}

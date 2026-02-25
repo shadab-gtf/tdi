@@ -15,22 +15,18 @@ gsap.registerPlugin(ScrollTrigger);
 const Header = () => {
     const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isProjectsExpanded, setIsProjectsExpanded] = useState(false);
     const [isMenuLocked, setIsMenuLocked] = useState(false);
+    const [isProjectsExpanded, setIsProjectsExpanded] = useState(false);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
     const headerRef = useRef<HTMLElement>(null);
     const pathname = usePathname();
-
-    // Determine if mega menu or mobile menu is active (prevents hiding while interacting)
     const isActive = isMegaMenuOpen || isMobileMenuOpen;
 
-    /* ----------------------------------------
-       Velocity-based hide / show header
-    ----------------------------------------- */
     useEffect(() => {
         if (!headerRef.current) return;
         const VELOCITY_THRESHOLD = 800;
         let isHidden = false;
+
         const ctx = gsap.context(() => {
             ScrollTrigger.create({
                 start: 0,
@@ -46,7 +42,6 @@ const Header = () => {
                         isHidden = false;
                         return;
                     }
-                    // fast scroll down → hide
                     if (velocity > VELOCITY_THRESHOLD && !isHidden) {
                         isHidden = true;
                         gsap.to(headerRef.current, {
@@ -55,7 +50,6 @@ const Header = () => {
                             ease: "power4.out",
                         });
                     }
-                    // scroll up → show
                     if (velocity < -200 && isHidden) {
                         isHidden = false;
                         gsap.to(headerRef.current, {
@@ -117,8 +111,7 @@ const Header = () => {
                 <div className="containers mx-auto px-6 flex items-center font-serif justify-between h-full">
                     <div className="flex justify-evenly items-center gap-14">
 
-                        <Link href="/" className="relative z-50 block h-16 w-auto">
-
+                        <Link href="/" className="relative z-50 block h-16 w-auto ">
                             <Image
                                 src="/assets/images/logo.png"
                                 alt="TDI City Logo"
@@ -142,8 +135,7 @@ const Header = () => {
                                                 className={`text-xs xl:text-sm font-light tracking-wide transition-colors
                                                   ${pathname === link.href
                                                         ? "text-[var(--color-accent)]"
-                                                        : "text-white hover:text-[var(--color-accent)]"}
-                                                `}
+                                                        : "text-white hover:text-[var(--color-accent)]"}`}
                                             >
                                                 {link.name}
                                             </Link>
@@ -162,8 +154,7 @@ const Header = () => {
                                             className={`text-xs xl:text-sm font-light tracking-wide transition-colors
                                                    ${pathname === link.href
                                                     ? "text-[var(--color-accent)]"
-                                                    : "text-white hover:text-[var(--color-accent)]"}
-                                                `}
+                                                    : "text-white hover:text-[var(--color-accent)]"}`}
                                         >
                                             {link.name}
                                         </Link>
@@ -188,8 +179,7 @@ const Header = () => {
                             className={`flex items-center gap-2 text-xs xl:text-sm font-light tracking-wide transition-colors uppercase whitespace-nowrap
                                    ${pathname === "/enquire"
                                     ? "text-[var(--color-accent)]"
-                                    : "text-white hover:text-[var(--color-accent)]"}
-                                                `}
+                                    : "text-white hover:text-[var(--color-accent)]"}`}
                         >
                             ENQUIRE NOW
                             <ArrowRight className="w-4 h-4" />

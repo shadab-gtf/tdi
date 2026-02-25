@@ -5,6 +5,12 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, MoveLeft, MoveRight } from "lucide-react";
 import Link from "next/link";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
 
 const propertiesData = [
     {
@@ -97,7 +103,7 @@ const Properties = () => {
 
 
     return (
-        <section className="w-full bg-[var(--background)] py-20 overflow-hidden relative">
+        <section className="w-full bg-white py-14 overflow-hidden relative">
             <div className="containers mx-auto px-4">
                 {/* Header */}
                 <div className="text-center mb-12">
@@ -105,12 +111,9 @@ const Properties = () => {
                         Iconic Properties
                     </h2>
                 </div>
-
-                {/* Slider Container */}
                 <div
-                    className="relative flex items-center max-w-[1238px] mx-auto group/slider"
+                    className="hidden md:flex relative items-center max-w-[1238px] mx-auto group/slider"
                 >
-                    {/* Navigation Buttons - Desktop */}
                     <button
                         onClick={() => slide("left")}
                         disabled={currentIndex === 0}
@@ -126,8 +129,6 @@ const Properties = () => {
                         ref={sliderRef}
                         className="overflow-hidden w-full relative py-4"
                     >
-
-
                         <motion.div
                             drag="x"
                             dragElastic={0.1}
@@ -151,23 +152,18 @@ const Properties = () => {
                                         style={{ width: CARD_WIDTH }}
                                         whileHover={{ scale: 1.02 }}
                                         transition={{ duration: 0.3 }}
-                                        onClick={() => {
-                                            // Optional: make tapping card slide it if partly visible?
-                                            // Currently card is link/action?
-                                        }}
                                     >
-                                        <div className="relative w-full h-[405px] shadow-lg overflow-hidden group-hover/card:shadow-2xl transition-all duration-500">
+                                        <div className="relative w-[275px] h-[360px] shadow-lg overflow-hidden group-hover/card:shadow-2xl transition-all duration-500">
                                             <Image
                                                 src={property.image}
                                                 alt={property.title}
                                                 fill
                                                 className="object-cover transition-transform duration-700 group-hover/card:scale-110"
                                             />
-                                            {/* Overlay gradient on hover */}
                                             <div className="absolute inset-0 bg-black/10 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
                                         </div>
                                         <Link href={property.link}>
-                                            <h3 className="text-[22px] font-serif text-[var(--foreground)] text-center group-hover/card:text-[var(--color-accent)] transition-colors">
+                                            <h3 className="text-[18px]  md:text-[22px] font-serif text-[var(--foreground)] text-start md:text-center group-hover/card:text-[var(--color-accent)] transition-colors">
                                                 {property.title}
                                             </h3>
                                         </Link>
@@ -175,14 +171,12 @@ const Properties = () => {
 
                                     {/* Divider */}
                                     {index !== propertiesData.length - 1 && (
-                                        <div className="h-[405px] w-[1px] bg-[#D3D3D3] mx-[20px] shrink-0" />
+                                        <div className="h-[360px] w-[1px] bg-[#D3D3D3] mx-2.5 md:mx-[20px] shrink-0" />
                                     )}
                                 </React.Fragment>
                             ))}
                         </motion.div>
                     </div>
-
-                    {/* Navigation Buttons - Desktop */}
                     <button
                         onClick={() => slide("right")}
                         disabled={currentIndex === maxIndex}
@@ -194,26 +188,37 @@ const Properties = () => {
                         <MoveRight size={24} />
                     </button>
                 </div>
-
-                {/* Mobile Navigation Controls */}
-                <div className="flex md:hidden justify-between w-full px-4 mt-8">
-                    <button
-                        onClick={() => slide("left")}
-                        disabled={currentIndex === 0}
-                        className={`p-3 border border-[var(--primary)] rounded-full text-[var(--primary)] transition-opacity active:scale-90 ${currentIndex === 0 ? "opacity-30" : ""}`}
+                <div className="block md:hidden properties-mobile-swiper">
+                    <Swiper
+                        slidesPerView={1.2}
+                        spaceBetween={20}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        modules={[Pagination]}
+                        className="mySwiper"
                     >
-                        <MoveLeft size={20} />
-                    </button>
-                    <button
-                        onClick={() => slide("right")}
-                        disabled={currentIndex >= propertiesData.length - 1}
-                        className={`p-3 border border-[var(--primary)] rounded-full text-[var(--primary)] transition-opacity active:scale-90 ${currentIndex >= propertiesData.length - 1 ? "opacity-30" : ""}`}
-                    >
-                        <MoveRight size={20} />
-                    </button>
+                        {propertiesData.map((property) => (
+                            <SwiperSlide key={property.id}>
+                                <div className="flex flex-col items-start gap-4 pb-12">
+                                    <div className="relative w-full aspect-[275/360] shadow-lg overflow-hidden rounded-sm">
+                                        <Image
+                                            src={property.image}
+                                            alt={property.title}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    </div>
+                                    <Link href={property.link} className="w-full">
+                                        <h3 className="text-[18px] font-serif text-[var(--foreground)] text-start">
+                                            {property.title}
+                                        </h3>
+                                    </Link>
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
                 </div>
-
-                {/* View All */}
                 <div className="mt-16 text-center">
                     <Link
                         href="/projects"
