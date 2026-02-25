@@ -103,12 +103,12 @@ const Footer = () => {
 
                 {/* Bottom Section */}
                 <div className="border-b border-white/10 py-5 mb-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center relative z-10">
-                    <div className="flex flex-col items-center">
+                    <div className="flex md:flex-col flex-row justify-between items-center">
                         <h4 className="font-serif text-lg md:text-xl mb-4 text-white!">Address</h4>
                         <p className="text-base font-light text-white! font-serif">Delhi, India</p>
                     </div>
 
-                    <div className="flex flex-col items-center border-t md:border-t-0 md:border-l border-white/20 md:border-r py-8 md:py-0">
+                    <div className="flex md:flex-col flex-row justify-between items-center border-t md:border-t-0 md:border-l border-white/20 md:border-r py-2 md:py-0">
                         <h4 className="font-serif text-lg md:text-xl mb-4 text-white!">Contact</h4>
                         <p className="text-base font-light text-white! font-serif">+1 234 567 890</p>
                     </div>
@@ -126,10 +126,10 @@ const Footer = () => {
                 </div>
 
                 <div className="flex flex-col md:flex-row justify-between items-center text-xs font-serif px-2 md:px-12">
-                    <p className="text-base font-light text-white! font-serif">©2026 All Rights Reserved By GTF Technologies</p>
+                    <p className="md:text-base text-xs font-light text-white! font-serif">©2026 All Rights Reserved By GTF Technologies</p>
                     <button
                         onClick={scrollToTop}
-                        className="flex items-center gap-2 hover:text-[var(--color-accent)] cursor-pointer transition-colors mt-4 md:mt-0 group"
+                        className="flex md:justify-center justify-end items-center gap-2 hover:text-[var(--color-accent)] cursor-pointer text-xs md:text-base transition-colors mt-4 md:mt-0 group"
                     >
                         Back To Top
                     </button>
