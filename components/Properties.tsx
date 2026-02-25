@@ -106,14 +106,17 @@ const Properties = () => {
         <section className="w-full bg-white py-14 overflow-hidden relative">
             <div className="containers mx-auto px-4">
                 {/* Header */}
-                <div className="text-center mb-12">
-                    <h2 className="text-xl md:text-2xl font-serif text-[var(--color-accent)]! uppercase tracking-wider">
+                <div className="text-center mb-12" data-aos="reveal-top">
+                    <h2 className="text-base md:text-[20px] font-serif text-[var(--color-accent)]! uppercase">
                         Iconic Properties
                     </h2>
                 </div>
+
                 <div
                     className="hidden md:flex relative items-center max-w-[1238px] mx-auto group/slider"
                 >
+
+
                     <button
                         onClick={() => slide("left")}
                         disabled={currentIndex === 0}
@@ -152,6 +155,8 @@ const Properties = () => {
                                         style={{ width: CARD_WIDTH }}
                                         whileHover={{ scale: 1.02 }}
                                         transition={{ duration: 0.3 }}
+                                        data-aos="fade-up"
+                                        data-aos-delay={index === 0 ? 250 : index === 1 ? 350 : index === 2 ? 400 : index === 3 ? 450 : 500}
                                     >
                                         <div className="relative w-[275px] h-[360px] shadow-lg overflow-hidden group-hover/card:shadow-2xl transition-all duration-500">
                                             <Image
@@ -162,8 +167,9 @@ const Properties = () => {
                                             />
                                             <div className="absolute inset-0 bg-black/10 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
                                         </div>
+
                                         <Link href={property.link}>
-                                            <h3 className="text-[18px]  md:text-[22px] font-serif text-[var(--foreground)] text-start md:text-center group-hover/card:text-[var(--color-accent)] transition-colors">
+                                            <h3 className="text-base  md:text-[18px] font-serif text-[var(--foreground)] text-start md:text-center group-hover/card:text-[var(--color-accent)] transition-colors">
                                                 {property.title}
                                             </h3>
                                         </Link>
@@ -189,7 +195,9 @@ const Properties = () => {
                     </button>
                 </div>
                 <div className="block md:hidden properties-mobile-swiper">
+
                     <Swiper
+
                         slidesPerView={1.2}
                         spaceBetween={20}
                         pagination={{
@@ -198,10 +206,14 @@ const Properties = () => {
                         modules={[Pagination]}
                         className="mySwiper"
                     >
-                        {propertiesData.map((property) => (
+                        {propertiesData.map((property, index) => (
                             <SwiperSlide key={property.id}>
-                                <div className="flex flex-col items-start gap-4 pb-12">
-                                    <div className="relative w-full aspect-[275/360] shadow-lg overflow-hidden rounded-sm">
+                                <div
+                                    className="flex flex-col items-start gap-2 md:gap-3 pb-10"
+                                    data-aos="fade-up"
+                                    data-aos-delay={index === 0 ? 250 : index === 1 ? 350 : index === 2 ? 400 : index === 3 ? 450 : 500}
+                                >
+                                    <div className="relative w-full aspect-[275/360] shadow-lg overflow-hidden">
                                         <Image
                                             src={property.image}
                                             alt={property.title}
@@ -210,21 +222,23 @@ const Properties = () => {
                                         />
                                     </div>
                                     <Link href={property.link} className="w-full">
-                                        <h3 className="text-[18px] font-serif text-[var(--foreground)] text-start">
+                                        <h3 className="text-base font-serif text-[var(--foreground)] text-start">
                                             {property.title}
                                         </h3>
                                     </Link>
                                 </div>
                             </SwiperSlide>
                         ))}
+
                     </Swiper>
                 </div>
-                <div className="mt-16 text-center">
+                <div className="mt-8 md:mt-16 text-center" data-aos="fade-up" data-aos-delay="200">
                     <Link
+
                         href="/projects"
-                        className="text-[var(--color-accent)] hover:text-[var(--primary)] transition-colors border-b border-[var(--color-accent)] hover:border-[var(--primary)] inline-flex items-center gap-2 font-serif text-lg tracking-wide duration-300"
+                        className="text-[var(--color-accent)] group hover:text-[var(--primary)] transition-colors border-b border-[var(--color-accent)] hover:border-[var(--primary)] inline-flex items-center gap-2 font-serif text-base md:text-lg tracking-wide duration-300"
                     >
-                        View All Projects <ArrowRight size={18} />
+                        View All Projects <ArrowRight className="group-hover:-rotate-45 transition-all duration-300" size={18} />
                     </Link>
                 </div>
             </div>

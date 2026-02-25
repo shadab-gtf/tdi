@@ -102,7 +102,7 @@ const BlogSection = () => {
         <section className="bg-white py-20 overflow-hidden">
             <div className="containers mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-serif text-[#232E5A] mb-6">
+                    <h2 className="text-center text-lg md:text-[25px] font-regular font-serif tracking-tight ">
                         Latest News Update
                     </h2>
                 </div>
@@ -154,13 +154,13 @@ const BlogSection = () => {
                                         </Link>
                                     </div>
 
-                                    <div className="p-6 md:p-8 flex flex-col grow card-content">
+                                    <div className=" pt-2 pb-6 px-6 md:p-8 md:pt-4 md:pb-8 flex flex-col grow card-content">
                                         <Link href={post.link}>
-                                            <p className="text-center text-sm  text-black font-serif mb-2 uppercase tracking-wider">
+                                            <p className="text-center text-xs md:text-sm  text-black font-serif mb-2 uppercase tracking-wider">
                                                 {post.date}
                                             </p>
 
-                                            <h3 className="text-center  font-serif text-[#232E5A] leading-tight  line-clamp-2 min-h-[3.5rem]">
+                                            <h3 className="text-center text-sm md:text-base  font-serif text-[#232E5A] leading-tight  line-clamp-2 min-h-[3.5rem]">
                                                 {post.title}
                                             </h3>
                                             <div className="w-full h-[1px] bg-[#D58C00] mx-auto mb-6 opacity-50"></div>
@@ -209,10 +209,10 @@ const BlogSection = () => {
                 <div className="text-center mt-12 md:mt-16">
                     <Link
                         href="/blog"
-                        className="inline-flex items-center gap-2 text-[var(--color-accent)] font-serif text-lg  transition-all border-b border-[#D4AF37] pb-0.5"
+                        className="text-[var(--color-accent)] group hover:text-[var(--primary)] transition-colors border-b border-[var(--color-accent)] hover:border-[var(--primary)] inline-flex items-center gap-2 font-serif text-base md:text-lg tracking-wide duration-300"
                     >
                         View All News & Blog
-                        <MoveRight size={18} />
+                        <MoveRight className="group-hover:-rotate-45 transition-all duration-300" size={18} />
                     </Link>
                 </div>
 

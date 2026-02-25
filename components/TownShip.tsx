@@ -36,25 +36,25 @@ const TownShip = () => {
     return (
         <section
             ref={containerRef}
-            className="w-full bg-[var(--white)] py-20 flex flex-col items-center justify-center text-center overflow-hidden"
+            className="w-full bg-[var(--white)] py-10 md:py-20 flex flex-col items-center justify-center text-center overflow-hidden"
         >
             {/* Statistic Container */}
             <div ref={numberRef} className="flex items-end justify-center leading-none select-none relative">
-                <span className="font-secondary flex items-center gap-2 text-[var(--color-accent)] text-[60px] md:text-[80px] lg:text-[100px] font-normal">
+                <span className="font-secondary flex items-end gap-2 text-[var(--color-accent)] text-[40px] md:text-[60px] lg:text-[70px] font-normal">
                     1100+
+                    <span className="text-paragraph text-xs md:text-sm mb-5 font-serif">
+                        Acres
+                    </span>
                 </span>
 
-                <span className="text-[var(--foreground)] text-xs md:text-sm font-serif uppercase tracking-widest">
-                    Acres
-                </span>
             </div>
 
             {/* Text Content */}
-            <div ref={textRef} className="mt-8 flex flex-col items-center gap-2">
-                <h2 className="text-2xl md:text-4xl lg:text-5xl font-serif text-[var(--foreground)] tracking-wide">
+            <div ref={textRef} className="mt-2 md:mt-4 flex flex-col items-center gap-2">
+                <h2 className="text-lg md:text-2xl lg:text-3xl font-serif text-[var(--foreground)] tracking-wide">
                     One Of NCR’s Largest Integrated
                 </h2>
-                <h3 className="text-2xl md:text-4xl lg:text-5xl font-serif text-[var(--foreground)] tracking-wide">
+                <h3 className="text-lg md:text-2xl lg:text-3xl font-serif text-[var(--foreground)] tracking-wide">
                     Townships
                 </h3>
             </div>

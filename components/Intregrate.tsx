@@ -16,20 +16,20 @@ const Intregrate = () => {
     }, []);
 
     return (
-        <section className="w-full bg-[var(--background)] py-20 overflow-hidden">
-            <div className="containers mx-auto">
+        <section className="w-full bg-[var(--background)] px-4 md:px-0 md:py-20 py-10 overflow-hidden">
+            <div
+                className="text-center max-w-[888px] w-full mx-auto mb-16 md:mb-24"
+                data-aos="fade-up"
+            >
+                <h2 className="text-lg md:text-[25px] font-serif text-[var(--foreground)] mb-6">
+                    Living, Working & Leisure <span className="text-[var(--primary)] hidden">—</span> Thoughtfully Integrated
+                </h2>
+                <p className="md:text-base text-sm text-[var(--paragraph)] font-serif leading-[25px]">
+                    At TDI City Kundli, residential comfort, commercial vitality, and lifestyle amenities come together within a carefully planned township, creating a balanced environment for everyday living.
+                </p>
+            </div>
+            <div className="max-w-[1140px] w-full mx-auto">
                 {/* Header with AOS */}
-                <div
-                    className="text-center max-w-4xl mx-auto mb-16 md:mb-24"
-                    data-aos="fade-up"
-                >
-                    <h2 className="text-2xl md:text-[25px] font-serif text-[var(--foreground)] mb-6">
-                        Living, Working & Leisure — Thoughtfully Integrated
-                    </h2>
-                    <p className="text-base text-[var(--paragraph)] font-serif leading-[24px]">
-                        At TDI City Kundli, residential comfort, commercial vitality, and lifestyle amenities come together within a carefully planned township.
-                    </p>
-                </div>
 
                 {/* Rows */}
                 <div className="flex flex-col gap-12 md:gap-24">
@@ -59,10 +59,10 @@ const Intregrate = () => {
                                 data-aos="fade-up"
                                 data-aos-delay="200"
                             >
-                                <h3 className="text-xl text-center font-serif text-[var(--foreground)] mb-4 md:mb-6 w-full">
+                                <h3 className="text-lg md:text-xl text-center font-serif text-[var(--foreground)] mb-4 md:mb-6 w-full">
                                     {item.title}
                                 </h3>
-                                <p className="text-base max-w-[555px] text-[var(--paragraph)] text-center font-serif leading-[24px]">
+                                <p className="text-sm md:text-base max-w-[555px] text-[var(--paragraph)] text-center font-serif leading-[24px]">
                                     {item.description}
                                 </p>
                             </div>

@@ -13,7 +13,7 @@ const reasons = [
     {
         id: 2,
         title: "The Next Gurugram Of The North",
-        image: "/assets/images/long.png",
+        image: "/assets/projects/espania.png",
     },
     {
         id: 3,
@@ -23,7 +23,7 @@ const reasons = [
     {
         id: 4,
         title: "Reduced Traffic & Planned Movement",
-        image: "/assets/images/long.png",
+        image: "/assets/projects/espania.png",
     },
     {
         id: 5,
@@ -33,7 +33,7 @@ const reasons = [
     {
         id: 6,
         title: "KMP Expressway (Kundli–Manesar–Palwal)",
-        image: "/assets/images/long.png",
+        image: "/assets/projects/espania.png",
     },
     {
         id: 7,
@@ -43,7 +43,7 @@ const reasons = [
     {
         id: 8,
         title: "RRTS & Metro Connectivity",
-        image: "/assets/images/long.png",
+        image: "/assets/projects/espania.png",
     },
 ];
 
@@ -102,7 +102,7 @@ const WhyTdi = () => {
             {/* Heading */}
             <div className="text-center mb-12 md:mb-16">
                 <h2
-                    className="text-[25px] font-regular font-serif tracking-tight"
+                    className="text-center text-lg md:text-[25px] font-normal font-serif tracking-tight"
                 >
                     Why Kundli Is The New New Delhi
                 </h2>
@@ -120,55 +120,38 @@ const WhyTdi = () => {
                                 key={item.id}
                                 className="group relative cursor-pointer"
                                 onMouseEnter={() => handleHover(index)}
+                                data-aos="fade-right"
+                                data-aos-delay={100 + index * 50}
                             >
-                                {/* Top border line */}
-                                <div
-                                    className="w-full h-px transition-colors duration-300"
-                                    style={{ backgroundColor: isActive ? "#D9991F" : "#DBDBDB" }}
-                                />
-
                                 {/* Row content */}
-                                <div
-                                    className="flex items-center justify-between py-4 md:py-6 px-1 transition-all duration-300"
-                                >
+                                <div className="flex items-center justify-between py-4 md:py-6 px-1 transition-all duration-300">
                                     <span
-                                        className="text-base lg:text-xl transition-colors duration-300 pr-4"
+                                        className="text-sm lg:text-[20px] font-normal font-serif transition-colors duration-300 pr-4"
                                         style={{
-                                            color: isActive ? "#D9991F" : "#5A5A5A",
+                                            color: isActive ? "#D9991F" : "#232E5A99",
                                             fontFamily: "Georgia, serif",
                                         }}
                                     >
                                         {item.title}
                                     </span>
-
-                                    {/* Arrow icon */}
-                                    <div
-                                        className="flex-shrink-0 transition-all duration-300"
-                                        style={{ color: isActive ? "#D9991F" : "#9aabb8" }}
-                                    >
-                                        <ArrowRight
-                                            size={20}
-                                            strokeWidth={1.5}
-                                            className={`transition-transform duration-300 ${isActive ? "translate-x-1" : "group-hover:translate-x-0.5"}`}
-                                        />
-                                    </div>
                                 </div>
 
-                                {/* Bottom border on last item */}
-                                {index === reasons.length - 1 && (
-                                    <div
-                                        className="w-full h-px"
-                                        style={{ backgroundColor: "#DBDBDB" }}
-                                    />
-                                )}
+                                {/* Bottom border line */}
+                                <div
+                                    className="w-full h-px transition-colors duration-300"
+                                    style={{ backgroundColor: isActive ? "#D9991F" : "#DBDBDB" }}
+                                />
                             </div>
                         );
                     })}
                 </div>
 
 
+
+
                 {/* Right: Images */}
-                <div className="w-full lg:w-1/2 lg:sticky lg:top-24 order-1 lg:order-2">
+                <div className="hidden lg:block lg:w-1/2 lg:sticky lg:top-24 order-1 lg:order-2">
+
                     <div
                         className="relative w-full overflow-hidden"
                         style={{ aspectRatio: "1/1" }}
@@ -197,7 +180,7 @@ const WhyTdi = () => {
                     </div>
                 </div>
             </div>
-        </section>
+        </section >
     );
 };
 

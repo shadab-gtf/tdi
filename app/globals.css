@@ -197,8 +197,8 @@ p {
 }
 /* ── Properties Swiper Pagination ── */
 .properties-mobile-swiper .swiper-pagination-bullet {
-  width: 8px;
-  height: 8px;
+  width: 5px;
+  height: 5px;
   background: #D3D3D3;
   opacity: 1;
   transition: all 0.3s ease;
@@ -206,7 +206,7 @@ p {
 
 .properties-mobile-swiper .swiper-pagination-bullet-active {
   background: var(--color-primary);
-  width: 8px;
+  width: 5px;
 }
 
 .properties-mobile-swiper .swiper-pagination {

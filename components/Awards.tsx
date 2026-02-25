@@ -1,8 +1,14 @@
 "use client";
-import React, { useRef, useState, useEffect, useCallback } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { MoveLeft, MoveRight } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import type { Swiper as SwiperType } from "swiper";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
 
 const awardsData = [
     {
@@ -50,72 +56,17 @@ const awardsData = [
 ];
 
 const Awards = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [visibleCount, setVisibleCount] = useState(4);
-    const [isDragging, setIsDragging] = useState(false);
-    const dragStartX = useRef(0);
-    const dragStartIndex = useRef(0);
-
-    const maxIndex = Math.max(0, awardsData.length - visibleCount);
-
-    useEffect(() => {
-        const handleResize = () => {
-            const width = window.innerWidth;
-            let visible = 2;
-            if (width >= 1024) visible = 4;
-            else if (width >= 768) visible = 3;
-            else if (width >= 480) visible = 2;
-            else visible = 1;
-            setVisibleCount(visible);
-            setCurrentIndex((prev) => Math.min(prev, Math.max(0, awardsData.length - visible)));
-        };
-        handleResize();
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
-    const slide = useCallback(
-        (direction: "left" | "right") => {
-            setCurrentIndex((prev) => {
-                if (direction === "right") return Math.min(prev + 1, maxIndex);
-                return Math.max(prev - 1, 0);
-            });
-        },
-        [maxIndex]
-    );
-
-    // Touch/drag handlers
-    const handleDragStart = (clientX: number) => {
-        setIsDragging(true);
-        dragStartX.current = clientX;
-        dragStartIndex.current = currentIndex;
-    };
-    const handleDragEnd = (clientX: number) => {
-        if (!isDragging) return;
-        setIsDragging(false);
-        const diff = dragStartX.current - clientX;
-        if (Math.abs(diff) > 50) {
-            if (diff > 0) slide("right");
-            else slide("left");
-        }
-    };
-
-    // percentage offset per item
-    const itemWidthPercent = 100 / visibleCount;
-    const translateX = -(currentIndex * itemWidthPercent);
+    const swiperRef = useRef<SwiperType | null>(null);
 
     return (
-        <section className="w-full bg-[#F0F4FA] py-16 px-4 overflow-hidden">
+        <section className="w-full bg-[#F0F4FA] py-10 md:py-16 px-4 overflow-hidden">
             <div className="containers mx-auto">
                 {/* Header */}
-                <div className="text-center mb-12 max-w-4xl mx-auto">
-                    <h2
-                        className="text-[25px] font-serif my-4"
-
-                    >
+                <div className="text-center mb-8 md:mb-12 max-w-4xl mx-auto" data-aos="reveal-top">
+                    <h2 className="text-xl md:text-[25px] font-serif my-2 md:my-4">
                         Awards &amp; Recognition
                     </h2>
-                    <p className="text-[var(--color-secondary)] font-serif text-sm md:text-base ">
+                    <p className="text-[var(--color-secondary)] font-serif text-sm md:text-base leading-relaxed">
                         Honouring industry accolades and milestones that reflect our commitment to quality, design
                         excellence, and trusted development across residential, commercial, and institutional
                         projects.
@@ -123,95 +74,86 @@ const Awards = () => {
                 </div>
 
                 {/* Slider Wrapper */}
-                <div className="relative max-w-7xl mx-auto ">
+                <div className="relative max-w-7xl mx-auto" data-aos="fade-up" data-aos-delay="200">
                     {/* Prev Button */}
                     <button
-                        onClick={() => slide("left")}
-                        disabled={currentIndex === 0}
+                        onClick={() => swiperRef.current?.slidePrev()}
                         aria-label="Previous"
-                        className={`hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full border border-[#D4AF37] text-black bg-transparent hover:bg-[#D4AF37] hover:text-white transition-all duration-300 -translate-x-14 ${currentIndex === 0 ? "opacity-30 cursor-not-allowed" : "cursor-pointer hover:shadow-lg active:scale-95"
-                            }`}
+                        className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full border border-[#D4AF37] text-black bg-transparent hover:bg-[#D4AF37] hover:text-white transition-all duration-300 -translate-x-12 lg:-translate-x-14 cursor-pointer hover:shadow-lg active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed"
                     >
                         <MoveLeft size={18} />
                     </button>
 
-                    {/* Viewport */}
-                    <div
-                        className="overflow-hidden w-full"
-                        onMouseDown={(e) => handleDragStart(e.clientX)}
-                        onMouseUp={(e) => handleDragEnd(e.clientX)}
-                        onMouseLeave={(e) => handleDragEnd(e.clientX)}
-                        onTouchStart={(e) => handleDragStart(e.touches[0].clientX)}
-                        onTouchEnd={(e) => handleDragEnd(e.changedTouches[0].clientX)}
-                    >
-                        {/* Track */}
-                        <motion.div
-                            className="flex"
-                            animate={{ x: `${translateX}%` }}
-                            transition={{ type: "spring", stiffness: 300, damping: 35, mass: 0.8 }}
-                            style={{ width: `${(awardsData.length / visibleCount) * 100}%` }}
+                    {/* Swiper Slider */}
+                    <div className="w-full">
+                        <Swiper
+                            onSwiper={(swiper) => (swiperRef.current = swiper)}
+                            modules={[Navigation]}
+                            spaceBetween={0}
+                            slidesPerView={1.2}
+                            breakpoints={{
+                                400: { slidesPerView: 2 },
+                                480: { slidesPerView: 2 },
+                                768: { slidesPerView: 3 },
+                                1024: { slidesPerView: 4 },
+                            }}
+                            className="awards-swiper"
                         >
                             {awardsData.map((item, index) => {
                                 const isLast = index === awardsData.length - 1;
                                 return (
-                                    <div
-                                        key={item.id}
-                                        className="flex items-stretch "
-                                        style={{ width: `${100 / awardsData.length}%` }}
-                                    >
-                                        {/* Card */}
-                                        <div className="flex-1 flex flex-col items-center px-16 py-4">
-                                            {/* Image */}
-                                            <div
-                                                className="relative w-[200px] h-[200px] overflow-hidden shadow-md"
-                                                style={{ aspectRatio: "1/1" }}
-                                            >
-                                                <Image
-                                                    src={item.image}
-                                                    alt={`${item.title} ${item.subtitle}`}
-                                                    fill
-                                                    className="object-cover"
-                                                    draggable={false}
-                                                />
-                                            </div>
-
-                                            {/* Text */}
-                                            <div className="text-center mt-4 space-y-1">
-                                                <h4
-                                                    className="text-[30px] font-serif text-[var(--color-accent)]! font-semibold"
-                                                >
-                                                    {item.year}
-                                                </h4>
-                                                <p className="text-sm md:text-base font-regular text-black! font-serif text-gray-800 leading-snug">
-                                                    {item.title}
-                                                    <br />
-                                                    {item.subtitle}
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        {/* Vertical Separator */}
-                                        {!isLast && (
-                                            <div className="flex items-center self-stretch py-4">
+                                    <SwiperSlide key={item.id}>
+                                        <div className="flex items-stretch h-full">
+                                            {/* Card */}
+                                            <div className="flex-1 flex flex-col items-center px-3 md:px-8 py-4">
+                                                {/* Image */}
                                                 <div
-                                                    className="w-px bg-gradient-to-b from-transparent via-[#C9A227]/40 to-transparent"
-                                                    style={{ height: "100%" }}
-                                                />
+                                                    className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] overflow-hidden shadow-md"
+                                                >
+                                                    <Image
+                                                        src={item.image}
+                                                        alt={`${item.title} ${item.subtitle}`}
+                                                        fill
+                                                        className="object-cover"
+                                                        draggable={false}
+                                                    />
+                                                </div>
+
+                                                {/* Text */}
+                                                <div className="text-center mt-1 md:mt-2 space-y-1">
+                                                    <h4 className="text-lg sm:text-xl md:text-2xl font-semibold font-serif text-[var(--color-accent)]! ">
+                                                        {item.year}
+                                                    </h4>
+                                                    <p className="text-xs md:text-sm font-normal text-black! font-serif text-gray-800 leading-snug">
+                                                        {item.title}
+                                                        <br />
+                                                        {item.subtitle}
+                                                    </p>
+                                                </div>
                                             </div>
-                                        )}
-                                    </div>
+
+
+                                            {/* Vertical Separator */}
+                                            {!isLast && (
+                                                <div className="flex items-center self-stretch py-4">
+                                                    <div
+                                                        className="w-px bg-gradient-to-b from-transparent via-[#C9A227]/40 to-transparent"
+                                                        style={{ height: "100%" }}
+                                                    />
+                                                </div>
+                                            )}
+                                        </div>
+                                    </SwiperSlide>
                                 );
                             })}
-                        </motion.div>
+                        </Swiper>
                     </div>
 
                     {/* Next Button */}
                     <button
-                        onClick={() => slide("right")}
-                        disabled={currentIndex === maxIndex}
+                        onClick={() => swiperRef.current?.slideNext()}
                         aria-label="Next"
-                        className={`hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full border border-[#D4AF37] text-black bg-transparent hover:bg-[#D4AF37] hover:text-white transition-all duration-300 translate-x-14 ${currentIndex === maxIndex ? "opacity-30 cursor-not-allowed" : "cursor-pointer hover:shadow-lg active:scale-95"
-                            }`}
+                        className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full border border-[#D4AF37] text-black bg-transparent hover:bg-[#D4AF37] hover:text-white transition-all duration-300 translate-x-14 cursor-pointer hover:shadow-lg active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed"
                     >
                         <MoveRight size={18} />
                     </button>
@@ -219,18 +161,14 @@ const Awards = () => {
                     {/* Mobile Controls */}
                     <div className="flex md:hidden justify-center gap-4 mt-6">
                         <button
-                            onClick={() => slide("left")}
-                            disabled={currentIndex === 0}
-                            className={`p-2 rounded-full border border-[#D4AF37] text-[#D4AF37] bg-white/80 backdrop-blur-sm shadow-md transition-opacity ${currentIndex === 0 ? "opacity-30" : "opacity-100"
-                                }`}
+                            onClick={() => swiperRef.current?.slidePrev()}
+                            className="p-2 rounded-full border border-[#D4AF37] text-[#D4AF37] bg-white/80 backdrop-blur-sm shadow-md transition-opacity active:scale-95"
                         >
                             <MoveLeft size={18} />
                         </button>
                         <button
-                            onClick={() => slide("right")}
-                            disabled={currentIndex === maxIndex}
-                            className={`p-2 rounded-full border border-[#D4AF37] text-[#D4AF37] bg-white/80 backdrop-blur-sm shadow-md transition-opacity ${currentIndex === maxIndex ? "opacity-30" : "opacity-100"
-                                }`}
+                            onClick={() => swiperRef.current?.slideNext()}
+                            className="p-2 rounded-full border border-[#D4AF37] text-[#D4AF37] bg-white/80 backdrop-blur-sm shadow-md transition-opacity active:scale-95"
                         >
                             <MoveRight size={18} />
                         </button>
@@ -241,4 +179,4 @@ const Awards = () => {
     );
 };
 
-export default Awards; 
+export default Awards;
