@@ -117,7 +117,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
                         initial="hidden"
                         animate="visible"
                         exit="exit"
-                        className="relative w-full max-w-2xl bg-[#FFFFFF] rounded-2xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] overflow-hidden flex flex-col max-h-[75vh] border border-white/10"
+                        className="relative w-full max-w-2xl bg-[#FFFFFF] rounded-2xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] overflow-hidden flex flex-col max-h-[75vh] border border-white/10 font-serif"
                     >
                         {/* Header / Input */}
                         <div className="flex items-center px-5 py-5 border-b border-gray-100 flex-shrink-0">
@@ -133,7 +133,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
                                     placeholder="Find a project..."
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="flex-1 bg-transparent text-[var(--color-primary)] placeholder-gray-400 focus:outline-none text-xl font-light"
+                                    className="flex-1 bg-transparent text-[var(--color-primary)] placeholder-gray-400 focus:outline-none text-xl font-light font-serif"
                                 />
                             </div>
 
@@ -183,41 +183,50 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
                                         {searchQuery ? `Found ${filteredResults.length} Results` : "Latest Projects"}
                                     </p>
                                     <div className="flex flex-col">
-                                        {filteredResults.map((project) => (
-                                            <motion.div key={project.id} variants={itemVariants}>
-                                                <Link
-                                                    href="/our-projects"
-                                                    onClick={onClose}
-                                                    className="group flex items-center px-6 py-4 hover:bg-[var(--color-secondary)] transition-all duration-300 relative border-l-4 border-transparent hover:border-[var(--color-accent)]"
+                                        <AnimatePresence mode="popLayout">
+                                            {filteredResults.map((project) => (
+                                                <motion.div
+                                                    key={project.id}
+                                                    variants={itemVariants}
+                                                    initial="hidden"
+                                                    animate="visible"
+                                                    exit="exit"
+                                                    layout
                                                 >
-                                                    <div className="relative w-14 h-14 rounded-xl overflow-hidden bg-gray-50 flex-shrink-0 border border-gray-100 group-hover:shadow-md transition-shadow">
-                                                        <Image
-                                                            src={project.image}
-                                                            alt={project.title}
-                                                            fill
-                                                            className="object-contain p-2 group-hover:scale-110 transition-transform duration-500"
-                                                        />
-                                                    </div>
-                                                    <div className="ml-5 flex-1 min-w-0">
-                                                        <h4 className="text-[17px] font-medium text-[var(--color-primary)] truncate group-hover:text-[var(--color-accent)] transition-colors">
-                                                            {project.title}
-                                                        </h4>
-                                                        <div className="flex items-center gap-3 mt-1 overflow-hidden">
-                                                            <span className="text-[12px] text-gray-500 font-medium uppercase tracking-wide flex-shrink-0">
-                                                                {project.category}
-                                                            </span>
-                                                            <span className="text-gray-300 flex-shrink-0">•</span>
-                                                            <span className="text-[12px] text-gray-500 truncate italic">
-                                                                {project.status}
-                                                            </span>
+                                                    <Link
+                                                        href="/our-projects"
+                                                        onClick={onClose}
+                                                        className="group flex items-center px-6 py-4 hover:bg-[var(--color-secondary)] transition-all duration-300 relative border-l-4 border-transparent hover:border-[var(--color-accent)]"
+                                                    >
+                                                        <div className="relative w-14 h-14 rounded-xl overflow-hidden bg-gray-50 flex-shrink-0 border border-gray-100 group-hover:shadow-md transition-shadow">
+                                                            <Image
+                                                                src={project.image}
+                                                                alt={project.title}
+                                                                fill
+                                                                className="object-contain p-2 group-hover:scale-110 transition-transform duration-500"
+                                                            />
                                                         </div>
-                                                    </div>
-                                                    <div className="flex flex-col items-end gap-1 ml-4 flex-shrink-0">
-                                                        <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-[var(--color-accent)] group-hover:translate-x-1 transition-all duration-300" />
-                                                    </div>
-                                                </Link>
-                                            </motion.div>
-                                        ))}
+                                                        <div className="ml-5 flex-1 min-w-0">
+                                                            <h4 className="text-[17px] font-medium text-[var(--color-primary)] truncate group-hover:text-[var(--color-accent)] transition-colors">
+                                                                {project.title}
+                                                            </h4>
+                                                            <div className="flex items-center gap-3 mt-1 overflow-hidden">
+                                                                <span className="text-[12px] text-gray-500 font-medium uppercase tracking-wide flex-shrink-0">
+                                                                    {project.category}
+                                                                </span>
+                                                                <span className="text-gray-300 flex-shrink-0">•</span>
+                                                                <span className="text-[12px] text-gray-500 truncate italic">
+                                                                    {project.status}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div className="flex flex-col items-end gap-1 ml-4 flex-shrink-0">
+                                                            <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-[var(--color-accent)] group-hover:translate-x-1 transition-all duration-300" />
+                                                        </div>
+                                                    </Link>
+                                                </motion.div>
+                                            ))}
+                                        </AnimatePresence>
                                     </div>
                                 </div>
                             ) : (
