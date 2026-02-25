@@ -38,21 +38,31 @@ export default function OurProjects() {
             <GlobalAnimation />
             <HeroMedia type="image" src="/assets/images/hero.png" />
 
-            {/* Projects Section */}
-            <section className="w-full pb-20">
-                <div className="containers mx-auto px-4 lg:px-8">
+            {/* Sticky CategoryNav */}
+            <div className="sticky top-0 z-30 bg-[var(--background)]">
+                <div className="containers mx-auto px-4 lg:px-8 pt-10 pb-4">
                     <CategoryNav
                         activeCategory={filters.category}
                         propertyType={filters.propertyType}
                         onCategoryChange={handleCategoryChange}
                         onPropertyTypeChange={handlePropertyTypeChange}
                     />
+                </div>
+            </div>
+
+            {/* Projects Section */}
+            <section className="w-full pb-20">
+                <div className="containers mx-auto px-4 lg:px-8">
                     <div className="flex gap-4 mt-6 items-start">
+                        {/* FilterSidebar scrolls naturally */}
                         <FilterSidebar
                             filters={filters}
                             onFilterChange={handleFilterChange}
                         />
-                        <ProjectGrid projects={filteredProjects} />
+                        {/* ProjectGrid sticks below CategoryNav */}
+                        <div className="sticky top-[calc(var(--category-nav-height,80px)+1rem)] self-start flex-1">
+                            <ProjectGrid projects={filteredProjects} />
+                        </div>
                     </div>
                 </div>
             </section>

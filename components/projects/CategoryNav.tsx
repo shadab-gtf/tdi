@@ -58,7 +58,7 @@ const CategoryNav: React.FC<CategoryNavProps> = ({
                             }`}
                     >
                         {cat.label}
-                        {cat.hasDropdown && (
+                        {/* {cat.hasDropdown && (
                             <ChevronDown
                                 size={14}
                                 strokeWidth={2}
@@ -67,7 +67,7 @@ const CategoryNav: React.FC<CategoryNavProps> = ({
                                     : "text-[var(--color-primary)]"
                                     }`}
                             />
-                        )}
+                        )} */}
                     </button>
                 ))}
             </div>

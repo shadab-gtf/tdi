@@ -5,62 +5,71 @@ import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown, Search, ArrowRight, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import MegaMenu, { menuData } from "./MegaMenu";
 import { usePathname } from "next/navigation";
-import gsap from "gsap";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const Header = () => {
     const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isProjectsExpanded, setIsProjectsExpanded] = useState(false);
     const [isMenuLocked, setIsMenuLocked] = useState(false);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-    const pathname = usePathname();
     const headerRef = useRef<HTMLElement>(null);
+    const pathname = usePathname();
 
+    // Determine if mega menu or mobile menu is active (prevents hiding while interacting)
+    const isActive = isMegaMenuOpen || isMobileMenuOpen;
+
+    /* ----------------------------------------
+       Velocity-based hide / show header
+    ----------------------------------------- */
     useEffect(() => {
-        let lastScrollY = window.scrollY;
-        let ticking = false;
+        if (!headerRef.current) return;
+        const VELOCITY_THRESHOLD = 800;
+        let isHidden = false;
+        const ctx = gsap.context(() => {
+            ScrollTrigger.create({
+                start: 0,
+                end: "max",
+                onUpdate: (self) => {
+                    const velocity = self.getVelocity();
+                    if (isActive) {
+                        gsap.to(headerRef.current, {
+                            yPercent: 0,
+                            duration: 0.3,
+                            ease: "power3.out",
+                        });
+                        isHidden = false;
+                        return;
+                    }
+                    // fast scroll down → hide
+                    if (velocity > VELOCITY_THRESHOLD && !isHidden) {
+                        isHidden = true;
+                        gsap.to(headerRef.current, {
+                            yPercent: -100,
+                            duration: 0.55,
+                            ease: "power4.out",
+                        });
+                    }
+                    // scroll up → show
+                    if (velocity < -200 && isHidden) {
+                        isHidden = false;
+                        gsap.to(headerRef.current, {
+                            yPercent: 0,
+                            duration: 0.45,
+                            ease: "power3.out",
+                        });
+                    }
+                },
+            });
+        }, headerRef);
+        return () => ctx.revert();
+    }, [isActive]);
 
-        const updateHeader = () => {
-            const currentScrollY = window.scrollY;
-
-            if (currentScrollY <= 10) {
-                // At top — always show
-                gsap.to(headerRef.current, {
-                    yPercent: 0,
-                    duration: 0.4,
-                    ease: "power3.out",
-                });
-            } else if (currentScrollY > lastScrollY) {
-                // Scrolling DOWN — hide
-                gsap.to(headerRef.current, {
-                    yPercent: -100,
-                    duration: 0.4,
-                    ease: "power3.out",
-                });
-            } else {
-                // Scrolling UP — show
-                gsap.to(headerRef.current, {
-                    yPercent: 0,
-                    duration: 0.4,
-                    ease: "power3.out",
-                });
-            }
-
-            lastScrollY = currentScrollY;
-            ticking = false;
-        };
-
-        const onScroll = () => {
-            if (!ticking) {
-                requestAnimationFrame(updateHeader);
-                ticking = true;
-            }
-        };
-
-        window.addEventListener("scroll", onScroll, { passive: true });
-        return () => window.removeEventListener("scroll", onScroll);
-    }, []);
     const handleMouseEnter = () => {
         if (timeoutRef.current) {
             clearTimeout(timeoutRef.current);
@@ -101,7 +110,10 @@ const Header = () => {
 
     return (
         <>
-            <header ref={headerRef} className="fixed w-full top-0 z-[60] bg-[#232E5A] text-white shadow-md md:h-24 h-20 flex items-center will-change-transform">
+            <header
+                ref={headerRef}
+                className="fixed w-full top-0 z-[60] bg-[#232E5A] text-white shadow-md transition-all duration-300 md:h-24 h-20 flex items-center"
+            >
                 <div className="containers mx-auto px-6 flex items-center font-serif justify-between h-full">
                     <div className="flex justify-evenly items-center gap-14">
 
@@ -127,7 +139,7 @@ const Header = () => {
                                         <div className="flex items-center gap-1">
                                             <Link
                                                 href={link.href}
-                                                className={`text-xs xl:text-sm font-medium tracking-wide transition-colors
+                                                className={`text-xs xl:text-sm font-light tracking-wide transition-colors
                                                   ${pathname === link.href
                                                         ? "text-[var(--color-accent)]"
                                                         : "text-white hover:text-[var(--color-accent)]"}
@@ -147,7 +159,7 @@ const Header = () => {
                                     ) : (
                                         <Link
                                             href={link.href}
-                                            className={`text-xs xl:text-sm font-medium tracking-wide transition-colors
+                                            className={`text-xs xl:text-sm font-light tracking-wide transition-colors
                                                    ${pathname === link.href
                                                     ? "text-[var(--color-accent)]"
                                                     : "text-white hover:text-[var(--color-accent)]"}
@@ -173,7 +185,7 @@ const Header = () => {
 
                         <Link
                             href="/enquire"
-                            className={`flex items-center gap-2 text-xs xl:text-sm font-medium tracking-wide transition-colors uppercase whitespace-nowrap
+                            className={`flex items-center gap-2 text-xs xl:text-sm font-light tracking-wide transition-colors uppercase whitespace-nowrap
                                    ${pathname === "/enquire"
                                     ? "text-[var(--color-accent)]"
                                     : "text-white hover:text-[var(--color-accent)]"}
@@ -187,7 +199,7 @@ const Header = () => {
                     <div className="flex items-center gap-4 lg:hidden z-50">
                         <Link
                             href="/enquire"
-                            className="text-xs font-medium tracking-wide text-white hover:text-[#D9991F] transition-colors uppercase border border-white/30 px-3 py-1.5 rounded-full"
+                            className="text-xs font-light tracking-wide text-white hover:text-[#D9991F] transition-colors uppercase border border-white/30 px-3 py-1.5 rounded-full"
                         >
                             ENQUIRE NOW
                         </Link>
@@ -253,7 +265,7 @@ const Header = () => {
                                                             <div className="pl-4 py-2 flex flex-col gap-4">
                                                                 {menuData.map((category, idx) => (
                                                                     <div key={idx} className="flex flex-col gap-2">
-                                                                        <h4 className="md:text-[#D9991F] text-white! font-serif font-medium text-sm uppercase tracking-wider">
+                                                                        <h4 className="md:text-[#D9991F] text-white! font-serif font-light text-sm uppercase tracking-wider">
                                                                             {category.title}
                                                                         </h4>
                                                                         {category.items.map((item, i) => (

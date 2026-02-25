@@ -11,6 +11,7 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@hookform/resolvers": "^3.3.4",
+    "aos": "^2.3.4",
     "clsx": "^2.1.0",
     "framer-motion": "^12.34.1",
     "fslightbox-react": "^2.0.3",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/aos": "^3.0.7",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

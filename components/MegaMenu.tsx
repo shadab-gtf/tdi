@@ -167,7 +167,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, onMouseEnter, onMo
                                             <div className="pt-2">
                                                 <Link
                                                     href={`/${category.title.toLowerCase()}`}
-                                                    className="text-[#D9991F] text-base font-medium hover:underline  inline-flex items-center gap-2 group"
+                                                    className="text-[#D9991F] text-base font-light hover:underline  inline-flex items-center gap-2 group"
                                                 >
                                                     View All
                                                 </Link>

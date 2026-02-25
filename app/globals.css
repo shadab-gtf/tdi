@@ -120,3 +120,51 @@ p {
     padding: 0 20px;
   }
 }
+
+.imgAnimation{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    transition: all 3s cubic-bezier(.215, .61, .355, 1);
+}
+.imgAnimation.aos-animate {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    transition: all 3s cubic-bezier(.215, .61, .355, 1);
+} 
+[data-aos="reveal-clip"] {
+  clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  transition: all 3s cubic-bezier(.215, .61, .355, 1);
+}
+
+
+[data-aos="reveal-clip"].aos-animate {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+[data-aos="reveal-right"] {
+  clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  transform: translateX(-30px);
+  opacity: 0;
+  transition-property: clip-path, transform, opacity;
+}
+
+[data-aos="reveal-right"].aos-animate {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  transform: translateX(0);
+  opacity: 1;
+}
+
+[data-aos="reveal-left"] {
+  clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+  transform: translateX(30px);
+  opacity: 0;
+  transition-property: clip-path, transform, opacity;
+}
+
+[data-aos="reveal-left"].aos-animate {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  transform: translateX(0);
+  opacity: 1;
+}
+
+[data-aos^="reveal-"] {
+  transition-duration: 1s !important;
+  transition-timing-function: cubic-bezier(.215, .61, .355, 1);
+}
