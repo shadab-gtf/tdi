@@ -4,7 +4,6 @@ import HeroMedia from "@/components/Hero";
 import BlogList from "@/components/blogs/BlogList";
 import Pagination from "@/components/blogs/Pagination";
 import GlobalAnimation from "@/components/GlobalAnimation/GlobalAnimation";
-import "./blogs.css";
 
 export const metadata: Metadata = {
     title: "Insights & Articles | TDI City Kundli",
@@ -32,13 +31,13 @@ export default async function BlogsPage({ searchParams }: BlogsPageProps) {
         <main className="relative min-h-screen w-full bg-white">
             <GlobalAnimation />
             <HeroMedia type="image" src="/assets/blog/hero.jpg" />
-            <section className="blog-section">
-                <div className="containers mx-auto">
-                    <div className="blog-section__header">
-                        <h2 className="blog-section__title font-serif">
+            <section className="py-20 md:py-24 bg-white">
+                <div className="max-w-[1440px] mx-auto px-4">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-5xl font-serif text-[#1a2b56] mb-5">
                             Insights &amp; Articles
                         </h2>
-                        <p className="blog-section__subtitle font-serif">
+                        <p className="max-w-[900px] mx-auto text-gray-600 text-lg leading-relaxed font-serif">
                             Stay informed with articles on township living, real estate trends,
                             connectivity developments, and the evolving growth story of TDI
                             City Kundli and the surrounding region.

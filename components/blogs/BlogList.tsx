@@ -10,7 +10,7 @@ interface BlogListProps {
 
 const BlogList: React.FC<BlogListProps> = ({ blogs }) => {
     return (
-        <div className="blog-grid">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {blogs.map((blog, i) => (
                 <BlogCard key={blog.slug} blog={blog} index={i} />
             ))}
@@ -19,3 +19,4 @@ const BlogList: React.FC<BlogListProps> = ({ blogs }) => {
 };
 
 export default BlogList;
+

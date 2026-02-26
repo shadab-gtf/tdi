@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getBlogBySlug, getAllBlogSlugs } from "@/lib/services/blogService";
+import { getBlogBySlug, getAllBlogSlugs, getBlogs } from "@/lib/services/blogService";
 import BlogDetails from "@/components/blogs/BlogDetails";
+import RelatedBlogs from "@/components/blogs/RelatedBlogs";
 import GlobalAnimation from "@/components/GlobalAnimation/GlobalAnimation";
-import "../blogs.css";
 import HeroMedia from "@/components/Hero";
 
 // ── Static Params ──
@@ -54,11 +54,15 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
         notFound();
     }
 
+    const { blogs: allBlogs } = await getBlogs(1, 100); // Fetch all for related selection
+
     return (
         <main className="relative min-h-screen w-full bg-white">
-            {/* <HeroMedia type="image" src={blog.coverImage} /> */}
+            <HeroMedia type="image" src={blog.coverImage} />
             <GlobalAnimation />
             <BlogDetails blog={blog} />
+            <RelatedBlogs currentBlog={blog} allBlogs={allBlogs} />
         </main>
     );
 }
+

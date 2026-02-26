@@ -10,9 +10,9 @@ export const blogData: Blog[] = [
 
       <p class="font-serif">You better eat a reality sandwich before you walk back in that boardroom can we jump on a zoom through the lens of product launch, so sacred cow pulling teeth put your feelers out. We've bootstrapped the model your work on this project has been really impactful, overcome key issues to meet key milestones, optics, for we just need to put these last issues to bed, or disband the squad but rehydrate as needed. Cross pollination across our domains we need to build it so that it scales.</p>
 
-      <h2 class="font-serif">Natural Light Is A Highly Sought-After Feature In Any Space</h2>
+      <h2 class="font-serif second-heading">Natural Light Is A Highly Sought-After Feature In Any Space</h2>
 
-      <img class="hidden" src="/assets/blog/5.jpg" alt="TDI City entrance with water fountain and landscaping" /> 
+      <img class="w-full" src="/assets/blog/5.jpg" alt="TDI City entrance with water fountain and landscaping" /> 
 
       <p class="font-serif">You better eat a reality sandwich before you walk back in that boardroom can we jump on a zoom through the lens of product launch, so sacred cow pulling teeth put your feelers out. We've bootstrapped the model your work on this project has been really impactful, overcome key issues to meet key milestones, optics, for we just need to put these last issues to bed, or disband the squad but rehydrate as needed. Cross pollination across our domains we need to build it so that it scales.</p>
 
@@ -21,7 +21,7 @@ export const blogData: Blog[] = [
         <li class="font-serif"><strong>Avoid Heavy Window Treatments:</strong> Heavy curtains or drapes can block a significant amount of natural light from entering a room. Instead, opt for sheer or lightweight window treatments that allow light to filter through.</li>
       </ol>
 
-      <h2 class="font-serif">Natural Light Is A Highly Sought-After Feature In Any Space</h2>
+      <h2 class="font-serif second-heading">Natural Light Is A Highly Sought-After Feature In Any Space</h2>
 
       <p class="font-serif">You better eat a reality sandwich before you walk back in that boardroom can we jump on a zoom through the lens of product launch, so sacred cow pulling teeth put your feelers out. We've bootstrapped the model your work on this project has been really impactful, overcome key issues to meet key milestones, optics, for we just need to put these last issues to bed, or disband the squad but rehydrate as needed. Cross pollination across our domains we need to build it so that it scales.</p>
 
@@ -46,9 +46,9 @@ export const blogData: Blog[] = [
     content: `
       <p class="font-serif">Planned townships are rapidly redefining modern living by offering a holistic lifestyle experience. Unlike standalone residential projects, a well-designed township integrates homes, workspaces, recreation, education, and healthcare into a single, walkable community.</p>
 
-      <h3 class="font-serif">Why Planned Townships Are The Future Of Urban Living</h3>
+      <h3 class="font-serif second-heading">Why Planned Townships Are The Future Of Urban Living</h3>
 
-      <img class="hidden" src="/assets/blog/5.jpg" alt="Aerial view of TDI planned township" />
+      <img class="w-full" src="/assets/blog/5.jpg" alt="Aerial view of TDI planned township" />
 
       <p class="font-serif">From well-maintained roads and 24/7 water supply to dedicated green belts and commercial zones, every element in a planned township is designed with the resident in mind. TDI City Kundli exemplifies this approach, spread across 270 acres with world-class amenities.</p>
 
@@ -58,7 +58,7 @@ export const blogData: Blog[] = [
         <li class="font-serif"><strong>Community Living:</strong> Clubhouses, sports facilities, and community halls foster social interaction and a sense of belonging.</li>
       </ol>
 
-      <h3 class="font-serif">Investment Potential Of Township Properties</h3>
+      <h3 class="font-serif second-heading">Investment Potential Of Township Properties</h3>
 
       <p class="font-serif">Township properties historically appreciate faster than standalone projects because of the self-sustaining ecosystem they offer. The presence of commercial zones, educational institutions, and healthcare facilities within the township boundary makes them highly desirable for both end-users and investors.</p>
 
@@ -83,9 +83,9 @@ export const blogData: Blog[] = [
     content: `
       <p class="font-serif">In real estate, connectivity is king. A property's proximity to highways, metro lines, and commercial centres directly impacts its livability and long-term value. TDI City Kundli sits at a strategic intersection of NH-1 and the KMP Expressway, making it one of the best-connected townships in the Delhi NCR region.</p>
 
-      <h3 class="font-serif">Key Connectivity Highlights</h3>
+      <h3 class="font-serif second-heading">Key Connectivity Highlights</h3>
 
-      <img class="hidden" src="/assets/blog/3.jpg" alt="Highway connectivity near TDI City" />
+      <img class="w-full" src="/assets/blog/3.jpg" alt="Highway connectivity near TDI City" />
 
       <p class="font-serif">The upcoming Delhi–Panipat RRTS (Regional Rapid Transit System) will further reduce travel time to central Delhi to under 30 minutes, transforming Kundli into a prime residential and commercial hub.</p>
 
@@ -95,7 +95,7 @@ export const blogData: Blog[] = [
         <li class="font-serif"><strong>RRTS Corridor:</strong> The upcoming rapid rail will have a station near Kundli, slashing commute times dramatically.</li>
       </ol>
 
-      <h3 class="font-serif">Impact On Property Values</h3>
+      <h3 class="font-serif second-heading">Impact On Property Values</h3>
 
       <p class="font-serif">Historical data from other NCR corridors such as Dwarka Expressway and Noida Expressway shows that improved connectivity can drive property appreciation of 20-40% within 3-5 years of infrastructure completion.</p>
 
@@ -120,9 +120,9 @@ export const blogData: Blog[] = [
     content: `
       <p class="font-serif">Sustainability is no longer an optional feature — it's a fundamental expectation. Modern homebuyers, especially millennials and Gen Z, actively seek properties that minimize environmental impact while maximizing comfort and efficiency.</p>
 
-      <h3 class="font-serif">Green Building Practices At TDI City</h3>
+      <h3 class="font-serif second-heading">Green Building Practices At TDI City</h3>
 
-      <img class="hidden" src="/assets/blog/4.png" alt="Sustainable architecture at TDI City" />
+      <img class="w-full" src="/assets/blog/4.png" alt="Sustainable architecture at TDI City" />
 
       <p class="font-serif">TDI City Kundli incorporates sustainable design principles across its 270-acre township. From rainwater harvesting systems to solar-powered street lighting, every element is thoughtfully designed to reduce the community's carbon footprint.</p>
 
@@ -132,7 +132,7 @@ export const blogData: Blog[] = [
         <li class="font-serif"><strong>Waste Management:</strong> A dedicated waste processing facility ensures proper segregation and recycling, minimizing landfill contribution.</li>
       </ol>
 
-      <h3 class="font-serif">The Business Case For Green Living</h3>
+      <h3 class="font-serif second-heading">The Business Case For Green Living</h3>
 
       <p class="font-serif">Beyond environmental benefits, sustainable properties command premium pricing and attract quality tenants. Studies show that green-certified buildings enjoy 8-12% higher property values and 5-7% better rental yields compared to conventional developments.</p>
 
@@ -157,9 +157,9 @@ export const blogData: Blog[] = [
     content: `
       <p class="font-serif">While residential real estate has traditionally dominated investor portfolios, commercial properties are emerging as a compelling alternative. With the rise of organized retail, co-working spaces, and e-commerce warehousing, the commercial segment offers diversified income streams and robust long-term returns.</p>
 
-      <h3 class="font-serif">Why Smart Investors Are Turning To Commercial</h3>
+      <h3 class="font-serif second-heading">Why Smart Investors Are Turning To Commercial</h3>
 
-      <img class="hidden" src="/assets/blog/6.png" alt="TDI commercial development" />
+      <img class="w-full" src="/assets/blog/6.png" alt="TDI commercial development" />
 
       <p class="font-serif">TDI Infratech's commercial portfolio within TDI City Kundli includes high-street retail spaces, modern office complexes, and multiplex entertainment zones — all designed to serve the growing population of the region.</p>
 
@@ -169,7 +169,7 @@ export const blogData: Blog[] = [
         <li class="font-serif"><strong>Inflation Hedge:</strong> Rental escalation clauses (typically 5-8% annually) protect against inflation erosion.</li>
       </ol>
 
-      <h3 class="font-serif">TDI's Commercial Vision</h3>
+      <h3 class="font-serif second-heading">TDI's Commercial Vision</h3>
 
       <p class="font-serif">The ₹100 crore commercial expansion at TDI City includes a dedicated business district with Grade-A office spaces, a curated high-street retail experience, and a state-of-the-art multiplex. These developments are designed to create a self-sustaining economic ecosystem within the township.</p>
 
@@ -194,9 +194,9 @@ export const blogData: Blog[] = [
     content: `
       <p class="font-serif">The Delhi NCR real estate landscape is undergoing a fundamental transformation. Homebuyers are moving away from isolated residential towers towards integrated, master-planned communities that offer a complete lifestyle experience. This shift is driven by improved infrastructure, favorable government policies, and changing buyer preferences.</p>
 
-      <h3 class="font-serif">The New Buyer Mindset</h3>
+      <h3 class="font-serif second-heading">The New Buyer Mindset</h3>
 
-      <img class="hidden" src="/assets/blog/5.jpg" alt="Future-ready development at TDI" />
+      <img class="w-full" src="/assets/blog/5.jpg" alt="Future-ready development at TDI" />
 
       <p class="font-serif">Today's homebuyers are more informed and discerning. They evaluate projects based on developer credibility, infrastructure connectivity, amenity quality, and long-term appreciation potential. This has pushed developers to raise the bar on project planning, design, and execution.</p>
 
@@ -206,7 +206,7 @@ export const blogData: Blog[] = [
         <li class="font-serif"><strong>Work-From-Home Effect:</strong> The hybrid work model has shifted preference towards larger homes in well-planned communities away from congested city centres.</li>
       </ol>
 
-      <h3 class="font-serif">Kundli: The Next Frontier</h3>
+      <h3 class="font-serif second-heading">Kundli: The Next Frontier</h3>
 
       <p class="font-serif">Kundli's strategic location at the Delhi-Haryana border, combined with upcoming infrastructure projects like the RRTS and the Delhi-Mumbai Industrial Corridor, positions it as one of the most promising real estate destinations in NCR. TDI City's 270-acre township is at the forefront of this growth story.</p>
 

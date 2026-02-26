@@ -213,6 +213,45 @@ p {
   bottom: 0 !important;
 }
 
+.second-heading{
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 16px;
+  color: var(--color-primary);
+  @media (max-width: 768px) {
+    font-size: 18px;
+    text-align: left; 
+  }
+}
+.blog-content-wrapper img{
+  border-radius: 0;
+}
+.blog-content-wrapper p{
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 16px;
+  color: var(--color-primary);
+  @media (max-width: 768px) {
+    font-size: 14px;
+    text-align: left;
+  }
+}
+.blog-content-wrapper li{
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  margin-bottom: 16px;
+  color: var(--color-primary);
+  @media (max-width: 768px) {
+    font-size: 14px;
+    text-align: left;
+  }
+}
 /* awards section  */
 @media (min-width: 1280px) {
   /* .swiper-slide {
