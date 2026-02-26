@@ -1,9 +1,9 @@
 "use client";
-
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 const LEADERS = [
     {
         id: 1,
@@ -40,9 +40,16 @@ const LEADERS = [
 ];
 
 export default function Leadership() {
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: false,
+            mirror: true,
+        });
+    }, []);
     return (
         <section className="relative w-full py-16 md:py-24 overflow-hidden bg-[var(--color-secondary-bg)]">
-            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-full max-w-[1100px] mx-auto px-4">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -63,31 +70,33 @@ export default function Leadership() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.8, delay: 0.1 }}
-                            className={`flex flex-col justify-between ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-16 lg:gap-24`}
+                            className={`flex flex-col justify-between ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-0`}
                         >
                             {/* Image Side */}
-                            <div className="w-full md:w-1/3 shadow-[0_10px_20px_-10px_rgb(0_0_0_/_0.1)] flex flex-col items-center  ">
+                            <div className="w-full md:w-1/3  flex flex-col items-center  ">
 
-                                <div className="relative w-full max-w-xs   aspect-[4/3] md:aspect-[3/2] lg:aspect-[4/3] overflow-hidden   duration-500">
+                                <div className="relative w-full max-w-xs   aspect-[4/3] md:aspect-[3/2] lg:aspect-[4/3] overflow-hidden   duration-500"
+                                    data-aos={index % 2 === 0 ? "reveal-left" : "reveal-right"}
+                                >
                                     {/* <div className="relative w-full max-w-md aspect-[4/3] md:aspect-[3/2] lg:aspect-[4/3] overflow-hidden   duration-500"> */}
                                     <Image
                                         src={leader.image}
                                         alt={leader.name}
                                         fill
-                                        className="object-cover object-top hover:scale-105 transition-transform duration-700"
+                                        className="object-cover object-top hover:scale-105 transition-transform duration-700 imgAnimation"
                                         sizes="(max-width: 768px) 100vw, 50vw"
                                     />
                                 </div>
-                                <div className="px-6 py-3 font-serif  uppercase text-primary text-sm md:text-base text-center min-w-[200px]">
+                                <div data-aos="fade-up" data-aos-delay="200" className="px-6 py-3 font-serif  uppercase text-primary text-sm md:text-base text-center min-w-[200px]">
                                     {leader.caption}
                                 </div>
                             </div>
 
                             {/* Text Side */}
-                            <div className="w-full md:w-1/2 text-center md:text-left">
+                            <div className="w-full md:w-1/2 text-center md:text-left" data-aos="fade-up" data-aos-delay="200">
 
-                                <p className="text-[#2e3e5c]/80 text-center font-serif leading-relaxed font-light">
-                                    <span className="text-primary  text-lg font-serif font-semibold">{leader.name}</span>  {leader.description}
+                                <p className="text-[#2e3e5c]/80 md:text-base text-sm text-center font-serif leading-relaxed font-light">
+                                    <span className="text-primary  md:text-xl text-lg font-serif font-semibold">{leader.name}</span>  {leader.description}
                                 </p>
                             </div>
                         </motion.div>

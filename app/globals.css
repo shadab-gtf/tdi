@@ -212,3 +212,10 @@ p {
 .properties-mobile-swiper .swiper-pagination {
   bottom: 0 !important;
 }
+
+/* awards section  */
+@media (min-width: 1280px) {
+  /* .swiper-slide {
+    width: 322px !important;
+  } */
+}

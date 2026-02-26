@@ -9,7 +9,6 @@ const AnimatedCounter = ({ value, suffix = "" }: { value: number; suffix?: strin
     const springValue = useSpring(motionValue, {
         stiffness: 50,
         damping: 20,
-        duration: 2
     });
     const isInView = useInView(ref, { once: true, margin: "-50px" });
 
@@ -20,11 +19,14 @@ const AnimatedCounter = ({ value, suffix = "" }: { value: number; suffix?: strin
     }, [isInView, value, motionValue]);
 
     useEffect(() => {
-        springValue.on("change", (latest) => {
+        const unsubscribe = springValue.on("change", (latest) => {
             if (ref.current) {
-                ref.current.textContent = Math.floor(latest).toString() + suffix;
+                ref.current.textContent =
+                    Math.floor(latest).toString() + suffix;
             }
         });
+
+        return () => unsubscribe();
     }, [springValue, suffix]);
 
     return <span ref={ref} />;
@@ -34,57 +36,42 @@ const Ticker = () => {
     return (
         <section className="relative w-full py-16 md:py-24 overflow-hidden bg-white">
             <div className="w-full mx-auto px-4">
+
                 {/* Top Section */}
-                <div className="flex flex-col md:flex-row items-baseline justify-center gap-4 mb-20 md:mb-28 text-center">
-                    <h2 className="text-[50px] leading-none text-[#D9991F]! font-secondary">
+                <div className="flex flex-col md:flex-row items-center md:items-baseline justify-center gap-3 md:gap-4 mb-16 md:mb-28 text-center">
+                    <h2 className="text-[42px] sm:text-[48px] md:text-[50px] leading-none text-[#D9991F] font-secondary">
                         <AnimatedCounter value={30} />
                     </h2>
-                    <span className="text-primary text-[25px] font-serif">
+                    <span className="text-primary text-base sm:text-lg md:text-[25px] font-serif">
                         Years Of Trust
                     </span>
                 </div>
 
-                {/* Bottom Section - Stats Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 md:gap-0 relative max-w-8xl mx-auto">
-                    {/* Item 1: States */}
-                    <div className="flex flex-row items-end justify-center gap-4 md:border-r border-[#D9991F]/30 last:border-r-0">
-                        <div className="text-[50px] text-[#D9991F] font-secondary leading-none w-[60px] md:w-[70px] text-right">
-                            <AnimatedCounter value={5} />
-                        </div>
-                        <span className="text-sm  text-[#232E5A] font-serif  text-left">
-                            States
-                        </span>
-                    </div>
+                {/* Bottom Section */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-y-14 md:gap-0 max-w-7xl mx-auto">
 
-                    {/* Item 2: Cities */}
-                    <div className="flex flex-row items-end justify-center gap-4 md:border-r border-[#D9991F]/30 last:border-r-0">
-                        <div className="text-[50px] text-[#D9991F] font-secondary leading-none w-[60px] md:w-[70px] text-right">
-                            <AnimatedCounter value={10} />
-                        </div>
-                        <span className="text-sm  text-[#232E5A] font-serif   text-left">
-                            Cities
-                        </span>
-                    </div>
+                    {/* Item */}
+                    {[
+                        { value: 5, label: "States" },
+                        { value: 10, label: "Cities" },
+                        { value: 100, label: "Project Delivered", suffix: "+" },
+                        { value: 2000, label: "Acres", suffix: "+" }
+                    ].map((item, index) => (
+                        <div
+                            key={index}
+                            className={`flex flex-col md:flex-row items-center md:items-end justify-center gap-2 md:gap-4
+                            ${index !== 3 ? "md:border-r border-[#D9991F]/30" : ""}`}
+                        >
+                            <div className="text-[40px] sm:text-[46px] md:text-[50px] text-[#D9991F] font-secondary leading-none text-center md:text-right min-w-[80px] md:min-w-[100px]">
+                                <AnimatedCounter value={item.value} suffix={item.suffix || ""} />
+                            </div>
 
-                    {/* Item 3: Project Delivered */}
-                    <div className="flex flex-row items-end justify-start ml-10 gap-4 md:border-r border-[#D9991F]/30 last:border-r-0">
-                        <div className="text-[50px]  text-[#D9991F] font-secondary leading-none min-w-[120px] text-right">
-                            <AnimatedCounter value={100} suffix="+" />
+                            <span className="text-xs sm:text-sm text-[#232E5A] font-serif text-center md:text-left whitespace-nowrap">
+                                {item.label}
+                            </span>
                         </div>
-                        <span className="text-sm text-[#232E5A] font-serif  text-nowrap text-left w-24">
-                            Project Delivered
-                        </span>
-                    </div>
+                    ))}
 
-                    {/* Item 4: Acres */}
-                    <div className="flex flex-row items-end justify-start ml-10 gap-4">
-                        <div className="text-[50px]  text-[#D9991F] font-secondary leading-none min-w-[130px] text-right">
-                            <AnimatedCounter value={2000} suffix="+" />
-                        </div>
-                        <span className="text-sm  text-[#232E5A] font-serif  text-left">
-                            Acres
-                        </span>
-                    </div>
                 </div>
             </div>
         </section>

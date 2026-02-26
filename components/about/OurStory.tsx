@@ -98,16 +98,16 @@ export default function OurStory() {
 
     return (
         <section ref={containerRef} className="relative w-full py-20 md:py-32 overflow-hidden bg-white">
-            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-full max-w-[1140px] mx-auto px-4">
                 {/* Text Content */}
                 <div ref={textRef} className="text-center max-w-6xl mx-auto mb-16 md:mb-24 flex flex-col items-center">
-                    <span className="story-sub block text-[var(--color-accent)] font-serif  text-sm md:text-base uppercase mb-6 ">
+                    <span className="story-sub block text-[var(--color-accent)] font-serif  text-xs md:text-base uppercase mb-6 ">
                         Our Story
                     </span>
-                    <h2 className="story-title text-[25px] font-serif text-primary mb-8 leading-tight">
+                    <h2 className="story-title md:text-[25px] text-lg font-serif text-primary mb-6 md:mb-8 leading-tight">
                         The Journey Behind TDI City Kundli
                     </h2>
-                    <p className="story-desc text-paragraph text-base  font-serif leading-relaxed ">
+                    <p className="story-desc text-paragraph md:text-base text-sm  font-serif leading-relaxed ">
                         TDI City Kundli was planned to bring organised, long-term urban development to the Northern Delhi NCR corridor. Conceived as an integrated township, it brings together residences, infrastructure, institutions, and open spaces within a cohesive master plan. Its planning focuses on connectivity, functionality, and sustainability—supporting present needs while preparing for the region’s future growth.
                     </p>
                 </div>
@@ -115,7 +115,7 @@ export default function OurStory() {
                 {/* Hero Image */}
                 <div
                     ref={imageContainerRef}
-                    className="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden shadow-2xl rounded-sm"
+                    className="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden shadow-2xl"
                 >
                     <Image
                         ref={imageRef}

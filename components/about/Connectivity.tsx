@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 gsap.registerPlugin(ScrollTrigger);
 const integrateData = [
     {
@@ -33,39 +34,24 @@ const integrateData = [
 
 const Connectivity = () => {
     const containerRef = useRef<HTMLElement>(null);
-
-    useGSAP(() => {
-        const sections = gsap.utils.toArray<HTMLElement>(".integrate-row");
-
-        sections.forEach((section) => {
-            gsap.fromTo(
-                section.children,
-                { opacity: 0, y: 50 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    stagger: 0.2,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top 80%",
-                        toggleActions: "play none none reverse",
-                    },
-                }
-            );
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: false,
+            mirror: true,
         });
-    }, { scope: containerRef });
+    }, []);
+
 
     return (
         <section ref={containerRef} className="w-full bg-[var(--background)] py-20 overflow-hidden">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-[1140px] mx-auto px-4">
                 {/* Header */}
                 <div className="text-center max-w-4xl mx-auto mb-16 md:mb-24">
-                    <h2 className="text-xl uppercase font-serif text-[#D9991F]! mb-6">
+                    <h2 className="md:text-xl text-xs uppercase font-serif text-[#D9991F]! mb-2 md:mb-6">
                         why tdi city kundli
                     </h2>
-                    <p className="text-[25px] text-primary! font-serif leading-[24px]">
+                    <p className="md:text-[25px] text-lg text-primary! font-serif leading-[24px]">
                         City Shaped by Smart Connectivity
                     </p>
                 </div>
@@ -79,7 +65,9 @@ const Connectivity = () => {
                                 }`}
                         >
                             {/* Image Side */}
-                            <div className="w-full md:w-1/2 relative h-[375px] overflow-hidden">
+                            <div className="w-full md:w-1/2 relative h-[375px] overflow-hidden"
+                                data-aos={item.direction === "left" ? "reveal-right" : "reveal-left"}
+                            >
                                 <Image
                                     src={item.image}
                                     alt={item.title}
@@ -89,11 +77,13 @@ const Connectivity = () => {
                             </div>
 
                             {/* Content Side */}
-                            <div className="w-full md:w-1/2 flex flex-col items-center justify-center text-center md:text-left">
-                                <h3 className="text-xl text-center font-serif text-[var(--foreground)] mb-4 md:mb-6 w-full">
+                            <div className="w-full md:w-1/2 flex flex-col items-center justify-center text-center md:text-left"
+                                data-aos={item.direction === "left" ? "reveal-bottom" : "reveal-bottom"}
+                            >
+                                <h3 className="md:text-xl text-lg text-center font-serif text-[var(--foreground)] mb-4 md:mb-6 w-full">
                                     {item.title}
                                 </h3>
-                                <p className="text-base max-w-[555px] text-[var(--paragraph)] text-center font-serif  leading-[24px]">
+                                <p className="md:text-base text-sm max-w-[555px] text-[var(--paragraph)] text-center font-serif  leading-[24px]">
                                     {item.description}
                                 </p>
                             </div>

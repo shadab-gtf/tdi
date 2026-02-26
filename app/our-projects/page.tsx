@@ -39,7 +39,7 @@ export default function OurProjects() {
             <HeroMedia type="image" src="/assets/images/hero.png" />
 
             {/* Sticky CategoryNav */}
-            <div className="sticky top-0 z-30 bg-[var(--background)]">
+            <div className="sticky top-0 z-30  bg-[var(--background)]">
                 <div className="containers mx-auto px-4 lg:px-8 pt-10 pb-4">
                     <CategoryNav
                         activeCategory={filters.category}

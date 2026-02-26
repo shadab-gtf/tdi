@@ -5,8 +5,6 @@ import "./globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SmoothScroll from "../components/SmoothScroll";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 const sourceSerif = Source_Serif_4({
   variable: "--font-source-serif",

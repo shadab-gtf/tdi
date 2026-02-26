@@ -61,12 +61,12 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ projects }) => {
         <div className="flex-1 min-w-0 ">
             <div
                 ref={gridRef}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-12"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-6"
             >
                 {projects.map((project, index) => (
                     <div
                         key={project.id}
-                        className={`project-card-wrapper 
+                        className={`project-card-wrapper  
             sm:[&:nth-child(2n)]:show-vertical-line-none 
             lg:[&:nth-child(3n)]:show-vertical-line-none 
             sm:show-vertical-line

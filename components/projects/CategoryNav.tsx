@@ -43,7 +43,7 @@ const CategoryNav: React.FC<CategoryNavProps> = ({
     return (
         <div
             ref={navRef}
-            className="w-full flex flex-wrap items-center justify-between gap-4 py-4"
+            className="w-full flex flex-wrap items-center justify-between gap-4 pt-8 pb-4"
         >
             {/* Category Tabs */}
             <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto scrollbar-hide">

@@ -20,7 +20,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
             if (!cardRef.current) return;
             gsap.fromTo(
                 cardRef.current,
-                { opacity: 0, y: 40, scale: 0.97 },
+                { opacity: 0, y: 40, scale: 1 },
                 {
                     opacity: 1,
                     y: 0,
@@ -43,7 +43,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
         });
         const img = cardRef.current.querySelector(".card-image");
         if (img) {
-            gsap.to(img, { scale: 1.08, duration: 0.6, ease: "power2.out" });
+            gsap.to(img, { scale: 1, duration: 0.6, ease: "power2.out" });
         }
     };
 
@@ -67,21 +67,20 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            <div className="relative flex items-center h-[460px]  md:h-[292px]">
+            <div className="relative flex items-center h-[460px]  md:h-[292px] w-full">
 
-                <div className="relative overflow-hidden w-[455px]  md:w-[275px] h-full">
+                <div className="relative w-[490px] h-full">
                     <Image
                         src={project.image}
                         alt={project.title}
                         fill
-                        sizes="275px"
-                        className="card-image w-full h-full object-contain will-change-transform"
+                        className="card-image w-full h-full object-cover will-change-transform"
                     />
                     {/* <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" /> */}
                 </div>
 
                 <div
-                    className={`w-[1px] h-full bg-gray-300 ml-9 transition-opacity
+                    className={`w-[1px] h-full bg-gray-300 absolute -right-3 transition-opacity z-10
                         ${isLastInRowDesktop ? 'lg:opacity-0' : 'lg:opacity-100'}
                         ${isLastInRowTablet ? 'sm:max-lg:opacity-0' : 'sm:max-lg:opacity-100'}
                         max-sm:hidden 
@@ -89,7 +88,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
                 />
             </div>
 
-            <div className="pt-4 pb-2 w-[275px] text-center">
+            <div className="pt-4 pb-2 w-full text-center">
                 <h3 className="text-base md:text-lg font-serif text-[var(--color-primary)] group-hover:text-[var(--color-accent)] transition-colors duration-300">
                     {project.title}
                 </h3>

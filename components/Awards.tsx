@@ -92,6 +92,8 @@ const Awards = () => {
                             spaceBetween={0}
                             slidesPerView={1.2}
                             breakpoints={{
+                                325: { slidesPerView: 1.2 },
+                                360: { slidesPerView: 1.5 },
                                 400: { slidesPerView: 2 },
                                 480: { slidesPerView: 2 },
                                 768: { slidesPerView: 3 },
@@ -102,13 +104,13 @@ const Awards = () => {
                             {awardsData.map((item, index) => {
                                 const isLast = index === awardsData.length - 1;
                                 return (
-                                    <SwiperSlide key={item.id}>
-                                        <div className="flex items-stretch h-full">
+                                    <SwiperSlide key={item.id} className="md:w-[322px]!">
+                                        <div className="flex gap-2 items-center h-full">
                                             {/* Card */}
                                             <div className="flex-1 flex flex-col items-center px-3 md:px-8 py-4">
                                                 {/* Image */}
                                                 <div
-                                                    className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px] overflow-hidden shadow-md"
+                                                    className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] md:w-[210px] md:h-[210px] overflow-hidden shadow-md"
                                                 >
                                                     <Image
                                                         src={item.image}
@@ -137,7 +139,7 @@ const Awards = () => {
                                             {!isLast && (
                                                 <div className="flex items-center self-stretch py-4">
                                                     <div
-                                                        className="w-px bg-gradient-to-b from-transparent via-[#C9A227]/40 to-transparent"
+                                                        className="w-px bg-gradient-to-b separator-line from-[#D58C004D] via-[#D58C0080] to-[#D58C004D]"
                                                         style={{ height: "100%" }}
                                                     />
                                                 </div>

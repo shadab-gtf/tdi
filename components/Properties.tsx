@@ -156,7 +156,7 @@ const Properties = () => {
                                         whileHover={{ scale: 1.02 }}
                                         transition={{ duration: 0.3 }}
                                         data-aos="fade-up"
-                                        data-aos-delay={index === 0 ? 250 : index === 1 ? 350 : index === 2 ? 400 : index === 3 ? 450 : 500}
+                                        data-aos-delay={index === 0 ? 250 : index === 1 ? 300 : index === 2 ? 400 : index === 3 ? 450 : 500}
                                     >
                                         <div className="relative w-[275px] h-[360px] shadow-lg overflow-hidden group-hover/card:shadow-2xl transition-all duration-500">
                                             <Image
@@ -177,7 +177,10 @@ const Properties = () => {
 
                                     {/* Divider */}
                                     {index !== propertiesData.length - 1 && (
-                                        <div className="h-[360px] w-[1px] bg-[#D3D3D3] mx-2.5 md:mx-[20px] shrink-0" />
+
+                                        <div data-aos="fade-up"
+                                            data-aos-delay={index === 0 ? 250 : index === 1 ? 300 : index === 2 ? 400 : index === 3 ? 450 : 500}
+                                            className="h-[360px] w-[1px] bg-[#D3D3D3] mx-2.5 md:mx-[20px] shrink-0" />
                                     )}
                                 </React.Fragment>
                             ))}
