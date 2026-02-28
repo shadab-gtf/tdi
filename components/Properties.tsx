@@ -40,13 +40,13 @@ const propertiesData = [
     },
     {
         id: 5,
-        title: "Tuscan City",
+        title: "TDI Mall",
         image: "/assets/images/properties/tuscan.png",
         link: "/tuscan-city",
     },
     {
         id: 6,
-        title: "Espania",
+        title: "Rodeo",
         image: "/assets/images/properties/espania.png",
         link: "/espania",
     },

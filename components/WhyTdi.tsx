@@ -1,8 +1,7 @@
 "use client";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
-import { ArrowRight } from "lucide-react";
 
 const reasons = [
     {
@@ -49,54 +48,84 @@ const reasons = [
 
 // Default active index
 const DEFAULT_ACTIVE = 1;
+const initialClipPaths = [
+    "polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%)",
+    "polygon(33.33% 0%, 33.33% 0%, 33.33% 0%, 33.33% 0%)",
+    "polygon(66.66% 0%, 66.66% 0%, 66.66% 0%, 66.66% 0%)",
+    "polygon(0% 33.33%, 0% 33.33%, 0% 33.33%, 0% 33.33%)",
+    "polygon(33.33% 33.33%, 33.33% 33.33%, 33.33% 33.33%, 33.33% 33.33%)",
+    "polygon(66.66% 33.33%, 66.66% 33.33%, 66.66% 33.33%, 66.66% 33.33%)",
+    "polygon(0% 66.66%, 0% 66.66%, 0% 66.66%, 0% 66.66%)",
+    "polygon(33.33% 66.66%, 33.33% 66.66%, 33.33% 66.66%, 33.33% 66.66%)",
+    "polygon(66.66% 66.66%, 66.66% 66.66%, 66.66% 66.66%, 66.66% 66.66%)",
+];
 
+const finalClipPaths = [
+    "polygon(0% 0%, 33.33% 0%, 33.33% 33.33%, 0% 33.33%)",
+    "polygon(33.33% 0%, 66.66% 0%, 66.66% 33.33%, 33.33% 33.33%)",
+    "polygon(66.66% 0%, 100% 0%, 100% 33.33%, 66.66% 33.33%)",
+    "polygon(0% 33.33%, 33.33% 33.33%, 33.33% 66.66%, 0% 66.66%)",
+    "polygon(33.33% 33.33%, 66.66% 33.33%, 66.66% 66.66%, 33.33% 66.66%)",
+    "polygon(66.66% 33.33%, 100% 33.33%, 100% 66.66%, 66.66% 66.66%)",
+    "polygon(0% 66.66%, 33.33% 66.66%, 33.33% 100%, 0% 100%)",
+    "polygon(33.33% 66.66%, 66.66% 66.66%, 66.66% 100%, 33.33% 100%)",
+    "polygon(66.66% 66.66%, 100% 66.66%, 100% 100%, 66.66% 100%)",
+];
+const revealOrder = [[0], [1, 3], [2, 4, 6], [5, 7], [8], [9]];
 const WhyTdi = () => {
     const [activeIndex, setActiveIndex] = useState(DEFAULT_ACTIVE);
     const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
-    const zIndexCounter = useRef(1);
+    const sectionRef = useRef<HTMLElement>(null);
+    const visualWrapRef = useRef<HTMLDivElement>(null);
+    const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
-    const handleHover = (index: number) => {
-        if (index === activeIndex) return;
+    const handleHover = useCallback(
+        (index: number) => {
+            if (index === activeIndex) return;
+            if (!visualWrapRef.current) return;
 
-        const nextImage = imageRefs.current[index];
-        const currentImage = imageRefs.current[activeIndex];
-
-        if (nextImage) {
-            // Bring next image to top
-            zIndexCounter.current += 1;
-            nextImage.style.zIndex = zIndexCounter.current.toString();
-
-            // Animate Clip Path (Reveal from bottom)
-            gsap.fromTo(
-                nextImage,
-                { clipPath: "inset(100% 0 0 0)" },
-                {
-                    clipPath: "inset(0% 0 0 0)",
-                    duration: 1, // Slightly faster for responsiveness
-                    ease: "power3.inOut", // Smooth but responsive
-                    overwrite: true
-                }
-            );
-
-            // Animate Inner Image (Scale down effect for premium feel)
-            const innerImg = nextImage.querySelector("img");
-            if (innerImg) {
-                gsap.fromTo(
-                    innerImg,
-                    { scale: 1.3 },
-                    {
-                        scale: 1,
-                        duration: 1.2,
-                        ease: "power3.out",
-                        overwrite: true
-                    }
-                );
+            // Kill any running timeline
+            if (timelineRef.current) {
+                timelineRef.current.kill();
             }
-        }
 
-        setActiveIndex(index);
-    };
+            const item = reasons[index];
+            const masks = visualWrapRef.current.querySelectorAll<HTMLDivElement>(".mask");
 
+            // Update background image on all masks
+            masks.forEach((mask) => {
+                mask.style.backgroundImage = `url(${item.image})`;
+            });
+
+            // Reset all masks to collapsed clip-paths
+            masks.forEach((mask, i) => {
+                gsap.set(mask, { clipPath: initialClipPaths[i] });
+            });
+
+            // Animate the diagonal reveal
+            const tl = gsap.timeline();
+            timelineRef.current = tl;
+
+            revealOrder.forEach((group, groupIndex) => {
+                tl.to(
+                    group.map((idx) => masks[idx]),
+                    {
+                        clipPath: (_i: number, el: Element) => {
+                            const maskIndex = Array.from(masks).indexOf(el as HTMLDivElement);
+                            return finalClipPaths[maskIndex];
+                        },
+                        duration: 0.6,
+                        ease: "power4.out",
+                        stagger: 0.05,
+                    },
+                    groupIndex * 0.08
+                );
+            });
+
+            setActiveIndex(index);
+        },
+        [activeIndex]
+    );
     return (
         <section className="w-full bg-white py-16 md:py-20 px-4">
             {/* Heading */}
@@ -153,29 +182,21 @@ const WhyTdi = () => {
                 <div className="hidden lg:block lg:w-1/2 lg:sticky lg:top-24 order-1 lg:order-2">
 
                     <div
-                        className="relative w-full overflow-hidden"
-                        style={{ aspectRatio: "1/1" }}
+                        ref={visualWrapRef}
+                        className="relative h-[360px] sm:h-[400px] w-[550px] sm:w-[560px] md:h-[650px] md:w-[650px] lg:h-[640px] lg:w-[650px] overflow-hidden"
                     >
-                        {reasons.map((item, index) => (
+                        {[...Array(9)].map((_, i) => (
                             <div
-                                key={item.id}
-                                ref={(el) => {
-                                    imageRefs.current[index] = el;
-                                }}
-                                className="absolute inset-0 w-full h-full"
+                                key={i}
+                                className="mask absolute inset-0"
                                 style={{
-                                    clipPath: index === activeIndex ? "inset(0% 0 0 0)" : "inset(100% 0 0 0)",
-                                    zIndex: index === activeIndex ? 1 : 0
+                                    backgroundImage: `url(${reasons[DEFAULT_ACTIVE].image})`,
+                                    backgroundSize: "cover",
+                                    backgroundPosition: "center",
+                                    backgroundRepeat: "no-repeat",
+                                    clipPath: finalClipPaths[i],
                                 }}
-                            >
-                                <Image
-                                    src={item.image}
-                                    alt={item.title}
-                                    fill
-                                    className="object-cover"
-                                    priority={index === DEFAULT_ACTIVE}
-                                />
-                            </div>
+                            />
                         ))}
                     </div>
                 </div>
