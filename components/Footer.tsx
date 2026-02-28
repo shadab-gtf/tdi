@@ -85,6 +85,7 @@ const Footer = () => {
                                 <li><Link href="/blogs" className={getLinkClassName("/blogs")}>Blogs</Link></li>
                                 <li><Link href="/press-release" className={getLinkClassName("/press-release")}>Press Release</Link></li>
                                 <li><Link href="/faq" className={getLinkClassName("/faq")}>FAQ's</Link></li>
+                                <li><Link href="/contact" className={getLinkClassName("/contact")}>Contact</Link></li>
                             </ul>
                         </div>
 

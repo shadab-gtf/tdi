@@ -49,6 +49,13 @@ export const menuData = [
             { name: "GD Goenka Pre School", href: "/educational/gd-goenka-pre-school" },
         ],
     },
+    {
+        title: "New Launch",
+        items: [
+            { name: "Residential", href: "/new-launch/residence" },
+            { name: "Commercial", href: "/new-launch/commercial" },
+        ],
+    }
 ];
 
 interface MegaMenuProps {
@@ -148,7 +155,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, onClose, onMouseEnter, onMo
                                 </div>
 
                                 {/* Grid Content */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
                                     {menuData.map((category, index) => (
                                         <div key={index} className="space-y-8">
                                             <h3 className="text-3xl font-serif text-[#232E5A] tracking-tight">{category.title}</h3>

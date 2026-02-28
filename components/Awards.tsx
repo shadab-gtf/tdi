@@ -16,7 +16,7 @@ const awardsData = [
         year: "2025",
         title: "Excellent Township",
         subtitle: "Of The Year",
-        image: "/assets/images/awward/1.png",
+        image: "/assets/images/awward/4.png",
     },
     {
         id: 2,
@@ -37,22 +37,22 @@ const awardsData = [
         year: "2025",
         title: "Young Industry",
         subtitle: "Leader Award",
-        image: "/assets/images/awward/4.png",
-    },
-    {
-        id: 5,
-        year: "2025",
-        title: "Excellent Township",
-        subtitle: "Of The Year",
         image: "/assets/images/awward/1.png",
     },
-    {
-        id: 6,
-        year: "2025",
-        title: "Leadership Excellence",
-        subtitle: "Award North",
-        image: "/assets/images/awward/2.png",
-    },
+    // {
+    //     id: 5,
+    //     year: "2025",
+    //     title: "Excellent Township",
+    //     subtitle: "Of The Year",
+    //     image: "/assets/images/awward/1.png",
+    // },
+    // {
+    //     id: 6,
+    //     year: "2025",
+    //     title: "Leadership Excellence",
+    //     subtitle: "Award North",
+    //     image: "/assets/images/awward/2.png",
+    // },
 ];
 
 const Awards = () => {
@@ -110,13 +110,13 @@ const Awards = () => {
                                             <div className="flex-1 flex flex-col items-center px-3 md:px-8 py-4">
                                                 {/* Image */}
                                                 <div
-                                                    className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] md:w-[210px] md:h-[210px] overflow-hidden shadow-md"
+                                                    className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] md:w-[180px] md:h-[180px] overflow-hidden shadow-md"
                                                 >
                                                     <Image
                                                         src={item.image}
                                                         alt={`${item.title} ${item.subtitle}`}
                                                         fill
-                                                        className="object-cover"
+                                                        className="object-contain"
                                                         draggable={false}
                                                     />
                                                 </div>

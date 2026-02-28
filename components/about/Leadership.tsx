@@ -73,9 +73,9 @@ export default function Leadership() {
                             className={`flex flex-col justify-between ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-0`}
                         >
                             {/* Image Side */}
-                            <div className="w-full md:w-1/3  flex flex-col items-center  ">
+                            <div className="w-full md:w-1/3  flex flex-col  items-center  ">
 
-                                <div className="relative w-full max-w-xs   aspect-[4/3] md:aspect-[3/2] lg:aspect-[4/3] overflow-hidden   duration-500"
+                                <div className="relative w-full aspect-[4/3] md:aspect-[3/2] lg:aspect-[4/3] overflow-hidden   duration-500"
                                     data-aos={index % 2 === 0 ? "reveal-left" : "reveal-right"}
                                 >
                                     {/* <div className="relative w-full max-w-md aspect-[4/3] md:aspect-[3/2] lg:aspect-[4/3] overflow-hidden   duration-500"> */}
@@ -87,7 +87,7 @@ export default function Leadership() {
                                         sizes="(max-width: 768px) 100vw, 50vw"
                                     />
                                 </div>
-                                <div data-aos="fade-up" data-aos-delay="200" className="px-6 py-3 font-serif  uppercase text-primary text-sm md:text-base text-center min-w-[200px]">
+                                <div data-aos="fade-up" data-aos-delay="200" className="px-6 py-3 w-full bg-white font-serif  uppercase text-primary text-sm md:text-base text-center min-w-[200px]">
                                     {leader.caption}
                                 </div>
                             </div>

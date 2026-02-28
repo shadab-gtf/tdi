@@ -44,13 +44,13 @@ const Thoughtfull = () => {
                             TDI City Kundli is professionally managed by Cannes Property Management Services Private Limited, ensuring the township's shared spaces, infrastructure, and day-to-day operations are maintained to consistent standards. With a focus on efficiency, upkeep, and resident experience, the management approach supports a well-organised, secure, and smoothly functioning living environment.
                         </p>
 
-                        <Link
+                        {/* <Link
                             href="/know-more"
                             className="inline-flex  mx-auto group items-center justify-center gap-2 text-[var(--color-accent)] font-serif text-lg hover:gap-4 transition-all duration-300 group"
                         >
                             Know More
                             <MoveRight className=" group-hover:translate-x-2 w-5 h-5 transition-transform" />
-                        </Link>
+                        </Link> */}
                     </div>
 
                     {/* Right Image Side */}

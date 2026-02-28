@@ -4,11 +4,10 @@ import { motion } from 'framer-motion';
 
 const CompanyLogoData = [
     { src: '/assets/images/brand-logo/1.png', alt: 'Brand 1' },
-    { src: '/assets/images/brand-logo/2.png', alt: 'Brand 2' },
+    { src: '/assets/images/brand-logo/wow.png', alt: 'Brand 1' },
     { src: '/assets/images/brand-logo/3.png', alt: 'Brand 3' },
     { src: '/assets/images/brand-logo/4.png', alt: 'Brand 4' },
     { src: '/assets/images/brand-logo/5.png', alt: 'Brand 5' },
-    { src: '/assets/images/brand-logo/6.png', alt: 'Brand 6' },
     { src: '/assets/images/brand-logo/7.png', alt: 'Brand 7' },
 ];
 

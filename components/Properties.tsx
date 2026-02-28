@@ -11,6 +11,7 @@ import { Pagination } from "swiper/modules";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import PremiumButton from "./ui/PremiumButton";
 
 const propertiesData = [
     {
@@ -236,13 +237,10 @@ const Properties = () => {
                     </Swiper>
                 </div>
                 <div className="mt-8 md:mt-16 text-center" data-aos="fade-up" data-aos-delay="200">
-                    <Link
+                    <PremiumButton href="/projects">
+                        View All Projects
+                    </PremiumButton>
 
-                        href="/projects"
-                        className="text-[var(--color-accent)] group hover:text-[var(--primary)] transition-colors border-b border-[var(--color-accent)] hover:border-[var(--primary)] inline-flex items-center gap-2 font-serif text-base md:text-lg tracking-wide duration-300"
-                    >
-                        View All Projects <ArrowRight className="group-hover:-rotate-45 transition-all duration-300" size={18} />
-                    </Link>
                 </div>
             </div>
         </section>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { MoveLeft, MoveRight } from "lucide-react";
 import Link from "next/link";
+import PremiumButton from "./ui/PremiumButton";
 
 const blogPosts = [
     {
@@ -207,13 +208,9 @@ const BlogSection = () => {
                 </div>
 
                 <div className="text-center mt-12 md:mt-16">
-                    <Link
-                        href="/blog"
-                        className="text-[var(--color-accent)] group hover:text-[var(--primary)] transition-colors border-b border-[var(--color-accent)] hover:border-[var(--primary)] inline-flex items-center gap-2 font-serif text-base md:text-lg tracking-wide duration-300"
-                    >
+                    <PremiumButton href="/blog">
                         View All News & Blog
-                        <MoveRight className="group-hover:-rotate-45 transition-all duration-300" size={18} />
-                    </Link>
+                    </PremiumButton>
                 </div>
 
             </div>
