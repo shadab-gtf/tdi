@@ -28,34 +28,34 @@ const TABS: TabData[] = [
             { title: "Green Spaces", image: "/assets/images/amenities/landscap.png" },
             { title: "Jogging Tracks", image: "/assets/images/amenities/walk.png" },
             { title: "Fitness Zones", image: "/assets/images/amenities/yoga.png" },
-            { title: "Dedicated Parks", image: "/assets/images/amenities/sitting.png" },
+            { title: "Dedicated Parks", image: "/assets/images/amenities/dedicated-park.jpg" },
         ],
     },
     {
         label: "Divine Retreat",
         cards: [
-            { title: "Shiv Mandir", image: "/assets/images/amenities/landscap.png" },
-            { title: "Jain Mandir", image: "/assets/images/amenities/walk.png" },
-            { title: "Gurudwara", image: "/assets/images/amenities/yoga.png" },
+            { title: "Shiv Mandir", image: "/assets/images/amenities/devine-retreat/1.jpg" },
+            { title: "Jain Mandir", image: "/assets/images/amenities/devine-retreat/2.png" },
+            { title: "Gurudwara", image: "/assets/images/amenities/devine-retreat/3.jpg" },
         ],
     },
     {
         label: "Family & Community Spaces",
         cards: [
-            { title: "Community Centers", image: "/assets/images/amenities/landscap.png" },
-            { title: "Nursery and Primary Schools", image: "/assets/images/amenities/walk.png" },
-            { title: "Club and Recreation Centers", image: "/assets/images/amenities/yoga.png" },
-            { title: "Milk Booths and Dispensaries", image: "/assets/images/amenities/sitting.png" },
+            { title: "Community Centers", image: "/assets/images/amenities/family-com-spaces/1.jpg" },
+            { title: "Nursery and Primary Schools", image: "/assets/images/amenities/family-com-spaces/2.jpg" },
+            { title: "Club and Recreation Centers", image: "/assets/images/amenities/family-com-spaces/3.jpg" },
+            { title: "Milk Booths and Dispensaries", image: "/assets/images/amenities/family-com-spaces/4.jpg" },
             // { title: "Sports Courts & Play Areas", image: "/assets/images/amenities/sitting.png" },
         ],
     },
     {
         label: "Safety & Convenience",
         cards: [
-            { title: "24/7 Security and Surveillance", image: "/assets/images/amenities/landscap.png" },
-            { title: "Dedicated Taxi Stands", image: "/assets/images/amenities/walk.png" },
-            { title: "Efficient Waste Management", image: "/assets/images/amenities/yoga.png" },
-            { title: "Emergency Healthcare Services", image: "/assets/images/amenities/sitting.png" },
+            { title: "24/7 Security and Surveillance", image: "/assets/images/amenities/safety-convenience/1.webp" },
+            { title: "Dedicated Taxi Stands", image: "/assets/images/amenities/safety-convenience/2.webp" },
+            { title: "Efficient Waste Management", image: "/assets/images/amenities/safety-convenience/3.webp" },
+            { title: "Emergency Healthcare Services", image: "/assets/images/amenities/safety-convenience/4.webp" },
         ],
     },
 ];
@@ -466,7 +466,7 @@ function AmenityCardItem({
 
             <div className="mt-3 md:mt-4 flex items-start justify-between gap-2">
                 <p
-                    className="font-serif text-sm md:text-[15px] leading-snug flex-1"
+                    className="font-serif text-sm md:text-[15px] leading-snug flex-1 text-center"
                     style={{ color: "var(--color-primary, #1a1a1a)" }}
                 >
                     {card.title}
