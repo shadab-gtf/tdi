@@ -8,7 +8,7 @@ export default function Brands() {
                 <h3 className="text-center text-base md:text-[20px] font-regular text-[var(--color-accent)]! font-serif tracking-tight " data-aos="reveal-top">Brands On Board</h3>
                 {/* <div className="w-[100px] h-[2px] bg-[var(--color-primary)]"></div> */}
                 <h4 className="text-center text-lg md:text-[25px] font-regular font-serif tracking-tight " data-aos="fade-up" data-aos-delay="200">Prestigious names that define a complete lifestyle.</h4>
-                <p className="text-center text-sm md:text-base font-regular font-serif tracking-tight " data-aos="fade-up" data-aos-delay="300">TDI City Kundli is home to leading brands, enhancing retail, education, and lifestyle spaces. These partnerships elevate quality, accessibility, and convenience for a sophisticated living experience.</p>
+                <p className="text-center text-sm md:text-base font-regular font-serif tracking-tight " data-aos="fade-up" data-aos-delay="300">TDI City Kundli is enriched by the presence of leading brands. These partnerships elevate the quality, accessibility, and overall experience of life within the township, ensuring a living environment that is as sophisticated as it is convenient.</p>
 
             </div>
             <InfiniteScrollingLogosAnimation />
