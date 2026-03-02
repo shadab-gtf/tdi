@@ -103,10 +103,10 @@ export default function BottomContact() {
                                 index === 0 && "md:border-r border-[#EAE0D5]"
                             )}
                         >
-                            <h3 className="text-[#232E5A] font-serif uppercase tracking-widest text-sm mb-4 font-semibold">
+                            <h3 className="text-[#232E5A] font-serif uppercase text-[25px] mb-4">
                                 {item.title}
                             </h3>
-                            <a href={`mailto:${item.email}`} className="text-[#767676] font-sans text-sm hover:text-[#232E5A] transition-colors duration-300">
+                            <a href={`mailto:${item.email}`} className="text-[#424242] font-serif hover:text-[#232E5A] transition-colors duration-300">
                                 {item.email}
                             </a>
                         </div>

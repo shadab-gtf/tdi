@@ -28,7 +28,7 @@ const CLUBHOUSE_ITEMS: ClubHouseItem[] = [
     { title: "Badminton", image: "/assets/images/clubhouse/9.jpg" },
     { title: "Squash Courts", image: "/assets/images/clubhouse/10.jpg" },
     { title: "Conference Halls", image: "/assets/images/clubhouse/11.jpg" },
-    { title: "Banquet Halls", image: "/assets/images/clubhouse/12.jpg" },
+    { title: "Banquet Halls", image: "/assets/images/clubhouse/12.png" },
     { title: "24-hour Concierge", image: "/assets/images/clubhouse/13.jpg" },
     { title: "In-Room Dining", image: "/assets/images/clubhouse/14.jpg" },
     { title: "Laundry", image: "/assets/images/clubhouse/15.jpg" },
