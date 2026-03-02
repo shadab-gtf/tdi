@@ -16,7 +16,7 @@ export default function Home() {
             <HeroMedia
                 type="video"
                 src="/assets/hero.mp4"
-                poster="/assets/images/hero-poster.jpg"
+                poster="/assets/images/about/hero-tdi.png"
             />
             <Infrastructure />
             <Ticker />

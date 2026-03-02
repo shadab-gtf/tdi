@@ -26,10 +26,7 @@ const Infrastructure = () => {
                             Conceived By TDI Infrastructure
                         </h2>
                         <p className="text-paragraph text-center text-sm md:text-base leading-relaxed  mx-auto lg:mx-0">
-                            TDI Infrastructure is a real estate development group focused on creating thoughtfully
-                            planned urban environments. With an emphasis on quality, responsible planning, and
-                            long-term value, TDI Infrastructure develops residential, commercial, and mixed-use
-                            spaces designed to support evolving lifestyles and sustainable community growth.
+                            For over three decades, TDI Infrastructure has been at the forefront of transforming the urban landscape of North India. From expansive integrated townships to iconic lifestyle destinations and thriving commercial hubs, each project stands as a benchmark in scale, design, and visionary excellence. With a legacy rooted in quality and innovation, TDI continues to shape communities that stand the test of time.
                         </p>
                     </div>
                 </div>

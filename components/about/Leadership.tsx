@@ -11,7 +11,7 @@ const LEADERS = [
         role: "Managing Director",
         caption: "MR. AKSHAY TANEJA",
         image: "/assets/images/team/4.png",
-        description: "Is Managing Director of TDI Infrastructure, drives the group’s strategic vision and long-term growth. An alumnus of the University of Manchester and Modern School, New Delhi, he champions sustainable, future-ready developments while expanding TDI across real estate, hospitality, F&B, and education."
+        description: "As the Director of TDI Infrastructure, Mr. Akshay Taneja is a dynamic force driving the company’s growth. He seamlessly integrates sales, marketing, and operations to deliver impactful results. With a sharp business acumen and a keen understanding of market trends, he plays a pivotal role in executing TDI’s strategic initiatives, ensuring the company continues to thrive in the competitive real estate landscape."
     },
     {
         id: 2,
@@ -19,7 +19,7 @@ const LEADERS = [
         role: "Founder and Chairman",
         caption: "SH. DN TANEJA",
         image: "/assets/images/team/1.png",
-        description: " Is Founder and Chairman of TDI Infrastructure, is the guiding force behind the group's legacy in real estate development. With decades of industry experience, his vision has shaped TDI's commitment to quality, trust, and long-term value creation across residential, commercial, and integrated developments."
+        description: " Sh. DN Taneja, the Chairman of TDI Infrastructure, is the visionary leader who laid the foundation for TDI’s success. His relentless commitment to quality, innovation, and integrity has shaped the brand’s legacy. Under his leadership, TDI has evolved into a trusted name in the industry, with every project reflecting his deep understanding of the market and his ability to create spaces that balance functionality and elegance."
     },
     {
         id: 3,
@@ -27,7 +27,7 @@ const LEADERS = [
         role: "Director",
         caption: "SH. RAVINDER TANEJA",
         image: "/assets/images/team/2.png",
-        description: "Is Director at TDI Infrastructure, plays a key role in strengthening the group's operations and project execution. With deep industry experience, he supports TDI's focus on disciplined development, quality delivery, and sustainable growth across its portfolio."
+        description: "As the Managing Director of TDI Infrastructure, Sh. Ravinder Taneja upholds the company’s core values of trust, legality, and excellence. His meticulous attention to detail and dedication to maintaining high standards have been essential in TDI’s expansion. Sh. Ravinder Taneja’s visionary approach ensures that every development TDI undertakes is built on a solid foundation, poised for long-term success."
     },
     {
         id: 4,
@@ -35,7 +35,7 @@ const LEADERS = [
         role: "Director",
         caption: "MR. KAMAL TANEJA",
         image: "/assets/images/team/3.png",
-        description: "Is Director at TDI Infrastructure, contributes to the group's strategic planning and business development initiatives. With a strong understanding of real estate operations, he supports TDI's growth through focused execution, market insight, and long-term value creation."
+        description: "In his role as Director at TDI Infrastructure, Mr. Kamal Taneja is a strategic driver of the company’s business development and expansion. With his extensive experience in real estate operations, he is responsible for shaping TDI’s growth through innovative market insights and focused execution. His leadership continues to ensure that TDI remains a forward-thinking and results-driven company."
     }
 ];
 

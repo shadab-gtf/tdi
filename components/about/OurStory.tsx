@@ -108,7 +108,7 @@ export default function OurStory() {
                         The Journey Behind TDI City Kundli
                     </h2>
                     <p className="story-desc text-paragraph md:text-base text-sm  font-serif leading-relaxed ">
-                        TDI City Kundli was planned to bring organised, long-term urban development to the Northern Delhi NCR corridor. Conceived as an integrated township, it brings together residences, infrastructure, institutions, and open spaces within a cohesive master plan. Its planning focuses on connectivity, functionality, and sustainability—supporting present needs while preparing for the region’s future growth.
+                        TDI City Kundli was conceived to transform the Northern Delhi NCR corridor with a visionary, integrated township. Blending residences, infrastructure, institutions, and green spaces, it follows a cohesive master plan focused on connectivity, functionality, and sustainability. Designed to serve present needs while preparing for future growth, TDI City Kundli is a landmark of modern urban living and development.
                     </p>
                 </div>
 

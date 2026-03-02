@@ -17,13 +17,24 @@ interface ClubHouseItem {
 }
 
 const CLUBHOUSE_ITEMS: ClubHouseItem[] = [
-    { title: "Banquet Hall", image: "/assets/images/clubhouse/banquethall.png" },
-    { title: "Lounge", image: "/assets/images/clubhouse/lounge.png" },
-    { title: "Spa", image: "/assets/images/clubhouse/spa.png" },
-    { title: "Café", image: "/assets/images/clubhouse/cafe.png" },
-    { title: "Co-Working", image: "/assets/images/clubhouse/coworking.png" },
-    { title: "Meeting Room", image: "/assets/images/clubhouse/meeting-room.png" },
-    { title: "Sauna", image: "/assets/images/clubhouse/sauna.png" },
+    { title: "Premium Club Facilities", image: "/assets/images/clubhouse/banquethall.png" },
+    { title: "Pan Asian Restaurant", image: "/assets/images/clubhouse/lounge.png" },
+    { title: "Crystal Bar", image: "/assets/images/clubhouse/spa.png" },
+    { title: "Gym", image: "/assets/images/clubhouse/cafe.png" },
+    { title: "Swimming Pool", image: "/assets/images/clubhouse/coworking.png" },
+    { title: "Spa", image: "/assets/images/clubhouse/meeting-room.png" },
+    { title: "Jacuzzi", image: "/assets/images/clubhouse/sauna.png" },
+    { title: "Table Tennis", image: "/assets/images/clubhouse/sauna.png" },
+    { title: "Badminton", image: "/assets/images/clubhouse/sauna.png" },
+    { title: "Squash Courts", image: "/assets/images/clubhouse/sauna.png" },
+    { title: "Conference Halls", image: "/assets/images/clubhouse/sauna.png" },
+    { title: "Banquet Halls", image: "/assets/images/clubhouse/sauna.png" },
+    { title: "24-hour Concierge", image: "/assets/images/clubhouse/sauna.png" },
+    { title: "In-Room Dining", image: "/assets/images/clubhouse/sauna.png" },
+    { title: "Laundry", image: "/assets/images/clubhouse/sauna.png" },
+    { title: "Wi-Fi", image: "/assets/images/clubhouse/sauna.png" },
+    { title: "Parking", image: "/assets/images/clubhouse/sauna.png" },
+    { title: "Outdoor Catering", image: "/assets/images/clubhouse/sauna.png" },
 ];
 
 export default function ClubHouse() {
@@ -107,10 +118,7 @@ export default function ClubHouse() {
                         ref={descRef}
                         className="text-paragraph font-serif text-sm md:text-base"
                     >
-                        At TDI City Kundli, amenities are not add-ons but an integral part of
-                        township planning. From wellness and recreation to safety and
-                        convenience, every facility contributes to a lifestyle that feels
-                        thoughtful, complete, and enduring.
+                        At TDI City Kundli, the clubhouse is the heart of a curated lifestyle, offering wellness, recreation, and luxury. Designed for comfort and connection, it seamlessly blends elegance with function for an elevated living experience.
                     </p>
                 </div>
             </div>

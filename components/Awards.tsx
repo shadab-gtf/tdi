@@ -67,9 +67,7 @@ const Awards = () => {
                         Awards &amp; Recognition
                     </h2>
                     <p className="text-[var(--color-secondary)] font-serif text-sm md:text-base leading-relaxed">
-                        Honouring industry accolades and milestones that reflect our commitment to quality, design
-                        excellence, and trusted development across residential, commercial, and institutional
-                        projects.
+                        Celebrating industry accolades that reflect our commitment to exceptional quality, innovation, and trusted development. Our achievements across residential, commercial, and institutional projects define our legacy of excellence and relentless pursuit of new benchmarks in real estate.
                     </p>
                 </div>
 

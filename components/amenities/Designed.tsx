@@ -52,17 +52,13 @@ export default function Designed() {
                         ref={titleRef}
                         className="font-serif text-primary uppercase text-xl md:text-[25px] font-normal mb-6"
                     >
-                        Designed Around Everyday Life
+                        Designed for a Life of Harmony and Luxury
                     </h2>
                     <p
                         ref={descRef}
                         className="text-paragraph font-serif text-sm md:text-base leading-relaxed"
                     >
-                        Amenities at TDI City Kundli are planned to support balanced
-                        living—where recreation, wellness, and social spaces come together
-                        seamlessly. Each facility is thoughtfully placed to encourage
-                        movement, interaction, and relaxation, creating an environment that
-                        feels complete, calm, and connected.
+                        At TDI City Kundli, every amenity is crafted with precision to enrich the everyday experience. From lush green spaces to world-class recreational facilities, the township is designed to nurture both mind and body. Each element, from wellness zones to social hubs, is thoughtfully placed to promote balance, connection, and tranquility, ensuring a lifestyle that is as seamless as it is luxurious.
                     </p>
                 </div>
             </div>

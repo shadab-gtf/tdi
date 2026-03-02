@@ -21,21 +21,21 @@ const CARDS: BuildingCard[] = [
     {
         title: "Our Commitment",
         description:
-            "To create thoughtfully planned environments that deliver quality living, long-term value responsible development for evolving urban lifestyles.",
+            "TDI City Kundli is dedicated to creating enduring spaces that deliver long-term value and quality for generations.",
         image:
             "/assets/images/amenities/commitment.png",
     },
     {
         title: "A Long-Term Vision",
         description:
-            "To shape integrated communities where modern infrastructure, nature, and human needs coexist in balance and harmony.",
+            "With foresight and excellence, TDI City Kundli is designed to evolve with the future, while preserving its legacy of sophistication.",
         image:
             "/assets/images/amenities/vision.png",
     },
     {
         title: "Sustainable Living, Refined",
         description:
-            "A continued commitment to responsible planning, open spaces, and enduring design that supports sustainable communities today and into the future.",
+            "TDI City Kundli blends sustainability with luxury, offering eco-friendly living without compromising on comfort.",
         image:
             "/assets/images/amenities/living.png",
     },
@@ -117,16 +117,13 @@ export default function Building() {
                         className="font-serif text-primary text-xl md:text-[25px] font-normal mb-5 overflow-hidden"
                         style={{ perspective: "600px" }}
                     >
-                        Building Better Everyday Lives
+                        Crafting a Life of Harmony and Elegance
                     </h2>
                     <p
                         ref={descRef}
                         className="text-paragraph font-serif text-sm md:text-base max-w-4xl mx-auto"
                     >
-                        Kundli City is thoughtfully planned around open landscapes, walkable
-                        avenues, and human-scale design. Every space is shaped to create a
-                        sense of balance—where nature, architecture, and daily life come
-                        together effortlessly.
+                        TDI City Kundli is meticulously designed with expansive green spaces, pedestrian-friendly avenues, and architecture that resonates with refinement. Every element of the township is harmoniously integrated to foster balance, where nature, luxury, and daily living converge seamlessly to create an unparalleled lifestyle experience.
                     </p>
                 </div>
             </div>

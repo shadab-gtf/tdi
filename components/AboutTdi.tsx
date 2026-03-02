@@ -23,7 +23,7 @@ const AboutTdi = () => {
                     Tdi City Kundli
                 </h2>
                 <p className="text-sm md:text-base text-[var(--paragraph)] font-serif leading-relaxed ">
-                    Spread across 1100+ acres, TDI City Kundli is a thoughtfully envisioned integrated township that redefines modern living. Designed as a self sustained urban ecosystem, it seamlessly brings together residential, commercial, and recreational spaces to offer a balanced lifestyle marked by comfort, convenience, and tranquility.
+                    TDI City Kundli stands at the confluence of connectivity, opportunity, and refined modern living. Spanning over 1100+ acres, this distinguished township is strategically located along NH44 and UER 2, soon to be seamlessly connected by the Kundli Metro Station at Nathupur and the RRTS corridor. With the IGI Airport in proximity and the Maruti Suzuki Manufacturing Plant driving industrial growth, Kundli offers unparalleled convenience. Truly embodying The New New Delhi, it is a prestigious destination where progress and luxurious living converge in perfect harmony.
                 </p>
             </div>
             <div className="absolute -bottom-6 md:top-1/2 -translate-y-1/2 right-10 w-24 h-24 md:w-40 md:h-40   pointer-events-none select-none">

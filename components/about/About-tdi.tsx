@@ -25,7 +25,7 @@ const BLOCKS: BlockData[] = [
     {
         title: "TDI Infrastructure",
         description:
-            "TDI Infrastructure is a real estate development group focused on creating thoughtfully planned urban environments. With an emphasis on quality, responsible planning, and long-term value, TDI Infrastructure develops residential, commercial, and mixed-use spaces designed to support evolving lifestyles and sustainable community growth.",
+            "For over three decades, TDI Infrastructure has been at the forefront of transforming the urban landscape of North India. From expansive integrated townships to iconic lifestyle destinations and thriving commercial hubs, each project sets a new standard in scale, design, and visionary excellence.",
         image: "/assets/images/about/brand-logo.png",
         imageAlt: "TDI Infrastructure – Creating Landmarks",
         imagePosition: "left",
@@ -35,7 +35,7 @@ const BLOCKS: BlockData[] = [
     {
         title: "TDI Infratech",
         description:
-            "TDI Infratech is the group’s core real estate development arm, delivering thoughtfully planned residential, commercial, and mixed-use projects. With a strong focus on quality, sustainability, and execution, it builds future-ready urban environments designed for long-term value and evolving lifestyles.",
+            "TDI Infratech has been a visionary leader in redefining North India’s skyline. With a focus on creating iconic integrated townships, lifestyle destinations, and commercial hubs, each project exemplifies excellence in design, scale, and purpose, setting new benchmarks in urban development.",
         image: "/assets/images/about/tdi.png",
         imageAlt: "TDI Infratech – Rise Above",
         imagePosition: "right",
@@ -45,7 +45,7 @@ const BLOCKS: BlockData[] = [
     {
         title: "TDI Infracorp",
         description:
-            "Since its inception 25 years ago, TDI Infra Corp has been shaping integrated townships and commercial developments across North India. With over 15 million sq. ft. delivered, TDI is known for timely execution, quality construction, and customer confidence. Its footprint spans 5 landmark townships and multiple commercial and retail projects, primarily across prime locations in Delhi NCR.",
+            "Since its inception 25 years ago, TDI Infra Corp has been a pioneering force in shaping integrated townships and commercial developments across North India. With over 15 million square feet delivered, TDI is renowned for its commitment to timely execution, superior craftsmanship, and building lasting customer trust.",
         image: "/assets/images/about/red-tdi.png",
         imageAlt: "TDI Infracorp – Shaping Memorable Storeys",
         imagePosition: "left",

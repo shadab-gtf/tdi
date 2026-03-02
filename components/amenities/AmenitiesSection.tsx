@@ -25,37 +25,37 @@ const TABS: TabData[] = [
     {
         label: "Wellness & Green Living",
         cards: [
-            { title: "Landscaped Parks & Open Green Spaces", image: "/assets/images/amenities/landscap.png" },
-            { title: "Walking And Jogging Tracks", image: "/assets/images/amenities/walk.png" },
-            { title: "Yoga And Meditation Zones", image: "/assets/images/amenities/yoga.png" },
-            { title: "Open-Air Seating And Shaded Courts", image: "/assets/images/amenities/sitting.png" },
+            { title: "Green Spaces", image: "/assets/images/amenities/landscap.png" },
+            { title: "Jogging Tracks", image: "/assets/images/amenities/walk.png" },
+            { title: "Fitness Zones", image: "/assets/images/amenities/yoga.png" },
+            { title: "Dedicated Parks", image: "/assets/images/amenities/sitting.png" },
         ],
     },
     {
-        label: "Clubhouse & Recreation",
+        label: "Divine Retreat",
         cards: [
-            { title: "Multi-Sport Clubhouse", image: "/assets/images/amenities/landscap.png" },
-            { title: "Swimming Pool & Deck", image: "/assets/images/amenities/walk.png" },
-            { title: "Indoor Games & Lounge", image: "/assets/images/amenities/yoga.png" },
-            { title: "Badminton & Tennis Courts", image: "/assets/images/amenities/sitting.png" },
+            { title: "Shiv Mandir", image: "/assets/images/amenities/landscap.png" },
+            { title: "Jain Mandir", image: "/assets/images/amenities/walk.png" },
+            { title: "Gurudwara", image: "/assets/images/amenities/yoga.png" },
         ],
     },
     {
         label: "Family & Community Spaces",
         cards: [
-            { title: "Children's Play Area", image: "/assets/images/amenities/landscap.png" },
-            { title: "Community Hall & Events", image: "/assets/images/amenities/walk.png" },
-            { title: "Senior Citizen Zone", image: "/assets/images/amenities/yoga.png" },
-            { title: "Amphitheatre & Open Lawns", image: "/assets/images/amenities/sitting.png" },
+            { title: "Community Centers", image: "/assets/images/amenities/landscap.png" },
+            { title: "Nursery and Primary Schools", image: "/assets/images/amenities/walk.png" },
+            { title: "Club and Recreation Centers", image: "/assets/images/amenities/yoga.png" },
+            { title: "Milk Booths and Dispensaries", image: "/assets/images/amenities/sitting.png" },
+            // { title: "Sports Courts & Play Areas", image: "/assets/images/amenities/sitting.png" },
         ],
     },
     {
         label: "Safety & Convenience",
         cards: [
-            { title: "24/7 Gated Security", image: "/assets/images/amenities/landscap.png" },
-            { title: "CCTV Surveillance Network", image: "/assets/images/amenities/walk.png" },
-            { title: "Power Backup & Water Supply", image: "/assets/images/amenities/yoga.png" },
-            { title: "Dedicated Parking Zones", image: "/assets/images/amenities/sitting.png" },
+            { title: "24/7 Security and Surveillance", image: "/assets/images/amenities/landscap.png" },
+            { title: "Dedicated Taxi Stands", image: "/assets/images/amenities/walk.png" },
+            { title: "Efficient Waste Management", image: "/assets/images/amenities/yoga.png" },
+            { title: "Emergency Healthcare Services", image: "/assets/images/amenities/sitting.png" },
         ],
     },
 ];
@@ -229,7 +229,7 @@ export default function AmenitiesSection() {
                                     perspective: "600px",
                                 }}
                             >
-                                A balanced mix of recreation, wellness, and open spaces for everyday living.
+                                Exquisite Amenities Crafted for the Life You Deserve
                             </h2>
 
                         </div>

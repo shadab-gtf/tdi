@@ -22,10 +22,10 @@ const Intregrate = () => {
                 data-aos="fade-up"
             >
                 <h2 className="text-lg md:text-[25px] font-serif text-[var(--foreground)] mb-6">
-                    Living, Working & Leisure <span className="text-[var(--primary)] hidden">—</span> Thoughtfully Integrated
+                    Living, Working & Leisure Perfectly Harmonized
                 </h2>
                 <p className="md:text-base text-sm text-[var(--paragraph)] font-serif leading-[25px]">
-                    At TDI City Kundli, residential comfort, commercial vitality, and lifestyle amenities come together within a carefully planned township, creating a balanced environment for everyday living.
+                    At TDI City Kundli, the fusion of residential luxury, dynamic commercial spaces, and enriching lifestyle amenities creates an all-encompassing living experience. This thoughtfully crafted township brings together all aspects of modern life, providing residents with an integrated community that offers unparalleled convenience, tranquility, and vibrancy.
                 </p>
             </div>
             <div className="max-w-[1140px] w-full mx-auto">

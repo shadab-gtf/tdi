@@ -11,22 +11,22 @@ gsap.registerPlugin(ScrollTrigger);
 const integrateData = [
     {
         id: 1,
-        title: "Close to Delhi, Yet Clearly Ahead",
-        description: "Kundli’s proximity to North Delhi ensures seamless access to the capital while avoiding congestion, offering lower traffic density, better air quality, and a healthier, more balanced urban lifestyle.",
+        title: "Unmatched Connectivity",
+        description: "Strategically located along NH44 and UER 2, with proximity to the Kundli Metro Station and the upcoming RRTS corridor, TDI City Kundli ensures seamless connectivity to Delhi, IGI Airport, and key industrial hubs, making it a truly connected township.",
         image: "/assets/images/about/highway.png",
         direction: "left"
     },
     {
         id: 2,
-        title: "Cleaner Air, Healthier Living",
-        description: "Lower density development, open green buffers, and reduced traffic pressure contribute to comparatively better air quality in the region—supporting a healthier everyday environment away from inner-city pollution.",
+        title: "A Harmonious Blend of Urban and Green Living",
+        description: "Spanning over 1100+ acres, the township offers expansive green spaces alongside state-of-the-art infrastructure. TDI City Kundli’s design fosters a lifestyle that balances urban convenience with serene, green surroundings for a truly integrated living experience.",
         image: "/assets/images/about/women.jpg",
         direction: "right"
     },
     {
         id: 3,
-        title: "Connectivity That Works Every Day",
-        description: "Major corridors including UER-II, KMP, KGP, upcoming RRTS, and Metro links reduce travel time, ease congestion, and enable smoother, more efficient movement across Delhi NCR.",
+        title: "A Future-Ready Township",
+        description: "With modern residential, commercial, and recreational spaces, and close ties to major commercial developments like the Maruti Suzuki Plant, TDI City Kundli is not only ideal for today but also perfectly positioned for the region’s future growth, making it an investment in tomorrow’s lifestyle.",
         image: "/assets/images/about/flyover.png",
         direction: "left"
     }
@@ -52,7 +52,7 @@ const Connectivity = () => {
                         why tdi city kundli
                     </h2>
                     <p className="md:text-[25px] text-lg text-primary! font-serif leading-[24px]">
-                        City Shaped by Smart Connectivity
+                        A Legacy of Excellence, Where Tomorrow’s Vision Is Today’s Reality
                     </p>
                 </div>
 
