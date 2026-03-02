@@ -41,27 +41,15 @@ const propertiesData = [
     {
         id: 5,
         title: "TDI Mall",
-        image: "/assets/images/properties/tuscan.png",
+        image: "/assets/images/properties/tdi-mall.jpg",
         link: "/tuscan-city",
     },
     {
         id: 6,
         title: "Rodeo",
-        image: "/assets/images/properties/espania.png",
+        image: "/assets/images/properties/rodeo.png",
         link: "/espania",
-    },
-    {
-        id: 7,
-        title: "Espania Royale",
-        image: "/assets/images/properties/royale.png",
-        link: "/espania-royale",
-    },
-    {
-        id: 8,
-        title: "Kingsbury",
-        image: "/assets/images/properties/kingsburry.png",
-        link: "/kingsbury",
-    },
+    }
 ];
 
 const CARD_WIDTH = 275;

@@ -7,42 +7,42 @@ const reasons = [
     {
         id: 1,
         title: "Close Proximity To Delhi NCR",
-        image: "/assets/images/long.png",
+        image: "/assets/images/why-tdi/1.webp",
     },
     {
         id: 2,
         title: "The Next Gurugram Of The North",
-        image: "/assets/projects/espania.png",
+        image: "/assets/images/why-tdi/2.webp",
     },
     {
         id: 3,
         title: "Better Air Quality & Open Environments",
-        image: "/assets/images/long.png",
+        image: "/assets/images/why-tdi/3.webp",
     },
     {
         id: 4,
         title: "Reduced Traffic & Planned Movement",
-        image: "/assets/projects/espania.png",
+        image: "/assets/images/why-tdi/4.webp",
     },
     {
         id: 5,
         title: "Connectivity That Shapes The Future",
-        image: "/assets/images/long.png",
+        image: "/assets/images/why-tdi/5.webp",
     },
     {
         id: 6,
         title: "KMP Expressway (Kundli–Manesar–Palwal)",
-        image: "/assets/projects/espania.png",
+        image: "/assets/images/why-tdi/6.webp",
     },
     {
         id: 7,
         title: "KGP Expressway (Kundli–Ghaziabad–Palwal)",
-        image: "/assets/images/long.png",
+        image: "/assets/images/why-tdi/7.webp",
     },
     {
         id: 8,
         title: "RRTS & Metro Connectivity",
-        image: "/assets/projects/espania.png",
+        image: "/assets/images/why-tdi/8.webp",
     },
 ];
 

@@ -125,7 +125,7 @@ export default function ContactForm() {
                         Contact Us
                     </h2>
                     <span className="font-serif text-paragraph   leading-relaxed">
-                        We’re here to help you explore life at TDI City Kundli
+                        Your Gateway to Exceptional Living Begins Here
                     </span>
                 </div>
 
