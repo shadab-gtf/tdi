@@ -76,6 +76,7 @@ const Footer = () => {
                                 <li><Link href="/commercial" className={getLinkClassName("/commercial")}>Commercial</Link></li>
                                 <li><Link href="/educational" className={getLinkClassName("/educational")}>Educational</Link></li>
                                 <li><Link href="/healthcare" className={getLinkClassName("/healthcare")}>Healthcare</Link></li>
+                                <li><Link href="/new-launch" className={getLinkClassName("/new-launch")}>New Launch</Link></li>
                             </ul>
                         </div>
                         <div className="space-y-6">
@@ -118,10 +119,10 @@ const Footer = () => {
                         <h4 className="font-serif text-lg md:text-xl mb-4 text-white!">Social Media</h4>
                         <div className="flex gap-6 mt-1">
                             {/* Social links usually use external URLs, so active state is rare, but logic remains same */}
-                            <Link href="https://instagram.com" className="hover:text-[var(--color-accent)] transition-colors">Instagram</Link>
-                            <Link href="https://facebook.com" className="hover:text-[var(--color-accent)] transition-colors">Facebook</Link>
-                            <Link href="https://youtube.com" className="hover:text-[var(--color-accent)] transition-colors">Youtube</Link>
-                            <Link href="https://linkedin.com" className="hover:text-[var(--color-accent)] transition-colors">Linkedin</Link>
+                            <Link href="https://www.instagram.com/tdiinfrastructureltd/" className="hover:text-[var(--color-accent)] font-light  transition-colors">Instagram</Link>
+                            <Link href="https://www.facebook.com/TdiInfrastructureLimited" className="hover:text-[var(--color-accent)] font-light  transition-colors">Facebook</Link>
+                            <Link href="https://www.youtube.com/@TDIInfrastructure" className="hover:text-[var(--color-accent)]  font-light transition-colors">Youtube</Link>
+                            <Link href="https://www.linkedin.com/company/tdi-infrastructure/?viewAsMember=true" className="hover:text-[var(--color-accent)] font-light  transition-colors">Linkedin</Link>
                         </div>
                     </div>
                 </div>

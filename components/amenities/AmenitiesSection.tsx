@@ -250,7 +250,7 @@ export default function AmenitiesSection() {
                                         : "var(--color-paragraph, #aaa)",
                                 }}
                             >
-                                <span
+                                {/* <span
                                     className="block font-serif text-xs tracking-widest mb-1 transition-colors duration-300"
                                     style={{
                                         color: activeTab === i
@@ -259,7 +259,7 @@ export default function AmenitiesSection() {
                                     }}
                                 >
                                     {String(i + 1).padStart(2, "0")}
-                                </span>
+                                </span> */}
                                 {tab.label}
 
                                 <span
@@ -452,7 +452,7 @@ function AmenityCardItem({
                     />
                 )}
 
-                <span
+                {/* <span
                     className="absolute top-3 right-3 font-serif text-[10px] tracking-widest px-2 py-1 rounded-full"
                     style={{
                         color: "rgba(255,255,255,0.8)",
@@ -461,7 +461,7 @@ function AmenityCardItem({
                     }}
                 >
                     {String(index + 1).padStart(2, "0")}
-                </span>
+                </span> */}
             </div>
 
             <div className="mt-3 md:mt-4 flex items-start justify-between gap-2">

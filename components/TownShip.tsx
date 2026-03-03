@@ -10,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 const TownShip = () => {
     const containerRef = useRef<HTMLElement>(null);
     const numberRef = useRef<HTMLDivElement>(null);
+    const counterRef = useRef<HTMLSpanElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
@@ -25,11 +26,26 @@ const TownShip = () => {
             numberRef.current,
             { opacity: 0, y: 50, scale: 0.9 },
             { opacity: 1, y: 0, scale: 1, duration: 1, ease: "power3.out" }
-        ).fromTo(
+        );
+
+        // Counter Animation
+        const counter = { value: 0 };
+        tl.to(counter, {
+            value: 1100,
+            duration: 2,
+            ease: "power2.out",
+            onUpdate: () => {
+                if (counterRef.current) {
+                    counterRef.current.innerText = Math.floor(counter.value).toString();
+                }
+            },
+        }, "<");
+
+        tl.fromTo(
             textRef.current?.children || [],
             { opacity: 0, y: 30 },
             { opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: "power2.out" },
-            "-=0.5"
+            "-=1"
         );
     }, { scope: containerRef });
 
@@ -41,7 +57,7 @@ const TownShip = () => {
             {/* Statistic Container */}
             <div ref={numberRef} className="flex items-end justify-center leading-none select-none relative">
                 <span className="font-secondary flex items-end gap-2 text-[var(--color-accent)] text-[40px] md:text-[60px] lg:text-[70px] font-normal">
-                    1100+
+                    <span ref={counterRef}>1100</span>+
                     <span className="text-paragraph text-xs md:text-sm mb-5 font-serif">
                         Acres
                     </span>

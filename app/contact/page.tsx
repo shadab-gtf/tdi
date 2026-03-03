@@ -7,10 +7,10 @@ export default function Home() {
     return (
         <main className="relative min-h-screen w-full bg-white">
             <GlobalAnimation />
-            <HeroMedia
+            {/* <HeroMedia
                 type="image"
                 src="/assets/images/hero.png"
-            />
+            /> */}
             <ContactForm />
             <BottomContact />
         </main>

@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import CitySelect from "./CitySelect";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-
+import { motion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
 // --- Validation Schema ---
@@ -116,7 +116,7 @@ export default function ContactForm() {
     }, []);
 
     return (
-        <section ref={containerRef} className="w-full bg-[#232E5A06] pt-20 pb-0 overflow-hidden relative">
+        <section ref={containerRef} className="w-full bg-[#232E5A06] md:pt-40 pt-24 pb-0 relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* Header */}
@@ -130,7 +130,7 @@ export default function ContactForm() {
                 </div>
 
                 {/* Form */}
-                <div className="max-w-5xl mx-auto mb-32">
+                <div className="max-w-5xl mx-auto mb-32 relative z-50   ">
                     <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="space-y-12">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
 
@@ -171,7 +171,7 @@ export default function ContactForm() {
                             </div>
 
                             {/* City Select */}
-                            <div className="form-field relative mt-3">
+                            <div className="form-field relative">
                                 <Controller
                                     name="city"
                                     control={control}
@@ -199,28 +199,72 @@ export default function ContactForm() {
                             {/* Consent */}
                             <div className="form-field col-span-1 md:col-span-2">
                                 <label className="flex items-start cursor-pointer group">
-                                    <div className="relative flex items-center">
-                                        <input
-                                            type="checkbox"
-                                            {...register("consent")}
-                                            className="peer sr-only"
-                                        />
-                                        <div className="w-5 h-5 border border-accent rounded-sm peer-checked:bg-accent peer-checked:border-accent transition-all duration-300 flex items-center justify-center">
-                                            <svg className="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <span className="ml-3 text-sm text-gray-500 leading-tight group-hover:text-primary transition-colors duration-300">
+                                    <Controller
+                                        name="consent"
+                                        control={control}
+                                        render={({ field }) => (
+                                            <div className="relative flex items-center">
+                                                <input
+                                                    type="checkbox"
+                                                    id="consent"
+                                                    className="peer sr-only"
+                                                    checked={field.value}
+                                                    onChange={field.onChange}
+                                                />
+                                                <motion.div
+                                                    className={cn(
+                                                        "w-6 h-6 border-2 rounded-md flex items-center justify-center transition-colors",
+                                                        field.value
+                                                            ? "bg-[#D9991F] border-[#D9991F]"
+                                                            : "border-[#D9991F] group-hover:border-[#D9991F]"
+                                                    )}
+                                                    animate={{
+                                                        scale: field.value ? 1.08 : 1,
+                                                    }}
+                                                    transition={{
+                                                        type: "spring",
+                                                        stiffness: 500,
+                                                        damping: 30,
+                                                    }}
+                                                >
+                                                    <svg
+                                                        className="w-4 h-4 text-white"
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke="currentColor"
+                                                        strokeWidth={3.5}
+                                                    >
+                                                        <motion.path
+                                                            d="M5 13l4 4L19 7"
+                                                            initial={{ pathLength: 0, opacity: 0 }}
+                                                            animate={{
+                                                                pathLength: field.value ? 1 : 0,
+                                                                opacity: field.value ? 1 : 0,
+                                                            }}
+                                                            transition={{
+                                                                pathLength: { type: "spring", stiffness: 400, damping: 40 },
+                                                                opacity: { duration: 0.15 },
+                                                            }}
+                                                        />
+                                                    </svg>
+                                                </motion.div>
+                                            </div>
+                                        )}
+                                    />
+
+                                    <span className="ml-3 text-sm text-gray-600 leading-tight group-hover:text-gray-800 transition-colors">
                                         I authorize company representatives to Call, SMS, Email, or WhatsApp me about its products and offers. This consent overrides any registration for DNC/NDNC.
                                     </span>
                                 </label>
-                                {errors.consent && <p className="text-red-500 text-sm mt-2">{errors.consent.message}</p>}
+
+                                {errors.consent && (
+                                    <p className="text-red-600 text-sm mt-2">{errors.consent.message}</p>
+                                )}
                             </div>
                         </div>
 
                         {/* Submit Button */}
-                        <div className="form-field flex justify-center mt-12">
+                        <div className="form-field flex justify-center mt-12 pb-12">
                             <button
                                 type="submit"
                                 disabled={isSubmitting}

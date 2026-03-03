@@ -17,8 +17,8 @@ export default function Home() {
       <GlobalAnimation />
       {/* <Header /> */}
       <HeroMedia
-        type="image"
-        src="/assets/images/hero.png"
+        type="video"
+        src="/assets/videos/homepage.mp4"
       />
       <AboutTdi />
       <TownShip />

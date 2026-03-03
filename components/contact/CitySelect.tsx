@@ -1,8 +1,5 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { ChevronDown, Check } from "lucide-react";
-import { gsap } from "gsap";
 import { cn } from "@/lib/utils";
 
 interface CitySelectProps {
@@ -18,83 +15,58 @@ const cities = [
     "Mumbai",
     "Singapore",
     "Sydney",
+    "Tokyo",
+    "Paris",
+    "Berlin",
 ];
 
-export default function CitySelect({ value, onChange, error }: CitySelectProps) {
-    const [isOpen, setIsOpen] = useState(false);
-    const dropdownRef = useRef<HTMLDivElement>(null);
-    const listRef = useRef<HTMLUListElement>(null);
-
-    useEffect(() => {
-        if (isOpen && listRef.current) {
-            gsap.fromTo(
-                listRef.current,
-                { opacity: 0, y: -10 },
-                { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
-            );
-        }
-    }, [isOpen]);
-
-    // Close click outside
-    useEffect(() => {
-        function handleClickOutside(event: MouseEvent) {
-            if (
-                dropdownRef.current &&
-                !dropdownRef.current.contains(event.target as Node)
-            ) {
-                setIsOpen(false);
-            }
-        }
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
-
+export default function CitySelect({
+    value,
+    onChange,
+    error,
+}: CitySelectProps) {
     return (
-        <div className="relative w-full" ref={dropdownRef}>
-            <div
-                className={cn(
-                    "w-full border-b border-gray-300 py-4 flex items-center justify-between cursor-pointer transition-all duration-300 group",
-                    error ? "border-red-500" : "hover:border-primary",
-                    isOpen ? "border-primary" : ""
-                )}
-                onClick={() => setIsOpen(!isOpen)}
-            >
-                <span className={cn("text-lg transition-colors duration-300", value ? "text-[#767676]" : "text-gray-400 group-hover:text-gray-500")}>
-                    {value || "Select City*"}
-                </span>
-                <ChevronDown
+        <div className="w-full">
+            <div className="relative">
+                <select
+                    value={value}
+                    onChange={(e) => onChange(e.target.value)}
                     className={cn(
-                        "w-5 h-5 text-gray-400 transition-transform duration-500 ease-out group-hover:text-primary",
-                        isOpen ? "rotate-180 text-primary" : ""
+                        "w-full appearance-none bg-transparent border-b border-gray-300 py-4 text-lg text-[#767676] outline-none placeholder:text-gray-400 transition-all duration-300 focus:border-primary",
+                        error && "border-red-500 focus:ring-red-200"
                     )}
-                />
-            </div>
-            <span className={cn("absolute bottom-0 left-0 h-[1px] bg-primary transition-all duration-500", isOpen ? "w-full" : "w-0")}></span>
-
-            {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-
-            {isOpen && (
-                <ul
-                    ref={listRef}
-                    className="absolute z-50 w-full bg-white shadow-2xl mt-2 py-2 max-h-64 overflow-auto rounded-none border border-gray-100 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent"
                 >
+                    <option value="" disabled>
+                        Select City*
+                    </option>
+
                     {cities.map((city) => (
-                        <li
-                            key={city}
-                            className={cn(
-                                "px-6 py-3 hover:bg-[#232E5A0A] cursor-pointer flex items-center justify-between text-[#767676] transition-colors duration-200",
-                                value === city ? "bg-[#232E5A1A] text-primary font-medium" : ""
-                            )}
-                            onClick={() => {
-                                onChange(city);
-                                setIsOpen(false);
-                            }}
-                        >
-                            <span>{city}</span>
-                            {value === city && <Check className="w-4 h-4 text-primary" />}
-                        </li>
+                        <option key={city} value={city}>
+                            {city}
+                        </option>
                     ))}
-                </ul>
+                </select>
+
+                {/* Custom Arrow */}
+                <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-gray-500">
+                    <svg
+                        className="h-5 w-5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M19 9l-7 7-7-7"
+                        />
+                    </svg>
+                </div>
+            </div>
+
+            {error && (
+                <p className="mt-2 text-sm text-red-600">{error}</p>
             )}
         </div>
     );

@@ -13,7 +13,7 @@ import "swiper/css/navigation";
 const awardsData = [
     {
         id: 1,
-        year: "2025",
+        year: "2026",
         title: "Excellent Township",
         subtitle: "Of The Year",
         image: "/assets/images/awward/4.png",

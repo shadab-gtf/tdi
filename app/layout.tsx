@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SmoothScroll from "../components/SmoothScroll";
+import WhatsAppFloating from "@/components/ui/WhatsAppFloating";
 
 const sourceSerif = Source_Serif_4({
   variable: "--font-source-serif",
@@ -26,6 +27,7 @@ export default function RootLayout({
           <main className="">
             {children}
           </main>
+          <WhatsAppFloating />
           <Footer />
         </SmoothScroll>
       </body>

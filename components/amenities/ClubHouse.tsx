@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import FsLightbox from "fslightbox-react";
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger, SplitText);
@@ -43,6 +44,21 @@ export default function ClubHouse() {
     const descRef = useRef<HTMLParagraphElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
     const [isPaused, setIsPaused] = useState(false);
+
+    // Lightbox state
+    const [lightboxController, setLightboxController] = useState({
+        toggler: false,
+        slide: 1
+    });
+
+    const openLightboxOnSlide = (index: number) => {
+        setLightboxController({
+            toggler: !lightboxController.toggler,
+            slide: index + 1
+        });
+    };
+
+    const lightboxImages = CLUBHOUSE_ITEMS.map(item => item.image);
 
     useGSAP(() => {
         const tl = gsap.timeline({
@@ -136,10 +152,21 @@ export default function ClubHouse() {
                     }}
                 >
                     {marqueeItems.map((item, i) => (
-                        <ClubHouseCard key={`${item.title}-${i}`} item={item} />
+                        <ClubHouseCard
+                            key={`${item.title}-${i}`}
+                            item={item}
+                            onClick={() => openLightboxOnSlide(i % CLUBHOUSE_ITEMS.length)}
+                        />
                     ))}
                 </div>
             </div>
+
+            <FsLightbox
+                toggler={lightboxController.toggler}
+                sources={lightboxImages}
+                slide={lightboxController.slide}
+
+            />
 
             <style jsx>{`
                 .clubhouse-marquee-track {
@@ -169,7 +196,7 @@ export default function ClubHouse() {
     );
 }
 
-function ClubHouseCard({ item }: { item: ClubHouseItem }) {
+function ClubHouseCard({ item, onClick }: { item: ClubHouseItem; onClick: () => void }) {
     const cardRef = useRef<HTMLDivElement>(null);
     const imgRef = useRef<HTMLDivElement>(null);
     const overlayRef = useRef<HTMLDivElement>(null);
@@ -223,6 +250,7 @@ function ClubHouseCard({ item }: { item: ClubHouseItem }) {
             }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            onClick={onClick}
         >
             {/* Image */}
             <div ref={imgRef} className="absolute inset-0 will-change-transform">

@@ -47,7 +47,7 @@ const reasons = [
 ];
 
 // Default active index
-const DEFAULT_ACTIVE = 1;
+const DEFAULT_ACTIVE = 0;
 const initialClipPaths = [
     "polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%)",
     "polygon(33.33% 0%, 33.33% 0%, 33.33% 0%, 33.33% 0%)",
@@ -74,6 +74,7 @@ const finalClipPaths = [
 const revealOrder = [[0], [1, 3], [2, 4, 6], [5, 7], [8], [9]];
 const WhyTdi = () => {
     const [activeIndex, setActiveIndex] = useState(DEFAULT_ACTIVE);
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
     const sectionRef = useRef<HTMLElement>(null);
     const visualWrapRef = useRef<HTMLDivElement>(null);
@@ -126,6 +127,15 @@ const WhyTdi = () => {
         },
         [activeIndex]
     );
+
+    const onHoverEnter = (index: number) => {
+        setHoveredIndex(index);
+        handleHover(index);
+    };
+
+    const onHoverLeave = () => {
+        setHoveredIndex(null);
+    };
     return (
         <section className="w-full bg-white py-16 md:py-20 px-4">
             {/* Heading */}
@@ -148,7 +158,8 @@ const WhyTdi = () => {
                             <div
                                 key={item.id}
                                 className="group relative cursor-pointer"
-                                onMouseEnter={() => handleHover(index)}
+                                onMouseEnter={() => onHoverEnter(index)}
+                                onMouseLeave={onHoverLeave}
                                 data-aos="fade-right"
                                 data-aos-delay={100 + index * 50}
                             >
@@ -157,7 +168,7 @@ const WhyTdi = () => {
                                     <span
                                         className="text-sm lg:text-[20px] font-normal font-serif transition-colors duration-300 pr-4"
                                         style={{
-                                            color: isActive ? "#D9991F" : "#232E5A99",
+                                            color: hoveredIndex === index ? "#D9991F" : "#232E5A99",
                                             fontFamily: "Georgia, serif",
                                         }}
                                     >
@@ -168,7 +179,7 @@ const WhyTdi = () => {
                                 {/* Bottom border line */}
                                 <div
                                     className="w-full h-px transition-colors duration-300"
-                                    style={{ backgroundColor: isActive ? "#D9991F" : "#DBDBDB" }}
+                                    style={{ backgroundColor: hoveredIndex === index ? "#D9991F" : "#DBDBDB" }}
                                 />
                             </div>
                         );
@@ -190,7 +201,7 @@ const WhyTdi = () => {
                                 key={i}
                                 className="mask absolute inset-0"
                                 style={{
-                                    backgroundImage: `url(${reasons[DEFAULT_ACTIVE].image})`,
+                                    backgroundImage: `url(${reasons[activeIndex].image})`,
                                     backgroundSize: "cover",
                                     backgroundPosition: "center",
                                     backgroundRepeat: "no-repeat",
