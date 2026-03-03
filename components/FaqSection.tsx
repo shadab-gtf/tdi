@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useRef } from "react";
-import { gsap } from "gsap";
+import React, { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 const faqs = [
     {
@@ -55,78 +55,57 @@ const faqs = [
             "TDI City Kundli caters to those who seek a perfect blend of luxury, convenience, and sustainability. It is an ideal environment for families, professionals, and investors, offering a vibrant, well-rounded lifestyle supported by exceptional amenities and unmatched connectivity.",
     },
 ];
-
 const FaqSection = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(0);
-    const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     const toggleAccordion = (index: number) => {
-        const isClosingSame = activeIndex === index;
-        const nextIndex = isClosingSame ? null : index;
-
-        if (activeIndex !== null && contentRefs.current[activeIndex]) {
-            gsap.to(contentRefs.current[activeIndex], {
-                height: 0,
-                opacity: 0,
-                duration: 0.4,
-                ease: "power2.inOut",
-            });
-        }
-
-        if (!isClosingSame && contentRefs.current[index]) {
-            gsap.fromTo(
-                contentRefs.current[index],
-                { height: 0, opacity: 0 },
-                {
-                    height: "auto",
-                    opacity: 1,
-                    duration: 0.5,
-                    ease: "power2.out",
-                }
-            );
-        }
-
-        setActiveIndex(nextIndex);
+        setActiveIndex(activeIndex === index ? null : index);
     };
 
     return (
-        <section className="bg-[#f8fbff]  h-full px-4 sm:px-6 md:px-10 lg:px-16 font-serif">
-            <div className="container mx-auto">
-                <h2 className="text-[#2c3e50] text-[20px] md:text-[25px] text-center mb-12 font-normal">
+        <section className="bg-[#f8fbff] px-4 sm:px-6 md:px-10 lg:px-16 py-16 font-serif">
+            <div className="max-w-[1300px] mx-auto">
+                <h2 className="text-[#2c3e50] text-2xl md:text-3xl text-center mb-14 font-normal tracking-wide">
                     Frequently Asked Questions
                 </h2>
 
-                <div className="space-y-4">
-                    {faqs.map((faq, index) => (
-                        <div
-                            key={index}
-                            className="bg-white overflow-hidden transition-all duration-300"
-                        >
-                            <button
-                                onClick={() => toggleAccordion(index)}
-                                className="w-full py-6 px-8 text-center cursor-pointer focus:outline-none group"
-                            >
-                                <span className={`text-[#232E5A] text-base md:text-lg font-normal transition-colors ${activeIndex === index ? 'font-medium' : ''}`}>
-                                    {faq.question}
-                                </span>
-                            </button>
+                <div className="space-y-5">
+                    {faqs.map((faq, index) => {
+                        const isActive = activeIndex === index;
 
+                        return (
                             <div
-                                ref={(el) => { contentRefs.current[index] = el; }}
-                                className="overflow-hidden"
-                                style={{
-                                    height: index === 0 ? "auto" : 0,
-                                    opacity: index === 0 ? 1 : 0
-                                }}
+                                key={index}
+                                className="bg-white transition-all duration-300"
                             >
-                                <div className="px-8 pb-8 text-center">
-                                    <p className="text-[#556677] leading-relaxed max-w-6xl mx-auto text-sm font-serif md:text-base">
-                                        {faq.answer}
-                                    </p>
+                                {/* Question */}
+                                <button
+                                    onClick={() => toggleAccordion(index)}
+                                    className="w-full flex items-center cursor-pointer justify-center px-6 md:px-8 py-6 text-center group"
+                                >
+                                    <span
+                                        className={`text-[#232E5A] text-base md:text-xl text-center  transition-all duration-300 ${isActive ? "font-medium" : "font-normal"
+                                            }`}
+                                    >
+                                        {faq.question}
+                                    </span>
+
+
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-300 ${isActive ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                                        }`}
+                                >
+                                    <div className="px-6 md:px-8 pb-6">
+                                        <p className="text-black leading-relaxed text-center text-sm md:text-base">
+                                            {faq.answer}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         </section>
