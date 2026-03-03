@@ -26,11 +26,20 @@ export default function OurProjects() {
     };
 
     const handleCategoryChange = (category: string) => {
-        setFilters((prev) => ({ ...prev, category }));
+        setFilters({ ...defaultFilters, category });
     };
 
     const handlePropertyTypeChange = (type: "Plot" | "Built up") => {
         setFilters((prev) => ({ ...prev, propertyType: type }));
+    };
+
+    const handleBlockChange = (block: string) => {
+        setFilters((prev) => ({
+            ...prev,
+            blocks: prev.blocks.includes(block)
+                ? prev.blocks.filter((b) => b !== block)
+                : [block], // For Nav dropdown, maybe just set it to that single block?
+        }));
     };
 
     return (
@@ -44,8 +53,10 @@ export default function OurProjects() {
                     <CategoryNav
                         activeCategory={filters.category}
                         propertyType={filters.propertyType}
+                        selectedBlocks={filters.blocks}
                         onCategoryChange={handleCategoryChange}
                         onPropertyTypeChange={handlePropertyTypeChange}
+                        onBlockChange={handleBlockChange}
                     />
                 </div>
             </div>

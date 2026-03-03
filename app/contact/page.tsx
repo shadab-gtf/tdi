@@ -3,7 +3,7 @@ import GlobalAnimation from "@/components/GlobalAnimation/GlobalAnimation";
 import ContactForm from "@/components/contact/ContactForm";
 import BottomContact from "@/components/contact/BottomContact";
 
-export default function Home() {
+export default function Contact() {
     return (
         <main className="relative min-h-screen w-full bg-white">
             <GlobalAnimation />

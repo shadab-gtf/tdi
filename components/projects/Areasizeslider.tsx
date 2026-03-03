@@ -2,8 +2,13 @@
 
 import React, { useRef, useCallback, useEffect, useState } from "react";
 
-const BARS = [3, 5, 6, 8, 9, 11, 13, 15, 17, 18, 20, 21, 23, 24, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88,];
-const BAR_MAX = 88;
+const BAR_MIN = 1.2;
+const BAR_MAX = 80;
+
+const BARS = Array.from(
+    { length: BAR_MAX - BAR_MIN + 1 },
+    (_, i) => (i + BAR_MIN) * 1.2
+);
 
 const AreaSizeSlider: React.FC<{
     min?: number;
@@ -11,14 +16,16 @@ const AreaSizeSlider: React.FC<{
     step?: number;
     values?: [number, number];
     onChange?: (v: [number, number]) => void;
+    unit?: "sq.ft" | "sq.yd";
 }> = ({
-    min = 1200,
+    min = 0,
     max = 25000,
     step = 100,
     values: externalValues,
     onChange,
+    unit = "sq.ft",
 }) => {
-        const [internalValues, setInternalValues] = useState<[number, number]>([3200, 12000]);
+        const [internalValues, setInternalValues] = useState<[number, number]>([0, 25000]);
         const values = externalValues ?? internalValues;
         const setValues = onChange ?? setInternalValues;
 
@@ -124,16 +131,6 @@ const AreaSizeSlider: React.FC<{
                             );
                         })}
                     </div>
-                    {/* <div
-                        className="absolute left-0 right-0"
-                        style={{ bottom: `${THUMB_R - TRACK_H / 2}px`, height: `${TRACK_H}px` }}
-                    >
-                        <div className="absolute inset-0 rounded-full bg-[#E2E8F0]" />
-                        <div
-                            className="absolute top-0 bottom-0 rounded-full bg-[#D9991F]"
-                            style={{ left: `${minPct}%`, right: `${100 - maxPct}%` }}
-                        />
-                    </div> */}
                     <div
                         className="absolute flex items-center justify-center"
                         style={{
@@ -185,14 +182,15 @@ const AreaSizeSlider: React.FC<{
                 </div>
                 <div className="flex justify-between mt-3">
                     <span className="text-[15px] font-normal font-serif text-[var(--color-paragraph,#4A4A4A)]">
-                        {values[0].toLocaleString()} sq.ft
+                        {values[0].toLocaleString()} {unit}
                     </span>
                     <span className="text-[15px] font-normal font-serif text-[var(--color-paragraph,#4A4A4A)]">
-                        {values[1].toLocaleString()} sq.ft
+                        {values[1].toLocaleString()} {unit}
                     </span>
                 </div>
             </div>
         );
     };
+
 
 export default AreaSizeSlider;

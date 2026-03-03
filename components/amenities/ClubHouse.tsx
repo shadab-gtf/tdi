@@ -21,15 +21,15 @@ const CLUBHOUSE_ITEMS: ClubHouseItem[] = [
     { title: "Premium Club Facilities", image: "/assets/images/clubhouse/1.jpg" },
     { title: "Pan Asian Restaurant", image: "/assets/images/clubhouse/2.jpg" },
     { title: "Crystal Bar", image: "/assets/images/clubhouse/3.jpg" },
-    { title: "Gym", image: "/assets/images/clubhouse/4.jpg" },
-    { title: "Swimming Pool", image: "/assets/images/clubhouse/5.png" },
+    { title: "Gym", image: "/assets/images/clubhouse/testimage.webp" },
+    { title: "Swimming Pool", image: "/assets/images/clubhouse/5.jpg" },
     { title: "Spa", image: "/assets/images/clubhouse/6.jpg" },
     { title: "Jacuzzi", image: "/assets/images/clubhouse/7.jpg" },
     { title: "Table Tennis", image: "/assets/images/clubhouse/8.jpg" },
     { title: "Badminton", image: "/assets/images/clubhouse/9.jpg" },
     { title: "Squash Courts", image: "/assets/images/clubhouse/10.jpg" },
     { title: "Conference Halls", image: "/assets/images/clubhouse/11.jpg" },
-    { title: "Banquet Halls", image: "/assets/images/clubhouse/12.png" },
+    { title: "Banquet Halls", image: "/assets/images/clubhouse/12.jpg" },
     { title: "24-hour Concierge", image: "/assets/images/clubhouse/13.jpg" },
     { title: "In-Room Dining", image: "/assets/images/clubhouse/14.jpg" },
     { title: "Laundry", image: "/assets/images/clubhouse/15.jpg" },
@@ -204,7 +204,7 @@ function ClubHouseCard({ item, onClick }: { item: ClubHouseItem; onClick: () => 
 
     const handleMouseEnter = () => {
         gsap.to(imgRef.current, {
-            scale: 1.08,
+            scale: 1.05,
             duration: 0.8,
             ease: "power3.out",
         });
@@ -215,7 +215,6 @@ function ClubHouseCard({ item, onClick }: { item: ClubHouseItem; onClick: () => 
         });
         gsap.to(textRef.current, {
             scale: 1.05,
-            letterSpacing: "0.12em",
             duration: 0.5,
             ease: "power3.out",
         });
@@ -228,13 +227,12 @@ function ClubHouseCard({ item, onClick }: { item: ClubHouseItem; onClick: () => 
             ease: "power3.out",
         });
         gsap.to(overlayRef.current, {
-            opacity: 0.3,
+            opacity: 0.2,
             duration: 0.5,
             ease: "power2.out",
         });
         gsap.to(textRef.current, {
             scale: 1,
-            letterSpacing: "0.08em",
             duration: 0.5,
             ease: "power3.out",
         });
@@ -258,9 +256,9 @@ function ClubHouseCard({ item, onClick }: { item: ClubHouseItem; onClick: () => 
                     src={item.image}
                     alt={item.title}
                     fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 75vw, (max-width: 1024px) 35vw, 28vw"
-                    quality={90}
+                    className="object-contain"
+                // sizes="(max-width: 640px) 75vw, (max-width: 1024px) 35vw, 28vw"
+                // quality={90}
                 />
             </div>
 
@@ -270,7 +268,7 @@ function ClubHouseCard({ item, onClick }: { item: ClubHouseItem; onClick: () => 
                 style={{
                     background:
                         "linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0.3) 100%)",
-                    opacity: 0.3,
+                    // opacity: 0.3,
                 }}
             />
 

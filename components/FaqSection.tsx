@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
+
 
 const faqs = [
     {
@@ -63,46 +64,55 @@ const FaqSection = () => {
     };
 
     return (
-        <section className="bg-[#f8fbff] px-4 sm:px-6 md:px-10 lg:px-16 py-16 font-serif">
+        <section className="bg-[#f8fbff] px-4 sm:px-6 md:px-10 lg:px-16 py-16 md:py-14 font-serif">
             <div className="max-w-[1300px] mx-auto">
-                <h2 className="text-[#2c3e50] text-2xl md:text-3xl text-center mb-14 font-normal tracking-wide">
+                <h2 className="text-xl md:text-2xl font-serif text-[var(--foreground)] text-center pb-10">
                     Frequently Asked Questions
                 </h2>
 
-                <div className="space-y-5">
+                <div className="space-y-4  mx-auto">
                     {faqs.map((faq, index) => {
-                        const isActive = activeIndex === index;
+                        const isOpen = activeIndex === index;
 
                         return (
                             <div
                                 key={index}
-                                className="bg-white transition-all duration-300"
+                                className="bg-white overflow-hidden  duration-300 "
                             >
-                                {/* Question */}
                                 <button
+                                    type="button"
                                     onClick={() => toggleAccordion(index)}
-                                    className="w-full flex items-center cursor-pointer justify-center px-6 md:px-8 py-6 text-center group"
+                                    className="w-full px-6 md:px-8 py-5 md:py-6 cursor-pointer  text-center flex items-center justify-center group "
+                                    aria-expanded={isOpen}
+                                    aria-controls={`faq-answer-${index}`}
                                 >
-                                    <span
-                                        className={`text-[#232E5A] text-base md:text-xl text-center  transition-all duration-300 ${isActive ? "font-medium" : "font-normal"
-                                            }`}
-                                    >
+                                    <span className="text-primary text-base md:text-xl font-normal group-hover:text-primary transition-colors">
                                         {faq.question}
                                     </span>
-
-
+                                    {/* 
+                                    <motion.span
+                                        animate={{ rotate: isOpen ? 180 : 0 }}
+                                        transition={{ duration: 0.4 }}
+                                        className="text-gray-500 group-hover:text-blue-600 flex-shrink-0 ml-4"
+                                    >
+                                        <ChevronDown size={24} />
+                                    </motion.span> */}
                                 </button>
 
-                                <div
-                                    className={`overflow-hidden transition-all duration-300 ${isActive ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                                        }`}
+                                <motion.div
+                                    id={`faq-answer-${index}`}
+                                    initial={false}
+                                    animate={{ height: isOpen ? "auto" : 0 }}
+                                    transition={{
+                                        duration: 0.4,
+                                        ease: [0.4, 0, 0.2, 1],
+                                    }}
+                                    className="overflow-hidden"
                                 >
-                                    <div className="px-6 md:px-8 pb-6">
-                                        <p className="text-black leading-relaxed text-center text-sm md:text-base">
-                                            {faq.answer}
-                                        </p>
+                                    <div className="px-6 md:px-8 pb-10 pt-1 text-black text-center leading-relaxed text-sm md:text-base">
+                                        {faq.answer}
                                     </div>
-                                </div>
+                                </motion.div>
                             </div>
                         );
                     })}

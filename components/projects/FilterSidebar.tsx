@@ -9,6 +9,10 @@ import {
     buildingOptions,
     statusOptions,
     blockOptions,
+    commercialTypeOptions,
+    institutionTypeOptions,
+    educationLevelOptions,
+    specialisationOptions,
     type FilterState,
 } from "@/lib/projectsData";
 import AreaSizeSlider from "./Areasizeslider";
@@ -21,9 +25,13 @@ interface FilterSidebarProps {
 const getActiveFilterTags = (filters: FilterState): string[] => {
     const tags: string[] = [];
     filters.apartmentTypes.forEach((t) => tags.push(t));
-    filters.blocks.forEach((b) => tags.push(b));
-    filters.statuses.forEach((s) => tags.push(s));
     filters.buildingTypes.forEach((b) => tags.push(b));
+    filters.commercialTypes.forEach((t) => tags.push(t));
+    filters.institutionTypes.forEach((t) => tags.push(t));
+    filters.educationLevels.forEach((t) => tags.push(t));
+    filters.specialisations.forEach((t) => tags.push(t));
+    filters.statuses.forEach((s) => tags.push(s));
+    filters.blocks.forEach((b) => tags.push(b));
     return tags;
 };
 
@@ -109,23 +117,31 @@ const DualRangeSlider: React.FC<{
                 />
             )}
             <div className="relative h-[16px] my-4">
-                <div className="absolute inset-0 rounded-full bg-gray-200" />
+                <div className="absolute inset-0 rounded-full bg-gray-200 pointer-events-none" />
                 <div
-                    className="absolute top-0 bottom-0 rounded-full bg-[#D9991F]"
+                    className="absolute top-0 bottom-0 rounded-full bg-[#D9991F] pointer-events-none"
                     style={{ left: `${pct(values[0])}%`, right: `${100 - pct(values[1])}%` }}
                 />
                 <input
-                    type="range" min={min} max={max} step={step} value={values[0]}
+                    type="range"
+                    min={min}
+                    max={max}
+                    step={step}
+                    value={values[0]}
                     onChange={(e) => {
-                        const v = step < 1 ? parseFloat(e.target.value) : parseInt(e.target.value);
+                        const v = Number(e.target.value);
                         if (v < values[1]) onChange([v, values[1]]);
                     }}
-                    className={`${THUMB_CLASSES} z-10`}
+                    className={`${THUMB_CLASSES} z-30`}
                 />
                 <input
-                    type="range" min={min} max={max} step={step} value={values[1]}
+                    type="range"
+                    min={min}
+                    max={max}
+                    step={step}
+                    value={values[1]}
                     onChange={(e) => {
-                        const v = step < 1 ? parseFloat(e.target.value) : parseInt(e.target.value);
+                        const v = Number(e.target.value);
                         if (v > values[0]) onChange([values[0], v]);
                     }}
                     className={`${THUMB_CLASSES} z-20`}
@@ -156,8 +172,8 @@ const DualRangeSlider: React.FC<{
 
             {unit === "sqft" && (
                 <div className="flex justify-between text-[12px] text-[var(--color-paragraph)] mt-1">
-                    <span className="font-serif">{values[0].toLocaleString()} sq.ft</span>
-                    <span className="font-serif">{values[1].toLocaleString()} sq.ft</span>
+                    <span className="font-serif">{values[0].toLocaleString()} sq.yd</span>
+                    <span className="font-serif">{values[1].toLocaleString()} sq.yd</span>
                 </div>
             )}
         </div>
@@ -178,7 +194,7 @@ const FilterPill: React.FC<{
                  transition-all duration-200 cursor-pointer
                 ${active
                         ? "border font-serif border-[#D9991F] bg-[#D58C001A] text-[var(--color-primary)]"
-                        : "text-[var(--color-primary)] bg-[#F8FBFF] px-3.5 py-[5px] font-serif hover:text-[#D9991F]"
+                        : "text-[var(--color-primary)] bg-[#F8FBFF] px-2 py-[4px] font-serif hover:text-[#D9991F]"
                     }
             `}
             >
@@ -188,10 +204,10 @@ const FilterPill: React.FC<{
             <button
                 onClick={onClick}
                 className={`
-                text-sm font-normal transition-all duration-200 cursor-pointer
+                text-[13px] font-normal transition-all duration-200 cursor-pointer
                 ${active
-                        ? "px-3.5 py-[5px] border font-serif border-[#D9991F] bg-[#D58C001A]  rounded-[3px] text-[var(--color-primary)]"
-                        : "text-[var(--color-primary)] font-serif bg-[#F8FBFF] px-3.5 py-[5px] hover:text-[#D9991F]"
+                        ? "px-3 py-[4px] border font-serif border-[#D9991F] bg-[#D58C001A]  rounded-[3px] text-[var(--color-primary)]"
+                        : "text-[var(--color-primary)] font-serif bg-[#F8FBFF] px-2 py-[4px] hover:text-[#D9991F]"
                     }
             `}
             >
@@ -207,6 +223,9 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange }
     const overlayRef = useRef<HTMLDivElement>(null);
     const [mobileOpen, setMobileOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
+
+    const activeCategory = filters.category;
+
 
     useEffect(() => { setMounted(true); }, []);
 
@@ -252,21 +271,37 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange }
     );
 
     const clearAll = useCallback(() =>
-        update({ apartmentTypes: [], buildingTypes: [], statuses: [], blocks: [], priceRange: [2, 8], areaRange: [1200, 25000] }),
+        update({
+            apartmentTypes: [],
+            buildingTypes: [],
+            commercialTypes: [],
+            institutionTypes: [],
+            educationLevels: [],
+            specialisations: [],
+            statuses: [],
+            blocks: [],
+            priceRange: [2, 8],
+            areaRange: [1200, 25000]
+        }),
         [update]
     );
 
     const removeTag = useCallback((tag: string) => {
         if (filters.apartmentTypes.includes(tag)) update({ apartmentTypes: filters.apartmentTypes.filter((t) => t !== tag) });
-        else if (filters.blocks.includes(tag)) update({ blocks: filters.blocks.filter((b) => b !== tag) });
-        else if (filters.statuses.includes(tag)) update({ statuses: filters.statuses.filter((s) => s !== tag) });
         else if (filters.buildingTypes.includes(tag)) update({ buildingTypes: filters.buildingTypes.filter((b) => b !== tag) });
+        else if (filters.commercialTypes.includes(tag)) update({ commercialTypes: filters.commercialTypes.filter((t) => t !== tag) });
+        else if (filters.institutionTypes.includes(tag)) update({ institutionTypes: filters.institutionTypes.filter((t) => t !== tag) });
+        else if (filters.educationLevels.includes(tag)) update({ educationLevels: filters.educationLevels.filter((t) => t !== tag) });
+        else if (filters.specialisations.includes(tag)) update({ specialisations: filters.specialisations.filter((t) => t !== tag) });
+        else if (filters.statuses.includes(tag)) update({ statuses: filters.statuses.filter((s) => s !== tag) });
+        else if (filters.blocks.includes(tag)) update({ blocks: filters.blocks.filter((b) => b !== tag) });
     }, [filters, update]);
 
     const activeTags = getActiveFilterTags(filters);
 
     const content = (
         <div>
+            {/* Active Tags Section */}
             <div className="filter-section px-6 pt-6 pb-5">
                 <div className="flex items-center justify-between mb-4">
                     <h3 className="text-lg font-normal font-serif text-[var(--color-accent)]">Filters</h3>
@@ -296,84 +331,168 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange }
 
             <Divider />
 
-            <div className="filter-section px-6 py-5">
-                <h4 className="text-lg font-normal font-serif text-[var(--color-primary)] mb-4">Price Range</h4>
-                <DualRangeSlider
-                    min={2} max={8} step={0.5}
-                    values={filters.priceRange as [number, number]}
-                    onChange={(v) => update({ priceRange: v })}
-                    unit="crore"
-                />
-            </div>
-
-            <Divider />
-
-            <div className="filter-section px-6 py-5">
-                <h4 className="text-lg font-normal font-serif text-[var(--color-primary)] mb-3">Area Size</h4>
-                <AreaSizeSlider
-                    min={1200} max={25000} step={100}
-                    values={filters.areaRange as [number, number]}
-                    onChange={(v) => update({ areaRange: v })}
-                />
-            </div>
-
-            <Divider />
-
-            <div className="filter-section px-6 py-5">
-                <h4 className="text-[15px] font-normal font-serif text-[var(--color-primary)] mb-4">Apartment Type</h4>
-                <div className="flex flex-wrap items-center gap-4">
-                    {apartmentOptions.map((opt) => (
-                        <FilterPill key={opt} label={opt}
-                            active={filters.apartmentTypes.includes(opt)}
-                            onClick={() => toggleArrayItem("apartmentTypes", opt)}
+            {/* Residential & Commercial Shared Filters: Price & Area */}
+            {(activeCategory === "residential" || activeCategory === "commercial") && (
+                <>
+                    <div className="filter-section px-6 py-5">
+                        <h4 className="text-lg font-normal font-serif text-[var(--color-primary)] mb-4">Price Range</h4>
+                        <DualRangeSlider
+                            min={2} max={8} step={0.5}
+                            values={filters.priceRange as [number, number]}
+                            onChange={(v) => update({ priceRange: v })}
+                            unit="crore"
                         />
-                    ))}
-                </div>
-            </div>
-
-            <Divider />
-
-            <div className="filter-section px-6 py-5">
-                <h4 className="text-[15px] font-normal font-serif text-[var(--color-accent)] mb-4">Building Type</h4>
-                <div className="flex flex-wrap items-center gap-5">
-                    {buildingOptions.map((opt) => (
-                        <FilterPill key={opt} label={opt}
-                            active={filters.buildingTypes.includes(opt)}
-                            onClick={() => toggleArrayItem("buildingTypes", opt)}
+                    </div>
+                    <Divider />
+                    <div className="filter-section px-6 py-5">
+                        <h4 className="text-lg font-normal font-serif text-[var(--color-primary)] mb-3">Area Size</h4>
+                        <AreaSizeSlider
+                            min={0} max={25000} step={100}
+                            values={filters.areaRange as [number, number]}
+                            onChange={(v) => update({ areaRange: v })}
+                            unit={activeCategory === "commercial" ? "sq.yd" : "sq.ft"}
                         />
-                    ))}
-                </div>
-            </div>
+                    </div>
+                    <Divider />
+                </>
+            )}
 
-            <Divider />
+            {/* Residential Specific Filters */}
+            {activeCategory === "residential" && (
+                <>
+                    <div className="filter-section px-6 py-5">
+                        <h4 className="text-[15px] font-normal font-serif text-[var(--color-primary)] mb-4">Apartment Type</h4>
+                        <div className="flex flex-wrap items-center gap-4">
+                            {apartmentOptions.map((opt) => (
+                                <FilterPill key={opt} label={opt}
+                                    active={filters.apartmentTypes.includes(opt)}
+                                    onClick={() => toggleArrayItem("apartmentTypes", opt)}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                    <Divider />
+                    <div className="filter-section px-6 py-5">
+                        <h4 className="text-[15px] font-normal font-serif text-[var(--color-accent)] mb-4">Building Type</h4>
+                        <div className="flex flex-wrap items-center gap-5">
+                            {buildingOptions.map((opt) => (
+                                <FilterPill key={opt} label={opt}
+                                    active={filters.buildingTypes.includes(opt)}
+                                    onClick={() => toggleArrayItem("buildingTypes", opt)}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                    <Divider />
+                </>
+            )}
 
-            <div className="filter-section px-6 py-5">
-                <h4 className="text-[15px] font-normal font-serif text-[var(--color-accent)] mb-4">Status</h4>
-                <div className="flex flex-wrap items-center gap-5">
-                    {statusOptions.map((opt) => (
-                        <FilterPill key={opt} label={opt}
-                            active={filters.statuses.includes(opt)}
-                            onClick={() => toggleArrayItem("statuses", opt)}
-                        />
-                    ))}
-                </div>
-            </div>
+            {/* Commercial Specific Filters */}
+            {activeCategory === "commercial" && (
+                <>
+                    <div className="filter-section px-6 py-5">
+                        <h4 className="text-[15px] font-normal font-serif text-[var(--color-primary)] mb-4">Property Type</h4>
+                        <div className="flex flex-wrap items-center gap-4">
+                            {commercialTypeOptions.map((opt) => (
+                                <FilterPill key={opt} label={opt}
+                                    active={filters.commercialTypes.includes(opt)}
+                                    onClick={() => toggleArrayItem("commercialTypes", opt)}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                    <Divider />
+                </>
+            )}
 
-            <Divider />
+            {/* Educational Specific Filters */}
+            {activeCategory === "educational" && (
+                <>
+                    <div className="filter-section px-6 py-5">
+                        <h4 className="text-[15px] font-normal font-serif text-[var(--color-primary)] mb-4">Institution Type</h4>
+                        <div className="flex flex-wrap items-center gap-4">
+                            {institutionTypeOptions.map((opt) => (
+                                <FilterPill key={opt} label={opt}
+                                    active={filters.institutionTypes.includes(opt)}
+                                    onClick={() => toggleArrayItem("institutionTypes", opt)}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                    <Divider />
+                    <div className="filter-section px-6 py-5">
+                        <h4 className="text-[15px] font-normal font-serif text-[var(--color-primary)] mb-4">Education Level</h4>
+                        <div className="flex flex-wrap items-center gap-4">
+                            {educationLevelOptions.map((opt) => (
+                                <FilterPill key={opt} label={opt}
+                                    active={filters.educationLevels.includes(opt)}
+                                    onClick={() => toggleArrayItem("educationLevels", opt)}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                    <Divider />
+                </>
+            )}
 
-            <div className="filter-section px-6 py-5 pb-8">
-                <h4 className="text-[15px] font-normal font-serif text-[var(--color-accent)] mb-4">Block</h4>
-                <div className="grid grid-cols-6 gap-x-5 gap-y-3">
-                    {blockOptions.map((opt) => (
-                        <FilterPill key={opt} label={opt} square
-                            active={filters.blocks.includes(opt)}
-                            onClick={() => toggleArrayItem("blocks", opt)}
-                        />
-                    ))}
-                </div>
-            </div>
+            {/* Healthcare Specific Filters */}
+            {activeCategory === "healthcare" && (
+                <>
+                    <div className="filter-section px-6 py-5">
+                        <h4 className="text-[15px] font-normal font-serif text-[var(--color-primary)] mb-4">Specialisation</h4>
+                        <div className="flex flex-wrap items-center gap-4">
+                            {specialisationOptions.map((opt) => (
+                                <FilterPill key={opt} label={opt}
+                                    active={filters.specialisations.includes(opt)}
+                                    onClick={() => toggleArrayItem("specialisations", opt)}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                    <Divider />
+                </>
+            )}
+
+            {/* Status & Block - Shared by All or Specific? 
+               Image shows status for Res/Comm. 
+               Educational/Healthcare images don't show status/block in sidebar, 
+               but user said "on eductional and healthcare that should be Block only working everything" 
+               Wait, "on eductional and healthcare that should be Block only working" means the block buttons in Nav? 
+               The image for Educational shows: Institution Type, Education Level. 
+               The image for Healthcare shows: Specialisation.
+               The image for Commercial shows: Price, Area, Property Type, Status, Block.
+            */}
+
+            {(activeCategory === "residential" || activeCategory === "commercial") && (
+                <>
+                    <div className="filter-section px-6 py-5">
+                        <h4 className="text-[15px] font-normal font-serif text-[var(--color-accent)] mb-4">Status</h4>
+                        <div className="flex flex-wrap items-center gap-3">
+                            {statusOptions.map((opt) => (
+                                <FilterPill key={opt} label={opt}
+                                    active={filters.statuses.includes(opt)}
+                                    onClick={() => toggleArrayItem("statuses", opt)}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                    <Divider />
+                    <div className="filter-section px-6 py-5 pb-8">
+                        <h4 className="text-[15px] font-normal font-serif text-[var(--color-accent)] mb-4">Block</h4>
+                        <div className="grid grid-cols-6 gap-x-5 gap-y-3">
+                            {blockOptions.map((opt) => (
+                                <FilterPill key={opt} label={opt} square
+                                    active={filters.blocks.includes(opt)}
+                                    onClick={() => toggleArrayItem("blocks", opt)}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </>
+            )}
         </div>
     );
+
 
     return (
         <>

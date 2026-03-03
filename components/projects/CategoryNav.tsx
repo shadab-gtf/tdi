@@ -9,17 +9,22 @@ import { categories } from "@/lib/projectsData";
 interface CategoryNavProps {
     activeCategory: string;
     propertyType: "Plot" | "Built up";
+    selectedBlocks: string[];
     onCategoryChange: (category: string) => void;
     onPropertyTypeChange: (type: "Plot" | "Built up") => void;
+    onBlockChange: (block: string) => void;
 }
 
 const CategoryNav: React.FC<CategoryNavProps> = ({
     activeCategory,
     propertyType,
+    selectedBlocks,
     onCategoryChange,
     onPropertyTypeChange,
+    onBlockChange,
 }) => {
     const navRef = useRef<HTMLDivElement>(null);
+    const [blockDropdownOpen, setBlockDropdownOpen] = React.useState(false);
 
     useGSAP(
         () => {
@@ -40,6 +45,8 @@ const CategoryNav: React.FC<CategoryNavProps> = ({
         { scope: navRef }
     );
 
+    const isResOrComm = activeCategory === "residential" || activeCategory === "commercial";
+
     return (
         <div
             ref={navRef}
@@ -58,46 +65,70 @@ const CategoryNav: React.FC<CategoryNavProps> = ({
                             }`}
                     >
                         {cat.label}
-                        {/* {cat.hasDropdown && (
-                            <ChevronDown
-                                size={14}
-                                strokeWidth={2}
-                                className={`transition-colors ${activeCategory === cat.value
-                                    ? "text-white"
-                                    : "text-[var(--color-primary)]"
-                                    }`}
-                            />
-                        )} */}
                     </button>
                 ))}
             </div>
 
 
             <div className="nav-item flex items-center gap-3">
-                <button
-                    onClick={() => onPropertyTypeChange("Plot")}
-                    className={`px-7 py-2.5 text-lg font-normal font-serif transition-all duration-300 cursor-pointer 
-                             ${propertyType === "Plot"
-                            ? "bg-[var(--color-primary)] text-white"
-                            : "bg-white text-[#424242] hover:bg-[var(--color-primary)]/5"
-                        }`}
-                >
-                    Plot
-                </button>
+                {isResOrComm ? (
+                    <>
+                        <button
+                            onClick={() => onPropertyTypeChange("Plot")}
+                            className={`px-7 py-2.5 text-lg font-normal font-serif transition-all duration-300 cursor-pointer 
+                                     ${propertyType === "Plot"
+                                    ? "bg-[var(--color-primary)] text-white"
+                                    : "bg-white text-[#424242] hover:bg-[var(--color-primary)]/5"
+                                }`}
+                        >
+                            Plot
+                        </button>
 
-                <button
-                    onClick={() => onPropertyTypeChange("Built up")}
-                    className={`px-7 py-2.5 text-lg font-normal font-serif transition-all duration-300 cursor-pointer 
-                            ${propertyType === "Built up"
-                            ? "bg-[var(--color-primary)] text-white"
-                            : "bg-white text-[#424242] hover:bg-[var(--color-primary)]/5"
-                        }`}
-                >
-                    Built up
-                </button>
+                        <button
+                            onClick={() => onPropertyTypeChange("Built up")}
+                            className={`px-7 py-2.5 text-lg font-normal font-serif transition-all duration-300 cursor-pointer 
+                                    ${propertyType === "Built up"
+                                    ? "bg-[var(--color-primary)] text-white"
+                                    : "bg-white text-[#424242] hover:bg-[var(--color-primary)]/5"
+                                }`}
+                        >
+                            Built up
+                        </button>
+                    </>
+                ) : (
+                    <div className="relative">
+                        <button
+                            onClick={() => setBlockDropdownOpen(!blockDropdownOpen)}
+                            className="flex items-center gap-4 px-7 py-2.5 bg-white text-[#424242] border border-[#D58C00]/20 text-lg font-normal font-serif transition-all duration-300 cursor-pointer hover:bg-gray-50"
+                        >
+                            {selectedBlocks.length > 0 ? `Block ${selectedBlocks[0]}` : "Block"}
+                            <ChevronDown size={18} className={`transition-transform duration-300 ${blockDropdownOpen ? "rotate-180" : ""}`} />
+                        </button>
+
+                        {blockDropdownOpen && (
+                            <div className="absolute right-0 mt-2 w-48 bg-white border border-[#D58C00]/20 shadow-xl z-50 py-2">
+                                {["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"].map((block) => (
+                                    <button
+                                        key={block}
+                                        onClick={() => {
+                                            onBlockChange(block);
+                                            setBlockDropdownOpen(false);
+                                        }}
+                                        className={`w-full text-left px-6 py-2.5 font-serif text-base hover:bg-[var(--color-primary)]/5 transition-colors
+                                            ${selectedBlocks.includes(block) ? "text-[var(--color-primary)] font-semibold" : "text-[#424242]"}
+                                        `}
+                                    >
+                                        Block {block}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                )}
             </div>
         </div>
     );
 };
+
 
 export default CategoryNav;

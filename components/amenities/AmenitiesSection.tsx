@@ -34,9 +34,9 @@ const TABS: TabData[] = [
     {
         label: "Divine Retreat",
         cards: [
-            { title: "Shiv Mandir", image: "/assets/images/amenities/devine-retreat/1.jpg" },
-            { title: "Jain Mandir", image: "/assets/images/amenities/devine-retreat/2.png" },
-            { title: "Gurudwara", image: "/assets/images/amenities/devine-retreat/3.jpg" },
+            { title: "Shiv Mandir", image: "/assets/gallery/temple/shivmandir.png" },
+            { title: "Ram Mandir", image: "/assets/gallery/temple/rammandir.png" },
+            { title: "Gurudwara", image: "/assets/gallery/temple/gurudwara.png" },
         ],
     },
     {

@@ -11,11 +11,15 @@ export interface Project {
   category: "residential" | "commercial" | "educational" | "healthcare";
   price: number;        // in Crore
   areaSqFt: number;
-  apartmentType: "2 BHK" | "3 BHK" | "4 BHK";
-  buildingType: "High-Rise" | "Low-Rise";
+  apartmentType?: "2 BHK" | "3 BHK" | "4 BHK";
+  buildingType?: "High-Rise" | "Low-Rise";
   status: "Ready to Move" | "Under Development";
   block: string;        // A–L
-  propertyType: "Plot" | "Built up";
+  propertyType?: "Plot" | "Built up";
+  commercialType?: string;
+  institutionType?: string;
+  educationLevel?: string;
+  specialisation?: string;
 }
 
 export interface FilterState {
@@ -27,6 +31,10 @@ export interface FilterState {
   buildingTypes: string[];
   statuses: string[];
   blocks: string[];
+  commercialTypes: string[];
+  institutionTypes: string[];
+  educationLevels: string[];
+  specialisations: string[];
 }
 
 export const defaultFilters: FilterState = {
@@ -38,6 +46,10 @@ export const defaultFilters: FilterState = {
   buildingTypes: [],
   statuses: [],
   blocks: [],
+  commercialTypes: [],
+  institutionTypes: [],
+  educationLevels: [],
+  specialisations: [],
 };
 
 export const categories = [
@@ -51,6 +63,17 @@ export const apartmentOptions = ["2 BHK", "3 BHK", "4 BHK"];
 export const buildingOptions = ["High-Rise", "Low-Rise"];
 export const statusOptions = ["Ready to Move", "Under Development"];
 export const blockOptions = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
+
+export const commercialTypeOptions = ["Retail", "Office", "High Street", "SCO (Shop-Cum-Office)"];
+export const institutionTypeOptions = ["School", "College", "University"];
+export const educationLevelOptions = ["Primary", "Secondary", "Senior Secondary"];
+export const specialisationOptions = [
+  "General Healthcare",
+  "Orthopaedics",
+  "Maternity & Child Care",
+  "Cardiac Care",
+  "Diagnostics & Imaging",
+];
 
 // ── Mock Data ────────────────────────────────────────────────
 
@@ -140,11 +163,10 @@ export const mockProjects: Project[] = [
     category: "commercial",
     price: 5.5,
     areaSqFt: 5000,
-    apartmentType: "3 BHK",
-    buildingType: "High-Rise",
     status: "Under Development",
     block: "F",
     propertyType: "Built up",
+    commercialType: "Office",
   },
   {
     id: 8,
@@ -153,35 +175,103 @@ export const mockProjects: Project[] = [
     category: "commercial",
     price: 3.0,
     areaSqFt: 2000,
-    apartmentType: "2 BHK",
-    buildingType: "Low-Rise",
     status: "Ready to Move",
     block: "G",
     propertyType: "Plot",
+    commercialType: "Retail",
   },
+  {
+    id: 9,
+    title: "TDI International School",
+    image: "/assets/projects/school.png",
+    category: "educational",
+    price: 0,
+    areaSqFt: 0,
+    status: "Ready to Move",
+    block: "L",
+    institutionType: "School",
+    educationLevel: "Senior Secondary",
+  },
+  {
+    id: 10,
+    title: "Samarpan Cancer Hospital",
+    image: "/assets/projects/samarpan.png",
+    category: "healthcare",
+    price: 0,
+    areaSqFt: 0,
+    status: "Under Development",
+    block: "B",
+    specialisation: "Maternity & Child Care",
+  },
+  {
+    id: 11,
+    title: "Noble Multispecialty Hospital",
+    image: "/assets/projects/noble2.png",
+    category: "healthcare",
+    price: 0,
+    areaSqFt: 0,
+    status: "Under Development",
+    block: "A",
+    specialisation: "Maternity & Child Care",
+  },
+  {
+    id: 12,
+    title: "Nulife Super Specialty Hospital",
+    image: "/assets/projects/nulife.png",
+    category: "healthcare",
+    price: 0,
+    areaSqFt: 0,
+    status: "Under Development",
+    block: "C",
+    specialisation: "Maternity & Child Care",
+  }
 ];
 
-// ── Filter Logic ─────────────────────────────────────────────
+// ── Filter Logic ──
 
 export function filterProjects(projects: Project[], filters: FilterState): Project[] {
   return projects.filter((project) => {
     // Category
     if (filters.category && project.category !== filters.category) return false;
 
-    // Property type
-    if (filters.propertyType && project.propertyType !== filters.propertyType) return false;
+    // Property type (only for Res/Comm)
+    if ((filters.category === "residential" || filters.category === "commercial") && filters.propertyType && project.propertyType !== filters.propertyType) return false;
 
     // Price range
-    if (project.price < filters.priceRange[0] || project.price > filters.priceRange[1]) return false;
+    if (filters.category === "residential" || filters.category === "commercial") {
+      if (project.price < filters.priceRange[0] || project.price > filters.priceRange[1]) return false;
+    }
 
     // Area range
-    if (project.areaSqFt < filters.areaRange[0] || project.areaSqFt > filters.areaRange[1]) return false;
+    if (filters.category === "residential" || filters.category === "commercial") {
+      if (project.areaSqFt < filters.areaRange[0] || project.areaSqFt > filters.areaRange[1]) return false;
+    }
 
-    // Apartment type
-    if (filters.apartmentTypes.length > 0 && !filters.apartmentTypes.includes(project.apartmentType)) return false;
+    // Apartment type (Res only)
+    if (filters.category === "residential") {
+      if (filters.apartmentTypes.length > 0 && (!project.apartmentType || !filters.apartmentTypes.includes(project.apartmentType))) return false;
+    }
 
-    // Building type
-    if (filters.buildingTypes.length > 0 && !filters.buildingTypes.includes(project.buildingType)) return false;
+    // Building type (Res only)
+    if (filters.category === "residential") {
+      if (filters.buildingTypes.length > 0 && (!project.buildingType || !filters.buildingTypes.includes(project.buildingType))) return false;
+    }
+
+    // Commercial Type
+    if (filters.category === "commercial") {
+      if (filters.commercialTypes.length > 0 && (!project.commercialType || !filters.commercialTypes.includes(project.commercialType))) return false;
+    }
+
+    // Educational Filters
+    if (filters.category === "educational") {
+      if (filters.institutionTypes.length > 0 && (!project.institutionType || !filters.institutionTypes.includes(project.institutionType))) return false;
+      if (filters.educationLevels.length > 0 && (!project.educationLevel || !filters.educationLevels.includes(project.educationLevel))) return false;
+    }
+
+    // Healthcare Filters
+    if (filters.category === "healthcare") {
+      if (filters.specialisations.length > 0 && (!project.specialisation || !filters.specialisations.includes(project.specialisation))) return false;
+    }
 
     // Status
     if (filters.statuses.length > 0 && !filters.statuses.includes(project.status)) return false;
@@ -192,3 +282,4 @@ export function filterProjects(projects: Project[], filters: FilterState): Proje
     return true;
   });
 }
+
