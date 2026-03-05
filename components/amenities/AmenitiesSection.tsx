@@ -2,7 +2,9 @@
 
 import React, { useRef, useState, useCallback } from "react";
 import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useGSAP } from "@gsap/react";
+import FsLightbox from "fslightbox-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
@@ -25,10 +27,10 @@ const TABS: TabData[] = [
     {
         label: "Wellness & Green Living",
         cards: [
-            { title: "Green Spaces", image: "/assets/images/amenities/landscap.png" },
-            { title: "Jogging Tracks", image: "/assets/images/amenities/walk.png" },
-            { title: "Fitness Zones", image: "/assets/images/amenities/yoga.png" },
-            { title: "Dedicated Parks", image: "/assets/images/amenities/dedicated-park.jpg" },
+            { title: "Green Spaces", image: "/assets/images/amenities/green-space.jpg" },
+            { title: "Jogging Tracks", image: "/assets/images/amenities/jogging.jpg" },
+            { title: "Fitness Zones", image: "/assets/images/amenities/fitness.jpg" },
+            { title: "Dedicated Parks", image: "/assets/images/amenities/parks.jpg" },
         ],
     },
     {
@@ -37,6 +39,7 @@ const TABS: TabData[] = [
             { title: "Shiv Mandir", image: "/assets/gallery/temple/shivmandir.png" },
             { title: "Ram Mandir", image: "/assets/gallery/temple/rammandir.png" },
             { title: "Gurudwara", image: "/assets/gallery/temple/gurudwara.png" },
+            { title: "Jain Mandir", image: "/assets/gallery/temple/jainmandir.png" },
         ],
     },
     {
@@ -63,6 +66,8 @@ const TABS: TabData[] = [
 export default function AmenitiesSection() {
     const [activeTab, setActiveTab] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [lightboxToggler, setLightboxToggler] = useState(false);
+    const [lightboxSlide, setLightboxSlide] = useState(1);
     const sectionRef = useRef<HTMLElement>(null);
     const cardsContainerRef = useRef<HTMLDivElement>(null);
     const headingRef = useRef<HTMLHeadingElement>(null);
@@ -193,6 +198,12 @@ export default function AmenitiesSection() {
     }, [activeTab, isAnimating]);
 
     const currentCards = TABS[activeTab].cards;
+    const lightboxImages = currentCards.map(card => card.image);
+
+    const openLightbox = (index: number) => {
+        setLightboxSlide(index + 1);
+        setLightboxToggler(!lightboxToggler);
+    };
 
     return (
         <section
@@ -286,7 +297,7 @@ export default function AmenitiesSection() {
                                 <button
                                     key={tab.label}
                                     onClick={() => handleTabChange(i)}
-                                    className="relative px-4 py-2.5 rounded-full font-serif text-xs whitespace-nowrap transition-all duration-300 cursor-pointer border"
+                                    className="relative px-4 py-2.5 font-serif text-xs whitespace-nowrap transition-all duration-300 cursor-pointer border"
                                     style={{
                                         color: activeTab === i
                                             ? "#fff"
@@ -317,25 +328,49 @@ export default function AmenitiesSection() {
                             index={i}
                             total={currentCards.length}
                             isLast={i === currentCards.length - 1}
+                            onClick={() => openLightbox(i)}
                         />
                     ))}
                 </div>
 
-                <div className="mt-8 flex justify-center gap-2 md:hidden">
-                    {TABS.map((_, i) => (
-                        <button
-                            key={i}
-                            onClick={() => handleTabChange(i)}
-                            className="transition-all duration-300 rounded-full"
-                            style={{
-                                width: activeTab === i ? "24px" : "6px",
-                                height: "6px",
-                                backgroundColor: activeTab === i
-                                    ? "var(--color-accent, #b9a06e)"
-                                    : "#ddd",
-                            }}
-                        />
-                    ))}
+                <FsLightbox
+                    toggler={lightboxToggler}
+                    slide={lightboxSlide}
+                    sources={lightboxImages}
+                />
+
+                <div className="mt-8 flex justify-center items-center gap-6 md:hidden">
+                    <button
+                        onClick={() => handleTabChange(Math.max(0, activeTab - 1))}
+                        disabled={activeTab === 0 || isAnimating}
+                        className="p-2 rounded-full border border-[#ddd] transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                        style={{
+                            color: "var(--color-primary, #1a1a1a)",
+                        }}
+                    >
+                        <ChevronLeft size={20} />
+                    </button>
+
+                    <div className="flex items-center gap-1.5 min-w-[60px] justify-center">
+                        <span className="font-serif text-sm font-medium" style={{ color: "var(--color-accent, #b9a06e)" }}>
+                            {String(activeTab + 1).padStart(2, "0")}
+                        </span>
+                        <span className="text-[#aaa] text-xs">/</span>
+                        <span className="text-[#aaa] text-sm">
+                            {String(TABS.length).padStart(2, "0")}
+                        </span>
+                    </div>
+
+                    <button
+                        onClick={() => handleTabChange(Math.min(TABS.length - 1, activeTab + 1))}
+                        disabled={activeTab === TABS.length - 1 || isAnimating}
+                        className="p-2 rounded-full border border-[#ddd] transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                        style={{
+                            color: "var(--color-primary, #1a1a1a)",
+                        }}
+                    >
+                        <ChevronRight size={20} />
+                    </button>
                 </div>
             </div>
         </section>
@@ -347,11 +382,13 @@ function AmenityCardItem({
     index,
     total,
     isLast,
+    onClick,
 }: {
     card: AmenityCard;
     index: number;
     total: number;
     isLast: boolean;
+    onClick?: () => void;
 }) {
     const cardRef = useRef<HTMLDivElement>(null);
     const overlayRef = useRef<HTMLDivElement>(null);
@@ -416,6 +453,7 @@ function AmenityCardItem({
             onMouseEnter={handleMouseEnter}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeaveCard}
+            onClick={onClick}
         >
             <div className="relative">
                 <div className="relative aspect-[3/4] w-full overflow-hidden">

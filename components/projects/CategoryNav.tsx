@@ -50,15 +50,15 @@ const CategoryNav: React.FC<CategoryNavProps> = ({
     return (
         <div
             ref={navRef}
-            className="w-full flex flex-wrap items-center justify-between gap-4 pt-8 pb-4"
+            className="w-full flex flex-wrap items-center md:justify-between justify-end md:gap-4 gap-2 pt-8 pb-4"
         >
             {/* Category Tabs */}
-            <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto scrollbar-hide">
+            <div className="flex items-center gap-1 sm:gap-3 overflow-x-auto scrollbar-hide">
                 {categories.map((cat) => (
                     <button
                         key={cat.value}
                         onClick={() => onCategoryChange(cat.value)}
-                        className={`nav-item flex items-center gap-1.5 px-8 py-2.5 font-serif text-lg font-normal tracking-wide whitespace-nowrap transition-all duration-300 cursor-pointer
+                        className={`nav-item flex items-center gap-1.5 px-3 md:px-8 py-1.5 md:py-2.5 font-serif md:text-lg text-sm font-normal tracking-wide whitespace-nowrap transition-all duration-300 cursor-pointer
                           ${activeCategory === cat.value
                                 ? "bg-[var(--color-primary)] text-white"
                                 : "text-[var(--color-primary)] hover:bg-[var(--color-primary)]/5"
@@ -75,7 +75,7 @@ const CategoryNav: React.FC<CategoryNavProps> = ({
                     <>
                         <button
                             onClick={() => onPropertyTypeChange("Plot")}
-                            className={`px-7 py-2.5 text-lg font-normal font-serif transition-all duration-300 cursor-pointer 
+                            className={`px-4 md:px-7 py-1.5 md:py-2.5 md:text-lg text-sm font-normal font-serif transition-all duration-300 cursor-pointer 
                                      ${propertyType === "Plot"
                                     ? "bg-[var(--color-primary)] text-white"
                                     : "bg-white text-[#424242] hover:bg-[var(--color-primary)]/5"
@@ -86,7 +86,7 @@ const CategoryNav: React.FC<CategoryNavProps> = ({
 
                         <button
                             onClick={() => onPropertyTypeChange("Built up")}
-                            className={`px-7 py-2.5 text-lg font-normal font-serif transition-all duration-300 cursor-pointer 
+                            className={`px-7 md:px-7  py-1.5 md:py-2.5 md:text-lg text-sm font-normal font-serif transition-all duration-300 cursor-pointer 
                                     ${propertyType === "Built up"
                                     ? "bg-[var(--color-primary)] text-white"
                                     : "bg-white text-[#424242] hover:bg-[var(--color-primary)]/5"
@@ -99,7 +99,7 @@ const CategoryNav: React.FC<CategoryNavProps> = ({
                     <div className="relative">
                         <button
                             onClick={() => setBlockDropdownOpen(!blockDropdownOpen)}
-                            className="flex items-center gap-4 px-7 py-2.5 bg-white text-[#424242] border border-[#D58C00]/20 text-lg font-normal font-serif transition-all duration-300 cursor-pointer hover:bg-gray-50"
+                            className="flex items-center gap-4 md:px-7 px-3 py-1.5 md:py-2.5 bg-white text-[#424242] border border-[#D58C00]/20 md:text-lg text-sm font-normal font-serif transition-all duration-300 cursor-pointer hover:bg-gray-50"
                         >
                             {selectedBlocks.length > 0 ? `Block ${selectedBlocks[0]}` : "Block"}
                             <ChevronDown size={18} className={`transition-transform duration-300 ${blockDropdownOpen ? "rotate-180" : ""}`} />
@@ -114,7 +114,7 @@ const CategoryNav: React.FC<CategoryNavProps> = ({
                                             onBlockChange(block);
                                             setBlockDropdownOpen(false);
                                         }}
-                                        className={`w-full text-left px-6 py-2.5 font-serif text-base hover:bg-[var(--color-primary)]/5 transition-colors
+                                        className={`w-full text-left md:px-6 md:py-2.5 py-1.5 px-3 font-serif text-sm md:text-base hover:bg-[var(--color-primary)]/5 transition-colors
                                             ${selectedBlocks.includes(block) ? "text-[var(--color-primary)] font-semibold" : "text-[#424242]"}
                                         `}
                                     >

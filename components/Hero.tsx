@@ -67,9 +67,9 @@ const HeroMedia: React.FC<HeroMediaProps> = ({
                     />
                 )}
 
-                {overlay && (
+                {/* {overlay && (
                     <div className="absolute inset-0 bg-black/20" />
-                )}
+                )} */}
             </div>
         </section>
     );

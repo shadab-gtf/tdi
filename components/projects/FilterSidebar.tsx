@@ -453,15 +453,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange }
                 </>
             )}
 
-            {/* Status & Block - Shared by All or Specific? 
-               Image shows status for Res/Comm. 
-               Educational/Healthcare images don't show status/block in sidebar, 
-               but user said "on eductional and healthcare that should be Block only working everything" 
-               Wait, "on eductional and healthcare that should be Block only working" means the block buttons in Nav? 
-               The image for Educational shows: Institution Type, Education Level. 
-               The image for Healthcare shows: Specialisation.
-               The image for Commercial shows: Price, Area, Property Type, Status, Block.
-            */}
+
 
             {(activeCategory === "residential" || activeCategory === "commercial") && (
                 <>
@@ -498,7 +490,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange }
         <>
             <button
                 onClick={() => setMobileOpen(true)}
-                className="lg:hidden fixed bottom-6 right-6 z-50 bg-[var(--color-primary)] text-white p-4 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-transform cursor-pointer"
+                className="lg:hidden fixed bottom-6 left-6 z-50 bg-[var(--color-primary)] text-white p-4 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-transform cursor-pointer"
                 aria-label="Open Filters"
             >
                 <SlidersHorizontal size={22} />

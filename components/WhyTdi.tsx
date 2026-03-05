@@ -1,48 +1,48 @@
 "use client";
-import React, { useRef, useState, useEffect, useCallback } from "react";
-import Image from "next/image";
+import React, { useRef, useState, useCallback } from "react";
+// import Image from "next/image";
 import { gsap } from "gsap";
 
 const reasons = [
     {
         id: 1,
         title: "Close Proximity To Delhi NCR",
-        image: "/assets/images/why-tdi/1.webp",
+        image: "/assets/images/why-tdi/6.png",
     },
     {
         id: 2,
         title: "The Next Gurugram Of The North",
-        image: "/assets/images/why-tdi/2.webp",
+        image: "/assets/images/why-tdi/7.0.png",
     },
     {
         id: 3,
         title: "Better Air Quality & Open Environments",
-        image: "/assets/images/why-tdi/3.webp",
+        image: "/assets/images/why-tdi/1.png",
     },
     {
         id: 4,
         title: "Reduced Traffic & Planned Movement",
-        image: "/assets/images/why-tdi/4.webp",
+        image: "/assets/images/why-tdi/8.png",
     },
     {
         id: 5,
         title: "Connectivity That Shapes The Future",
-        image: "/assets/images/why-tdi/5.webp",
+        image: "/assets/images/why-tdi/3.png",
     },
     {
         id: 6,
         title: "KMP Expressway (Kundli–Manesar–Palwal)",
-        image: "/assets/images/why-tdi/6.webp",
+        image: "/assets/images/why-tdi/4.png",
     },
     {
         id: 7,
         title: "KGP Expressway (Kundli–Ghaziabad–Palwal)",
-        image: "/assets/images/why-tdi/7.webp",
+        image: "/assets/images/why-tdi/5.png",
     },
     {
         id: 8,
         title: "RRTS & Metro Connectivity",
-        image: "/assets/images/why-tdi/8.webp",
+        image: "/assets/images/why-tdi/2.png",
     },
 ];
 
@@ -75,14 +75,13 @@ const revealOrder = [[0], [1, 3], [2, 4, 6], [5, 7], [8], [9]];
 const WhyTdi = () => {
     const [activeIndex, setActiveIndex] = useState(DEFAULT_ACTIVE);
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-    const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
-    const sectionRef = useRef<HTMLElement>(null);
+    // const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
+    // const sectionRef = useRef<HTMLElement>(null);
     const visualWrapRef = useRef<HTMLDivElement>(null);
     const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
     const handleHover = useCallback(
         (index: number) => {
-            if (index === activeIndex) return;
             if (!visualWrapRef.current) return;
 
             // Kill any running timeline
@@ -125,7 +124,7 @@ const WhyTdi = () => {
 
             setActiveIndex(index);
         },
-        [activeIndex]
+        [] // remove activeIndex dependency since we no longer check it
     );
 
     const onHoverEnter = (index: number) => {
@@ -202,7 +201,7 @@ const WhyTdi = () => {
                                 className="mask absolute inset-0"
                                 style={{
                                     backgroundImage: `url(${reasons[activeIndex].image})`,
-                                    backgroundSize: "cover",
+                                    backgroundSize: "contain",
                                     backgroundPosition: "center",
                                     backgroundRepeat: "no-repeat",
                                     clipPath: finalClipPaths[i],
