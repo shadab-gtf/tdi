@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import { MoveLeft, MoveRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -55,21 +55,35 @@ const awardsData = [
     // },
 ];
 
-const Awards = () => {
+interface AwardsProps {
+    filterYear?: string;
+    showHeader?: boolean;
+    showFooterText?: boolean;
+}
+
+const Awards = ({ filterYear = "All", showHeader = true, showFooterText = false }: AwardsProps) => {
     const swiperRef = useRef<SwiperType | null>(null);
+
+    const filteredAwards =
+        filterYear === "All"
+            ? awardsData
+            : awardsData.filter((item) => item.year === filterYear);
 
     return (
         <section className="w-full bg-[#F0F4FA] py-10 md:py-16 px-4 overflow-hidden">
             <div className="containers mx-auto">
                 {/* Header */}
-                <div className="text-center mb-8 md:mb-12 max-w-4xl mx-auto" data-aos="reveal-top">
-                    <h2 className="text-xl md:text-[25px] font-serif my-2 md:my-4">
-                        Awards &amp; Recognition
-                    </h2>
-                    <p className="text-[var(--color-secondary)] font-serif text-sm md:text-base leading-relaxed">
-                        Celebrating distinguished industry accolades and milestones that epitomize our unwavering commitment to superior quality, innovative design, and trusted development.
-                    </p>
-                </div>
+                {showHeader && (
+                    <div className="text-center mb-8 md:mb-12 max-w-4xl mx-auto" data-aos="reveal-top">
+                        <h2 className="text-xl md:text-[25px] font-serif my-2 md:my-4">
+                            Awards &amp; Recognition
+                        </h2>
+                        <p className="text-[var(--color-secondary)] font-serif text-sm md:text-base leading-relaxed">
+                            Celebrating distinguished industry accolades and milestones that epitomize our unwavering commitment to superior quality, innovative design, and trusted development.
+                        </p>
+                    </div>
+                )}
+
 
                 {/* Slider Wrapper */}
                 <div className="relative max-w-7xl mx-auto" data-aos="fade-up" data-aos-delay="200">
@@ -99,8 +113,8 @@ const Awards = () => {
                             }}
                             className="awards-swiper"
                         >
-                            {awardsData.map((item, index) => {
-                                const isLast = index === awardsData.length - 1;
+                            {filteredAwards.map((item, index) => {
+                                const isLast = index === filteredAwards.length - 1;
                                 return (
                                     <SwiperSlide key={item.id} className="md:w-[322px]!">
                                         <div className="flex gap-2 items-center h-full">
@@ -129,6 +143,11 @@ const Awards = () => {
                                                         <br />
                                                         {item.subtitle}
                                                     </p>
+                                                    {showFooterText && (
+                                                        <p className="text-center text-[#232E5A]! font-serif text-[10px] md:text-[12px] leading-relaxed mb-6">
+                                                            (By the times of india)
+                                                        </p>
+                                                    )}
                                                 </div>
                                             </div>
 

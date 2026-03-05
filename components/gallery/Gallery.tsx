@@ -320,9 +320,6 @@ const Gallery = () => {
             <section ref={sectionRef} className="gallery-section w-full py-12 bg-background overflow-hidden">
                 <div className="containers mx-auto px-6 lg:px-12">
                     <div className="mb-16">
-                        <div className="flex items-center gap-4 mb-5">
-                            <div className="gallery-line h-[1px] w-16 bg-[var(--color-primary,#8B7355)] origin-left scale-x-0" />
-                        </div>
                         <div className="flex flex-col justify-center items-center gap-6">
                             <h2 className="gallery-title text-[24px] text-[var(--color-primary,#2C2417)] font-serif leading-[1.08] tracking-[-0.02em] opacity-0">
                                 Our Gallery

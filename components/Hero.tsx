@@ -16,7 +16,6 @@ const HeroMedia: React.FC<HeroMediaProps> = ({
     type,
     src,
     poster,
-    overlay = true,
 }) => {
     const heroRef = useRef<HTMLDivElement>(null);
     const mediaRef = useRef<HTMLDivElement>(null);
@@ -41,18 +40,18 @@ const HeroMedia: React.FC<HeroMediaProps> = ({
     return (
         <section
             ref={heroRef}
-            className="relative w-full h-screen overflow-hidden bg-black"
+            className="relative w-full h-screen  overflow-hidden bg-black"
         >
             <div
                 ref={mediaRef}
-                className="absolute inset-0 w-full h-full"
+                className="absolute inset-0 w-full h-full "
             >
                 {type === "image" ? (
                     <Image
                         src={src}
                         alt="Hero Media"
                         fill
-                        className="object-cover"
+                        className="object-cover h-full w-full quality-100"
                         priority
                     />
                 ) : (
@@ -63,13 +62,9 @@ const HeroMedia: React.FC<HeroMediaProps> = ({
                         muted
                         loop
                         playsInline
-                        className="w-full h-full object-cover"
+                        className="w-full h-full mt-10 object-cover"
                     />
                 )}
-
-                {/* {overlay && (
-                    <div className="absolute inset-0 bg-black/20" />
-                )} */}
             </div>
         </section>
     );

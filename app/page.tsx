@@ -10,6 +10,7 @@ import WhyTdi from "@/components/WhyTdi";
 import Brands from "@/components/Brands";
 import BlogSection from "@/components/BlogSection";
 import HeroMedia from "@/components/Hero";
+import SectionIntro from "@/components/AboutTdi";
 
 export default function Home() {
   return (
@@ -18,9 +19,13 @@ export default function Home() {
       {/* <Header /> */}
       <HeroMedia
         type="video"
-        src="/assets/videos/homepage.mp4"
+        src="/assets/videos/homepage-2.mp4"
       />
-      <AboutTdi />
+      <SectionIntro
+        title="Tdi City Kundli"
+        description="Spread across 1100+ acres, TDI City Kundli is a thoughtfully envisioned integrated township that redefines modern living. Designed as a self sustained urban ecosystem, it seamlessly brings together residential, commercial, and recreational spaces to offer a balanced lifestyle marked by comfort, convenience, and tranquility."
+        showBirds={true}
+      />
       <TownShip />
       <Intregrate />
       <Properties />
