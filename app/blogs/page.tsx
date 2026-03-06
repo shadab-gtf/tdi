@@ -24,8 +24,8 @@ interface BlogsPageProps {
 
 export default async function BlogsPage({ searchParams }: BlogsPageProps) {
     const resolvedParams = await searchParams;
-    const page = Math.max(1, parseInt(resolvedParams.page || "1", 10));
-    const { blogs, totalPages } = await getBlogs(page, 6);
+    const page = Math.max(1, parseInt(resolvedParams.page || "1", 8));
+    const { blogs, totalPages } = await getBlogs(page, 8);
 
     return (
         <main className="relative min-h-screen w-full bg-white">

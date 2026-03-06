@@ -4,6 +4,7 @@ export type BlogCategory =
   | "Real Estate"
   | "Township Living"
   | "Connectivity"
+  | "Commercial"
   | "Sustainability"
   | "Investment"
   | "Lifestyle";

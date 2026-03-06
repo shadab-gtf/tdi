@@ -71,7 +71,7 @@ const finalClipPaths = [
     "polygon(33.33% 66.66%, 66.66% 66.66%, 66.66% 100%, 33.33% 100%)",
     "polygon(66.66% 66.66%, 100% 66.66%, 100% 100%, 66.66% 100%)",
 ];
-const revealOrder = [[0], [1, 3], [2, 4, 6], [5, 7], [8], [9]];
+const revealOrder = [[0], [1, 3], [2, 4, 6], [5, 7], [8]];
 const WhyTdi = () => {
     const [activeIndex, setActiveIndex] = useState(DEFAULT_ACTIVE);
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);

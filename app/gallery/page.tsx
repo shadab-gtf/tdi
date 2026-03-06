@@ -9,7 +9,7 @@ export default function GalleryPage() {
             <GlobalAnimation />
             <HeroMedia
                 type="image"
-                src="/assets/gallery/hero.jpg"
+                src="/assets/hero-images/gallary-hero.png"
             />
             <GalleryComponent />
             <Testimonial />
