@@ -47,28 +47,34 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    <div className="lg:col-span-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                    <div className="lg:col-span-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                         {/* Links Column */}
                         <div className="space-y-6">
-                            <h4 className="font-serif text-lg md:text-xl mb-4 text-white!">Links</h4>
+                            <h4 className="font-serif text-lg md:text-xl mb-4 text-white!">Our Profile</h4>
                             <ul className="space-y-4 text-sm font-light text-white! font-serif">
-                                <li><Link href="/profile" className={getLinkClassName("/profile")}>Our Profile</Link></li>
-                                <li><Link href="/csr" className={getLinkClassName("/csr")}>CSR</Link></li>
+
+                                <li><Link href="/" className={getLinkClassName("/")}>Home</Link></li>
+                                <li><Link href="/about" className={getLinkClassName("/about")}>Township Overview</Link></li>
+                                <li><Link href="/amenities" className={getLinkClassName("/amenities")}>Amenities</Link></li>
+                                <li><Link href="/about-tdi" className={getLinkClassName("/about-tdi")}>About TDI</Link></li>
+                                <li><Link href="/contact" className={getLinkClassName("/contact")}>Contact Us</Link></li>
+                                {/* <li><Link href="/profile" className={getLinkClassName("/profile")}>Our Profile</Link></li>
+                               
                                 <li><Link href="/leadership" className={getLinkClassName("/leadership")}>Leadership</Link></li>
-                                <li><Link href="/awards" className={getLinkClassName("/awards")}>Awards</Link></li>
-                                <li><Link href="/partners" className={getLinkClassName("/partners")}>Partners</Link></li>
+                               
+                                <li><Link href="/partners" className={getLinkClassName("/partners")}>Partners</Link></li> */}
                             </ul>
                         </div>
 
                         {/* Featured Column */}
-                        <div className="space-y-6">
+                        {/* <div className="space-y-6">
                             <h4 className="font-serif text-lg md:text-xl mb-4 text-white!">Featured</h4>
                             <ul className="space-y-4 text-sm font-light text-white! font-serif">
                                 <li><Link href="/media" className={getLinkClassName("/media")}>Media Center</Link></li>
                                 <li><Link href="/testimonials" className={getLinkClassName("/testimonials")}>Testimonial</Link></li>
-                                <li><Link href="/gallery" className={getLinkClassName("/gallery")}>Gallery</Link></li>
+                               
                             </ul>
-                        </div>
+                        </div> */}
                         <div className="space-y-6">
                             <h4 className="font-serif text-lg md:text-xl mb-4 text-white!">Our Projects</h4>
                             <ul className="space-y-4 text-sm font-light text-white! font-serif">
@@ -80,13 +86,17 @@ const Footer = () => {
                             </ul>
                         </div>
                         <div className="space-y-6">
-                            <h4 className="font-serif text-lg md:text-xl mb-4 text-white!">Media Center</h4>
+                            <h4 className="font-serif text-lg md:text-xl mb-4 text-white!">Newsroom</h4>
                             <ul className="space-y-4 text-sm font-light text-white! font-serif">
-                                <li><Link href="/news" className={getLinkClassName("/news")}>News</Link></li>
+                                <li><Link href="/press" className={getLinkClassName("/press")}>Media Center</Link></li>
                                 <li><Link href="/blogs" className={getLinkClassName("/blogs")}>Blogs</Link></li>
-                                <li><Link href="/press-release" className={getLinkClassName("/press-release")}>Press Release</Link></li>
+                                <li><Link href="/csr" className={getLinkClassName("/csr")}>CSR</Link></li>
+                                <li><Link href="/awards" className={getLinkClassName("/awards")}>Awards</Link></li>
+                                <li><Link href="/gallery" className={getLinkClassName("/gallery")}>Gallery</Link></li>
                                 <li><Link href="/faq" className={getLinkClassName("/faq")}>FAQ's</Link></li>
-                                <li><Link href="/contact" className={getLinkClassName("/contact")}>Contact</Link></li>
+                                {/* <li><Link href="/news" className={getLinkClassName("/news")}>News</Link></li> */}
+                                {/* <li><Link href="/press-release" className={getLinkClassName("/press-release")}>Press Release</Link></li>
+                                <li><Link href="/contact" className={getLinkClassName("/contact")}>Contact</Link></li> */}
                             </ul>
                         </div>
 
