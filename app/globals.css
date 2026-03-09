@@ -260,3 +260,217 @@ p {
 }
  
 
+/* admin ------------------ */
+
+
+/* admin css start*/
+.admin-body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden !important;
+  background-image: linear-gradient(#202331 1px, transparent 1px), linear-gradient(to right, #181a26 1px, #292b37 1px);
+  background-size: 3px 3px;
+  min-height: 100vh;
+  
+}
+:root {
+  --admin-primary: #53c5cf;
+  --admin-secondary: #d74e34;
+  --admin-yellow: #f7ab5d;
+  --theme1: #263a7f
+}
+
+
+.ck-editor .ck-content {
+  min-height: 200px;
+}
+
+
+
+
+
+
+
+/* richtext */
+.tiptap-container {
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.tiptap-editor img {
+  max-width: 30%;
+  height: auto;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+
+.tiptap-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px;
+  border-bottom: 1px solid #e5e5e5;
+  background: #f9f9f9;
+}
+
+.tiptap-toolbar button {
+  padding: 4px 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tiptap-toolbar button.active {
+  background: #e6f0ff;
+  border-color: #4096ff;
+}
+
+.tiptap-editor {
+  min-height: 200px;
+  padding: 12px;
+}
+
+.tiptap-editor .ProseMirror {
+  min-height: 200px;
+  outline: none;
+}
+
+.tiptap-editor .ProseMirror p {
+  margin: 0 0 10px;
+}
+
+.tiptap-editor .ProseMirror ul {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.tiptap-editor .ProseMirror ol {
+  padding-left: 20px;
+  list-style-type: decimal;
+}
+
+.tiptap-editor .ProseMirror blockquote {
+  border-left: 3px solid #ddd;
+  padding-left: 10px;
+  color: #666;
+}
+
+.link-wrapper {
+  position: relative;
+}
+
+.link-tooltip {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: white;
+  border: 1px solid #ddd;
+  padding: 8px;
+  border-radius: 6px;
+  display: flex;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  z-index: 100;
+}
+
+.link-tooltip input {
+  padding: 4px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 180px;
+  font-size: 13px;
+}
+
+.link-tooltip button {
+   all: unset; 
+  padding: 4px 8px;
+  border: 1px solid #4096ff;
+  background: #4096ff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.richtext-container a{
+  color: #147B58;
+}
+.richtext-container a:hover{
+  text-decoration: underline;
+}
+
+.richtext-container.accordian-container .container {
+  display: grid;
+  gap: 10px;
+  padding-block: 20px;
+}
+.richtext-container.accordian-container .container .imgcontainer p a{
+  color: #147B58;
+}
+.richtext-container.accordian-container .container .imgcontainer p a:hover{
+  text-decoration: underline;
+}
+.richtext-container.accordian-container .container .imgcontainer p:nth-child(2){
+  display: none;
+}
+
+
+/* lightbox stale */
+.yarl__captions_container {
+  top: auto !important;
+  bottom: 0 !important;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+}
+
+.yarl__caption_title,.yarl__slide_title {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  opacity: 0.9;
+  text-align: right !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  text-transform: capitalize;
+}
+
+.yarl__caption_description ,.yarl__slide_description{
+  font-size: 16px;
+  opacity: 0.9;
+  text-align: left !important;
+  text-transform: capitalize;
+}
+.yarl__slide_title_container{
+  max-width: 50%;
+  top: auto !important;
+  bottom: 10px !important;
+}
+.yarl__slide_description_container{
+  max-width: 50%;
+  margin-left: auto;
+  bottom: 10px !important;
+}
+
+
+
+/* investors */
+
+.contact-card a{
+  color: #147B58;
+}
+.contact-card a:hover{
+  text-decoration: underline;
+}
+
+
+/* scoll */
+.dropdown-scroll {
+  overflow-y: auto;
+  pointer-events: auto;
+  overscroll-behavior: contain;
+}
+.normal-scroll{
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+/* admin css end */
