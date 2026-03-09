@@ -3,8 +3,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import footerBg from "@/public/assets/images/footer.png";
-import logo from "@/public/assets/images/logo.png";
+import footerBg from "@public/assets/images/footer.png";
+import logo from "@public/assets/images/logo.png";
 
 const Footer = () => {
     const pathname = usePathname();
@@ -93,7 +93,7 @@ const Footer = () => {
                                 <li><Link href="/csr" className={getLinkClassName("/csr")}>CSR</Link></li>
                                 <li><Link href="/awards" className={getLinkClassName("/awards")}>Awards</Link></li>
                                 <li><Link href="/gallery" className={getLinkClassName("/gallery")}>Gallery</Link></li>
-                                <li><Link href="/faq" className={getLinkClassName("/faq")}>FAQ's</Link></li>
+                                <li><Link href="/faq" className={getLinkClassName("/faq")}>FAQ&apos;s</Link></li>
                                 {/* <li><Link href="/news" className={getLinkClassName("/news")}>News</Link></li> */}
                                 {/* <li><Link href="/press-release" className={getLinkClassName("/press-release")}>Press Release</Link></li>
                                 <li><Link href="/contact" className={getLinkClassName("/contact")}>Contact</Link></li> */}
