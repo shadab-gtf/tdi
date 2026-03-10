@@ -25,7 +25,7 @@ const RelatedBlogs: React.FC<RelatedBlogsProps> = ({ currentBlog, allBlogs }) =>
 
     return (
         <section className="py-20 bg-gray-50/50">
-            <div className="max-w-[1280px] mx-auto px-4">
+            <div className="w-full mx-auto px-4">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
