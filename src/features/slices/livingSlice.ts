@@ -16,17 +16,17 @@ interface awardGalleryState {
   currentItem: awardGallery | null;
 }
 
-const BASE = "/awards-gallery";
+const BASE = "/livings";
 
 const { fetchList, create, update, remove, fetchById } = createCrudThunks<
   any,
   awardGallery,
   Partial<awardGallery>,
   Partial<awardGallery>
->("awards-gallery", BASE);
+>("livings", BASE);
 
-export const fetchawardGallery = fetchList;
-export const addawardGallery = create;
+export const getList = fetchList;
+export const store = create;
 export const updateawardGallery = update;
 export const deleteawardGallery = remove;
 export const fetchawardGalleryById = fetchById;
@@ -48,7 +48,7 @@ const awardGallerySlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchawardGallery.fulfilled, (state, action) => {
+      .addCase(getList.fulfilled, (state, action) => {
         state.list = action.payload;
       })
       .addCase(fetchawardGalleryById.fulfilled, (state, action) => {

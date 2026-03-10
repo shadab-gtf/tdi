@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import { IoLogOut, IoPersonCircle } from "react-icons/io5";
 
@@ -14,15 +15,16 @@ const Header: React.FC<HeaderProps> = ({ onLogout }) => {
 
   return (
     <header
-      className={`flex justify-between max-w-[100%] items-center py-[25px] px-[50px] ml-[80px] ${
-        id ? "mr-[80px]" : ""
-      }`}
+      className={`flex justify-between max-w-[100%] items-center py-[25px] px-[50px] ml-[80px] ${id ? "mr-[80px]" : ""
+        }`}
     >
       <div>
-        <img
-          src="/images/logo.png"
+        <Image
+          src="/assets/images/logo.png"
           alt="logo"
-          className="w-[100px] block"
+          width={100}
+          height={40}
+          className="w-[100px] h-auto block"
         />
       </div>
 

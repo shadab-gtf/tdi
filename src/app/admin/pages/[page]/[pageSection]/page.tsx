@@ -72,76 +72,76 @@ const SectionDetailsPage: React.FC = () => {
   const [editingItem, setEditingItem] = useState<Record<string, any> | null>(
     null,
   );
- const [developerId, setDeveloperId] = useState<string | null>(null);
+  const [developerId, setDeveloperId] = useState<string | null>(null);
 
-console.log(developerId,"developerId")
+  console.log(developerId, "developerId")
   useEffect(() => {
     if (pageSection === "testimonial") {
       dispatch(lookupThunks.platter.fetchList());
     }
   }, [pageSection, dispatch]);
-  
-useEffect(() => {
-  if (!pageSection) return;
-   const section =
-    typeof pageSection === "string"
-      ? pageSection
-      : pageSection[0]; // handle string[]
 
-  if (!section) return;
+  useEffect(() => {
+    if (!pageSection) return;
+    const section =
+      typeof pageSection === "string"
+        ? pageSection
+        : pageSection[0]; // handle string[]
 
-  const prefix = section.split("_")[0]?.toLowerCase();
-  if (!prefix) return;
+    if (!section) return;
+
+    const prefix = section.split("_")[0]?.toLowerCase();
+    if (!prefix) return;
 
 
-  const developerNameMap: Record<string, string[]> = {
-    eipl: ["infrastructure", "properties"],
-    ehil: ["housing", "industries"],
-  };
+    const developerNameMap: Record<string, string[]> = {
+      eipl: ["infrastructure", "properties"],
+      ehil: ["housing", "industries"],
+    };
 
-  dispatch(lookupThunks.developer.fetchList())
-    .then((res: any) => {
-      const developerList = res?.payload?.data ?? [];
+    dispatch(lookupThunks.developer.fetchList())
+      .then((res: any) => {
+        const developerList = res?.payload?.data ?? [];
 
-      let matchedDeveloper;
+        let matchedDeveloper;
 
-      // 🔹 1️⃣ First Priority: Match using short_description
-      matchedDeveloper = developerList.find(
-        (dev: any) =>
-          dev.description?.short_description?.toLowerCase() === prefix
-      );
+        // 🔹 1️⃣ First Priority: Match using short_description
+        matchedDeveloper = developerList.find(
+          (dev: any) =>
+            dev.description?.short_description?.toLowerCase() === prefix
+        );
 
-      // 🔹 2️⃣ Fallback: Match using fullName keywords
-      if (!matchedDeveloper) {
-        const keywords = developerNameMap[prefix];
+        // 🔹 2️⃣ Fallback: Match using fullName keywords
+        if (!matchedDeveloper) {
+          const keywords = developerNameMap[prefix];
 
-        if (keywords) {
-          matchedDeveloper = developerList.find((dev: any) => {
-            const name = dev.fullName?.toLowerCase() || "";
+          if (keywords) {
+            matchedDeveloper = developerList.find((dev: any) => {
+              const name = dev.fullName?.toLowerCase() || "";
 
-            return keywords.every((keyword) =>
-              name.includes(keyword)
-            );
-          });
+              return keywords.every((keyword) =>
+                name.includes(keyword)
+              );
+            });
+          }
         }
-      }
 
-      // 🔹 3️⃣ Set ID if found
-      if (matchedDeveloper?.id) {
-        setDeveloperId(String(matchedDeveloper.id));
-      }
-    });
+        // 🔹 3️⃣ Set ID if found
+        if (matchedDeveloper?.id) {
+          setDeveloperId(String(matchedDeveloper.id));
+        }
+      });
 
-}, [pageSection, dispatch]);
+  }, [pageSection, dispatch]);
 
 
   const { rows: sectionRows, pagination: sectionPagination } = useMemo(() => {
     return listResponse
       ? normalizeListResponse(listResponse, 10)
       : {
-          rows: [],
-          pagination: { totalPages: 1, total: 0, page: 1, limit: 10 },
-        };
+        rows: [],
+        pagination: { totalPages: 1, total: 0, page: 1, limit: 10 },
+      };
   }, [listResponse]);
 
   const detailsConfig = useMemo((): SectionDetailsConfig | null => {
@@ -171,36 +171,36 @@ useEffect(() => {
   const { fields, table, endpoint, fetchendpoint, appendPayload, tableOnly } =
     detailsConfig || {};
 
-useEffect(() => {
-  if (!endpoint) return;
+  useEffect(() => {
+    if (!endpoint) return;
 
-  if (endpoint === "/investor-tabs") {
-    if (!developerId) return; 
-  }
+    if (endpoint === "/investor-tabs") {
+      if (!developerId) return;
+    }
 
-  let baseFetchUrl = fetchendpoint || endpoint;
+    let baseFetchUrl = fetchendpoint || endpoint;
 
-  if (endpoint === "/investor-tabs" && developerId) {
-    baseFetchUrl = `/investor-tabs/${developerId}/list`;
-  }
+    if (endpoint === "/investor-tabs" && developerId) {
+      baseFetchUrl = `/investor-tabs/${developerId}/list`;
+    }
 
-  dispatch(
-    fetchList({
-      url: baseFetchUrl,
-      params: {
-        page: sectionPagination.page,
-        limit: sectionPagination.limit,
-      },
-    }),
-  );
-}, [
-  endpoint,
-  fetchendpoint,
-  developerId,
-  dispatch,
-  sectionPagination.page,
-  sectionPagination.limit,
-]);
+    dispatch(
+      fetchList({
+        url: baseFetchUrl,
+        params: {
+          page: sectionPagination.page,
+          limit: sectionPagination.limit,
+        },
+      }),
+    );
+  }, [
+    endpoint,
+    fetchendpoint,
+    developerId,
+    dispatch,
+    sectionPagination.page,
+    sectionPagination.limit,
+  ]);
 
   if (!detailsConfig || !detailsConfig.endpoint || !detailsConfig.table) {
     return (
@@ -236,20 +236,20 @@ useEffect(() => {
         ? { ...field, options: optionsMap[field.name as string] }
         : field,
     );
-const resolveFetchUrl = (
-  endpoint?: string,
-  fetchendpoint?: string,
-  developerId?: string | null
-) => {
-  if (!endpoint) return "";
+  const resolveFetchUrl = (
+    endpoint?: string,
+    fetchendpoint?: string,
+    developerId?: string | null
+  ) => {
+    if (!endpoint) return "";
 
-  if (endpoint === "/investor-tabs") {
-    if (!developerId) return "";
-    return `/investor-tabs/${developerId}/list`;
-  }
+    if (endpoint === "/investor-tabs") {
+      if (!developerId) return "";
+      return `/investor-tabs/${developerId}/list`;
+    }
 
-  return fetchendpoint || endpoint;
-};
+    return fetchendpoint || endpoint;
+  };
   // const enhancedFields = useMemo(() => {
   //   if (!fields) return [];
 
@@ -264,21 +264,21 @@ const resolveFetchUrl = (
   //     return field;
   //   });
   // }, [fields, dropdownOptions]);
-const enhancedFields = useMemo(() => {
-  if (!fields) return [];
+  const enhancedFields = useMemo(() => {
+    if (!fields) return [];
 
-  return injectOptions(fields, dropdownOptions).map((field) => {
-    if (field.name === "developerId" && developerId) {
-      return {
-        ...field,
-        defaultValue: developerId,
-        options: [{ label: "Selected Developer", value: developerId }],
-      };
-    }
+    return injectOptions(fields, dropdownOptions).map((field) => {
+      if (field.name === "developerId" && developerId) {
+        return {
+          ...field,
+          defaultValue: developerId,
+          options: [{ label: "Selected Developer", value: developerId }],
+        };
+      }
 
-    return field;
-  });
-}, [fields, dropdownOptions, developerId]);
+      return field;
+    });
+  }, [fields, dropdownOptions, developerId]);
 
   useEffect(() => {
     if (pageSection === "media_press") {
@@ -290,9 +290,9 @@ const enhancedFields = useMemo(() => {
     formData: Record<string, any>,
   ): Promise<boolean> => {
     try {
-      const finalData:Record<string, any>  = {
+      const finalData: Record<string, any> = {
         ...formData,
-         ...(developerId ? { developerId } : {}),
+        ...(developerId ? { developerId } : {}),
         ...(appendPayload || {}),
       };
 
@@ -374,8 +374,8 @@ const enhancedFields = useMemo(() => {
           fetchList({
             url: refetchUrl,
             params: {
-               page: sectionPagination.page,
-                limit: sectionPagination.limit,
+              page: sectionPagination.page,
+              limit: sectionPagination.limit,
             },
           }),
         );
@@ -508,7 +508,7 @@ const enhancedFields = useMemo(() => {
     );
   };
 
-const handleDelete = async (row: Record<string, any>) => {
+  const handleDelete = async (row: Record<string, any>) => {
     try {
       await dispatch(
         remove({ url: endpoint!, id: row.id }),
@@ -526,20 +526,20 @@ const handleDelete = async (row: Record<string, any>) => {
     }
   };
 
-const handleIsHomeChange = async (
-  id: string | number,
-  value: boolean
-) => {
-  try {
-    await dispatch(
-      updateIsHome({ id, is_home: value })
-    ).unwrap();
+  const handleIsHomeChange = async (
+    id: string | number,
+    value: boolean
+  ) => {
+    try {
+      await dispatch(
+        updateIsHome({ id, is_home: value })
+      ).unwrap();
 
-    toast.success("Updated successfully");
-  } catch (err) {
-    toast.error("Failed to update");
-  }
-};
+      toast.success("Updated successfully");
+    } catch (err) {
+      toast.error("Failed to update");
+    }
+  };
 
   const handlePageChange = (page: number) => {
     const url = resolveFetchUrl(
@@ -574,14 +574,12 @@ const handleIsHomeChange = async (
                 className="sr-only"
               />
               <div
-                className={`w-10 h-5 rounded-full transition ${
-                  row.isFeature ? "bg-green-500" : "bg-gray-300"
-                }`}
+                className={`w-10 h-5 rounded-full transition ${row.isFeature ? "bg-green-500" : "bg-gray-300"
+                  }`}
               >
                 <div
-                  className={`w-4 h-4 bg-white rounded-full shadow transform transition ${
-                    row.isFeature ? "translate-x-5" : "translate-x-1"
-                  }`}
+                  className={`w-4 h-4 bg-white rounded-full shadow transform transition ${row.isFeature ? "translate-x-5" : "translate-x-1"
+                    }`}
                 />
               </div>
             </label>
@@ -594,23 +592,23 @@ const handleIsHomeChange = async (
           render: (row) => formatDateForInput(row.dateAt),
         };
       }
-       if (col.key === "is_home" && endpoint === "/media-coverage") {
-      return {
-        ...col,
-        render: (row: Record<string, any>) => (
-          <select
-            value={row.is_home ? "true" : "false"}
-            onChange={(e) =>
-              handleIsHomeChange(row.id, e.target.value === "true")
-            }
-            className="border rounded px-5 py-1 text-smfont-bold bg-gray-900"
-          >
-            <option value="true">True</option>
-            <option value="false">False</option>
-          </select>
-        ),
-      };
-    }
+      if (col.key === "is_home" && endpoint === "/media-coverage") {
+        return {
+          ...col,
+          render: (row: Record<string, any>) => (
+            <select
+              value={row.is_home ? "true" : "false"}
+              onChange={(e) =>
+                handleIsHomeChange(row.id, e.target.value === "true")
+              }
+              className="border rounded px-5 py-1 text-smfont-bold bg-gray-900"
+            >
+              <option value="true">True</option>
+              <option value="false">False</option>
+            </select>
+          ),
+        };
+      }
 
 
       return col;
@@ -648,34 +646,34 @@ const handleIsHomeChange = async (
             customActions={
               pageSection === "blogs"
                 ? [
+                  {
+                    label: "Add Faq",
+                    render: (item) => (
+                      <Link
+                        href={`/admin/blogfaq/${item.id}`}
+                        className="text-blue-500 underline"
+                      >
+                        Add Faq
+                      </Link>
+                    ),
+                  },
+                ]
+                : pageSection === "csr_events"
+                  ? [
                     {
-                      label: "Add Faq",
+                      label: "Add Gallery",
                       render: (item) => (
                         <Link
-                          href={`/admin/blogfaq/${item.id}`}
+                          href={`/admin/gallerylist/csr/${item.id}`}
                           className="text-blue-500 underline"
                         >
-                          Add Faq
+                          Add Gallery
                         </Link>
                       ),
                     },
                   ]
-                : pageSection === "csr_events"
-                  ? [
-                      {
-                        label: "Add Gallery",
-                        render: (item) => (
-                          <Link
-                            href={`/admin/gallerylist/csr/${item.id}`}
-                            className="text-blue-500 underline"
-                          >
-                            Add Gallery
-                          </Link>
-                        ),
-                      },
-                    ]
-                :pageSection === "events"
-                  ? [
+                  : pageSection === "events"
+                    ? [
                       {
                         label: "Add Gallery",
                         render: (item) => (
@@ -688,36 +686,36 @@ const handleIsHomeChange = async (
                         ),
                       },
                     ]
-                :  pageSection === "ehil_overview" ||
-                    pageSection === "eipl_overview"
-                  ? [
-                      {
-                        label: "Add Categories",
-                        render: (item) => (
-                          <Link
-                            href={`/admin/investorCategories/${pageSection}/${item.id}`}
-                            className="text-blue-500 underline"
-                          >
-                            Add Categories
-                          </Link>
-                        ),
-                      },
-                    ]
-                  : pageSection === "awards"
-                    ? [
+                    : pageSection === "ehil_overview" ||
+                      pageSection === "eipl_overview"
+                      ? [
                         {
-                          label: "Add Gallery",
+                          label: "Add Categories",
                           render: (item) => (
                             <Link
-                              href={`/admin/awards-gallery/${item.id}`}
+                              href={`/admin/investorCategories/${pageSection}/${item.id}`}
                               className="text-blue-500 underline"
                             >
-                              Add Gallery
+                              Add Categories
                             </Link>
                           ),
                         },
                       ]
-                    : undefined
+                      : pageSection === "awards"
+                        ? [
+                          {
+                            label: "Add Gallery",
+                            render: (item) => (
+                              <Link
+                                href={`/admin/livings/${item.id}`}
+                                className="text-blue-500 underline"
+                              >
+                                Add Gallery
+                              </Link>
+                            ),
+                          },
+                        ]
+                        : undefined
             }
           />
         </Card>

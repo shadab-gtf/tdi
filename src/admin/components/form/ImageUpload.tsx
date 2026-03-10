@@ -13,7 +13,7 @@ export interface ImageUploadProps {
   value?: string | File | null;
   required?: boolean;
   reset?: number;
-  onChange: (fieldName: string , file: File) => void;
+  onChange: (fieldName: string, file: File) => void;
 }
 
 
@@ -61,13 +61,18 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     reader.readAsDataURL(file);
   };
 
- const previewUrl = useMemo(() => {
-  if (!preview) return "";
-  if (preview.startsWith("http") || preview.startsWith("blob:")) {
-    return preview;
-  }
-  return `${BASE_URL}${preview.startsWith("/") ? preview : "/" + preview}`;
-}, [preview]);
+  const previewUrl = useMemo(() => {
+    if (!preview) return "";
+    if (
+      preview.startsWith("http") ||
+      preview.startsWith("blob:") ||
+      preview.startsWith("data:")
+    ) {
+      return preview;
+    }
+    const baseUrl = BASE_URL || "";
+    return `${baseUrl}${preview.startsWith("/") ? preview : "/" + preview}`;
+  }, [preview]);
 
   return (
     <div>

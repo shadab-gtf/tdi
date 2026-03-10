@@ -10,22 +10,20 @@ import Card from "@/admin/components/card/Card";
 import CardHeading from "@/admin/components/card/CardHeading";
 
 import {
-  fetchawardGallery,
-  addawardGallery,
+  getList,
+  store,
   updateawardGallery,
   deleteawardGallery,
-} from "@/features/slices/awardGallerySlice";
+} from "@/features/slices/livingSlice";
 
 import { buildFormDataFromObject, extractFileFieldNames, normalizeFilesForEdit, normalizeListResponse } from "@/admin/utils/helper";
 import { toast } from "react-toastify";
-import { RouteParams } from "@/types/common";
 
 const BlogFaqPage: React.FC = () => {
-  const { slug } = useParams<RouteParams>();
 
   const dispatch = useAppDispatch();
 
-  const { list, loading } = useAppSelector((state) => state.awardGallery);
+  const { list, loading } = useAppSelector((state) => state.living);
 
   const [editingData, setEditingData] = useState<Record<string, any> | null>(
     null,
@@ -34,66 +32,66 @@ const BlogFaqPage: React.FC = () => {
   const LIMIT = 10;
 
   const fields = [
-    { type: "image", name: "desktop_image", label: "Desktop image" },
-    { type: "image", name: "mobile_image", label: "Mobile image" },
+    { type: "text", name: "title", label: "Title" },
+    { type: "text", name: "description[short]", label: "Description" },
+    { type: "image", name: "desktop_file", label: "Desktop image" },
+    { type: "image", name: "mobile_file", label: "Mobile image" },
     { type: "text", name: "alt", label: "Alt" },
   ];
 
-const { rows: rawRows, pagination } = normalizeListResponse(
-  list || { data: [], items: [], pagination: {} },
-  LIMIT,
-);
+  const { rows: rawRows, pagination } = normalizeListResponse(
+    list || { data: [], items: [], pagination: {} },
+    LIMIT,
+  );
 
-const rows = rawRows.map((item: any) =>
-  normalizeFilesForEdit(item, fields, "")
-);
+  const rows = rawRows.map((item: any) =>
+    normalizeFilesForEdit(item, fields, "")
+  );
 
   useEffect(() => {
-    if (!slug) return;
 
     dispatch(
-      fetchawardGallery({
-        url: `/awards-gallery/${slug}/list`,
+      getList({
+        url: `/livings`,
         params: {
           page: pagination.page,
           limit: pagination.limit,
         },
       }),
     );
-  }, [slug, pagination.page, pagination.limit, dispatch]);
+  }, [pagination.page, pagination.limit, dispatch]);
 
   const handleFormSubmit = async (
     formData: Record<string, any>,
   ): Promise<boolean> => {
     try {
-         const fileFields = extractFileFieldNames(fields);
+      const fileFields = extractFileFieldNames(fields);
 
-    const formPayload = buildFormDataFromObject(
-      {
-        ...formData,
-        awardId: Array.isArray(slug) ? slug[0] : slug!,
-      },
-      fileFields,
-    );
+      const formPayload = buildFormDataFromObject(
+        {
+          ...formData,
+        },
+        fileFields,
+      );
 
-    if (editingData?.id) {
-      await dispatch(
-        updateawardGallery({
-          id: editingData.id,
-          data: formPayload,
-        }),
-      ).unwrap();
-    } else {
-      await dispatch(
-        addawardGallery({
-          data: formPayload,
-        }),
-      ).unwrap();
-    }
+      if (editingData?.id) {
+        await dispatch(
+          updateawardGallery({
+            id: editingData.id,
+            data: formPayload,
+          }),
+        ).unwrap();
+      } else {
+        await dispatch(
+          store({
+            data: formPayload,
+          }),
+        ).unwrap();
+      }
 
       dispatch(
-        fetchawardGallery({
-          url: `/awards-gallery/${slug}/list`,
+        getList({
+          url: `/livings`,
           params: {
             page: pagination.page,
             limit: pagination.limit,
@@ -108,35 +106,35 @@ const rows = rawRows.map((item: any) =>
     }
   };
 
-const handleEdit = (item: any) => {
-  const mapped: Record<string, any> = {};
+  const handleEdit = (item: any) => {
+    const mapped: Record<string, any> = {};
 
-  fields.forEach((field) => {
-    const key = field.name;
+    fields.forEach((field) => {
+      const key = field.name;
 
-    if (!key) return;
+      if (!key) return;
 
-    if (item[key] !== undefined) {
-      mapped[key] = item[key];
-    } else if (item.files?.[key] !== undefined) {
-      mapped[key] = item.files[key];
-    }
-  });
+      if (item[key] !== undefined) {
+        mapped[key] = item[key];
+      } else if (item.files?.[key] !== undefined) {
+        mapped[key] = item.files[key];
+      }
+    });
 
-  mapped.id = item.id; 
+    mapped.id = item.id;
 
-  setEditingData(mapped);
+    setEditingData(mapped);
 
-  window.scrollTo({ top: 0, behavior: "smooth" });
-};
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const handleDelete = async (item: any) => {
     try {
       await dispatch(deleteawardGallery({ id: item.id })).unwrap();
 
       dispatch(
-        fetchawardGallery({
-          url: `/awards-gallery/${slug}/list`,
+        getList({
+          url: `/livings`,
           params: {
             page: pagination.page,
             limit: pagination.limit,
@@ -150,8 +148,8 @@ const handleEdit = (item: any) => {
 
   const handleSearch = (term: string) => {
     dispatch(
-      fetchawardGallery({
-        url: `/awards-gallery/${slug}/list`,
+      getList({
+        url: `/livings`,
         params: {
           page: 1,
           limit: pagination.limit,
@@ -163,8 +161,8 @@ const handleEdit = (item: any) => {
 
   const handlePageChange = (page: number) => {
     dispatch(
-      fetchawardGallery({
-        url: `/awards-gallery/${slug}/list`,
+      getList({
+        url: `/livings`,
         params: {
           page,
           limit: pagination.limit,
@@ -189,12 +187,12 @@ const handleEdit = (item: any) => {
 
         <div className="col-span-12">
           <Card>
-            <CardHeading>Award Gallery</CardHeading>
+            <CardHeading>Livings</CardHeading>
 
             <TableContainer
               head={[
-                { key: "desktop_image", label: "desktop_image" },
-                { key: "mobile_image", label: "mobile_image" },
+                { key: "desktop_file", label: "desktop_image" },
+                { key: "mobile_file", label: "mobile_image" },
                 { key: "alt", label: "Alt" },
               ]}
               data={rows}

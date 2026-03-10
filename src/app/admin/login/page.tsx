@@ -27,7 +27,7 @@ const Login: React.FC = () => {
     try {
       await dispatch(
         loginAdmin({ email, password })
-      ).unwrap(); 
+      ).unwrap();
 
       toast.success("Login successful");
       router.replace("/admin");

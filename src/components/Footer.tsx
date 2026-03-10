@@ -3,8 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import footerBg from "@public/assets/images/footer.png";
-import logo from "@public/assets/images/logo.png";
+
 
 const Footer = () => {
     const pathname = usePathname();
@@ -26,7 +25,7 @@ const Footer = () => {
         <footer className="relative  w-full bg-[#2D3565] pt-16 md:pt-20 pb-7 text-white overflow-hidden">
             <div className="absolute inset-0 z-0">
                 <Image
-                    src={footerBg}
+                    src="/assets/images/footer.png"
                     alt="Footer Background"
                     fill
                     className="object-contain object-top opacity-5"
@@ -38,7 +37,7 @@ const Footer = () => {
                     <div className="lg:col-span-2 flex justify-center lg:justify-start items-start">
                         <div className="relative w-20 md:w-28 lg:w-28 aspect-[132/177]">
                             <Image
-                                src={logo}
+                                src="/assets/images/logo.png"
                                 alt="TDI Logo"
                                 fill
                                 className="object-contain"

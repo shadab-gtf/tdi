@@ -1,6 +1,7 @@
 "use client";
 
 import React, { JSX, useState } from "react";
+import Image from "next/image";
 import { TiHome } from "react-icons/ti";
 import { MdQuestionAnswer, MdContactMail } from "react-icons/md";
 import Link from "next/link";
@@ -34,19 +35,20 @@ const LeftSidebar: React.FC = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 h-screen p-[30px] bg-[#13131d] text-white shadow-md z-50 transition-all duration-500 overflow-hidden ${
-        isOpen ? "w-[300px]" : "w-[80px]"
-      }`}
+      className={`fixed top-0 left-0 h-screen p-[30px] bg-[#13131d] text-white shadow-md z-50 transition-all duration-500 overflow-hidden ${isOpen ? "w-[300px]" : "w-[80px]"
+        }`}
     >
       <ul className="relative w-full">
         {/* Logo */}
         <li className="mb-[10px] flex justify-center">
           <Link href="/" className="flex items-center justify-start">
             <span className="icon min-w-[80px] flex justify-center px-[10px]">
-              <img
-               src="/images/logo.png"
+              <Image
+                src="/assets/images/logo.png"
                 alt="logo-icon"
-                className="w-[130px]"
+                width={130}
+                height={52}
+                className="w-[130px] h-auto"
               />
             </span>
           </Link>
@@ -81,14 +83,12 @@ const LeftSidebar: React.FC = () => {
       >
         <div className="relative w-[20px] h-[14px]">
           <span
-            className={`absolute top-0 left-0 w-full h-[2px] bg-white rounded transition-transform duration-300 ${
-              isOpen ? "rotate-[-45deg] translate-y-[6px]" : ""
-            }`}
+            className={`absolute top-0 left-0 w-full h-[2px] bg-white rounded transition-transform duration-300 ${isOpen ? "rotate-[-45deg] translate-y-[6px]" : ""
+              }`}
           />
           <span
-            className={`absolute bottom-0 left-0 w-full h-[2px] bg-white rounded transition-transform duration-300 ${
-              isOpen ? "rotate-[45deg] translate-y-[-6px]" : ""
-            }`}
+            className={`absolute bottom-0 left-0 w-full h-[2px] bg-white rounded transition-transform duration-300 ${isOpen ? "rotate-[45deg] translate-y-[-6px]" : ""
+              }`}
           />
         </div>
       </button>

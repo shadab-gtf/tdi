@@ -62,11 +62,8 @@ const TableContainer = <T extends { id?: string }>({
   const [toDeleteItem, setToDeleteItem] = useState<T | null>(null);
 
   useEffect(() => {
-    if (
-      confirmOpen &&
-      toDeleteItem &&
-      !data.some((d) => d.id === toDeleteItem.id)
-    ) {
+    const isMissing = data.length > 0 && !data.some((d) => d.id === toDeleteItem?.id);
+    if (confirmOpen && toDeleteItem && isMissing) {
       setConfirmOpen(false);
       setToDeleteItem(null);
     }
@@ -97,47 +94,42 @@ const TableContainer = <T extends { id?: string }>({
   // typeof value === "string" &&
   // (value.startsWith("http") || value.startsWith("/")) &&
   // /\.(jpg|jpeg|png|webp|gif|svg)$/i.test(value);
-const isImageUrl = (value: any) =>
-  typeof value === "string" &&
-  (value.startsWith("http") || value.startsWith("/")) &&
-  /\.(jpg|jpeg|png|webp|gif|svg)(\?|$)/i.test(value);
+  const isImageUrl = (value: any) =>
+    typeof value === "string" &&
+    (value.startsWith("http") || value.startsWith("/")) &&
+    /\.(jpg|jpeg|png|webp|gif|svg)(\?|$)/i.test(value);
 
 
 
-const isVideoUrl = (value: any) =>
-  typeof value === "string" &&
-  (value.startsWith("http") || value.startsWith("/")) &&
-  /\.(mp4|webm|ogg)(\?|$)/i.test(value);
-  
-const renderValue = (value: any) => {
-  if (isImageUrl(value)) {
+  const isVideoUrl = (value: any) =>
+    typeof value === "string" &&
+    (value.startsWith("http") || value.startsWith("/")) &&
+    /\.(mp4|webm|ogg)(\?|$)/i.test(value);
 
-    // console.log(value,"value")
-  return (
-    <img
-      src={value}
-      alt="preview"
-      className="w-16 h-16 object-fill rounded border justify-self-center"
-      onError={(e) => {
-        console.error("IMAGE FAILED TO LOAD:", value);
-      }}
-    />
-  );
-}
+  const renderValue = (value: any) => {
+    if (isImageUrl(value)) {
+      return (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={value}
+          alt="preview"
+          className="w-16 h-16 object-fill rounded border justify-self-center"
+        />
+      );
+    }
 
+    if (isVideoUrl(value)) {
+      return (
+        <video
+          src={value}
+          className="w-16 h-16 rounded border justify-self-center object-fill"
+          controls
+        />
+      );
+    }
 
-  if (isVideoUrl(value)) {
-    return (
-      <video
-        src={value}
-        className="w-16 h-16 rounded border justify-self-center object-fill"
-        controls
-      />
-    );
-  }
-
-  return truncate(value);
-};
+    return truncate(value);
+  };
 
 
   return (
@@ -197,9 +189,9 @@ const renderValue = (value: any) => {
                       ? col.render
                         ? col.render(row)
                         : renderValue(
-                            (row as any)?.[col.key] ??
-                            (row as any)?.files?.[col.key]
-                          )
+                          (row as any)?.[col.key] ??
+                          (row as any)?.files?.[col.key]
+                        )
                       : "-"}
                   </TableData>
                 ))}

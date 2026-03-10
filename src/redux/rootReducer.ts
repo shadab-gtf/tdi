@@ -11,7 +11,13 @@ import projectDetailsReducer from "@/features/slices/projectDetailsSlice";
 import blogFaqReducer from "@/features/slices/blogFaqSlice";
 import csrGalleryReducer from "@/features/slices/csrGallerySlice";
 import investorCategoriesReducer from "@/features/slices/investorCategoriesSlice";
-import awardGalleryReducer from "@/features/slices/awardGallerySlice";
+import awardGalleryReducer from "@/features/slices/awardSlice";
+import whyKundliReducer from "@/features/slices/whyKundliSlice";
+import livingReducer from "@/features/slices/livingSlice";
+import ourPartnersReducer from "@/features/slices/ourPartnersSlice";
+
+
+
 import investorDocumentReducer from "@/features/slices/investorDocumentSlice";
 import instagramReelReducer from "@/features/slices/instagramReelSlice";
 const rootReducer = combineReducers({
@@ -22,6 +28,12 @@ const rootReducer = combineReducers({
   blogFaq: blogFaqReducer,
   csrGallery: csrGalleryReducer,
   awardGallery: awardGalleryReducer,
+  whyKundli: whyKundliReducer,
+  living: livingReducer,
+  ourPartners: ourPartnersReducer,
+
+
+
   projects: projectsReducer,
   investorCategories: investorCategoriesReducer,
   lookups: lookupsReducer,

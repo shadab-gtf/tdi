@@ -30,7 +30,7 @@ export const fetchSectionsByPage = createAsyncThunk<
 >("sections/fetchByPage", async ({ page, params = {} }, thunkAPI) => {
   try {
     const res = await apiClient.get(
-      `/page-sections/${encodeURIComponent(page)}/list`,
+      `/page-sections?slug=${encodeURIComponent(page)}`,
       {
         params,
       },

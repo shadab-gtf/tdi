@@ -1,7 +1,7 @@
 export const sectionsConfig = {
   defaultFields: [],
   home: {
-    home_about: [
+    home_city_kundli: [
       {
         type: "array",
         name: "title",
@@ -19,41 +19,31 @@ export const sectionsConfig = {
         fields: [{ type: "text", name: "description", label: "Description" }],
       },
     ],
-    home_feedback: [
+    home_counter: [
       {
         type: "array",
         name: "title",
         label: "Title",
         col: "md:col-span-12",
         multiple: false,
-        fields: [{ type: "text", name: "heading", label: "Heading" }],
-      },
-      {
-        type: "image",
-        name: "desktop_file",
-        label: "Desktop image",
-        col: "md:col-span-12",
-      },
-      {
-        type: "image",
-        name: "mobile_file",
-        label: "Mobile image",
-        col: "md:col-span-12",
+        fields: [{ type: "number", name: "number", label: "Number" }, { type: "text", name: "number_sign", label: "Number Sign " }, { type: "text", name: "heading", label: "Title " }],
       },
 
-      {
-        type: "array",
-        name: "list",
-        label: "List",
-        col: "md:col-span-12",
-        fields: [
-          { type: "text", name: "icon", label: "Icon" },
-          { type: "text", name: "number", label: "Number" },
-          { type: "text", name: "heading", label: "Heading" },
-        ],
-      },
+
+
+      // {
+      //   type: "array",
+      //   name: "list",
+      //   label: "List",
+      //   col: "md:col-span-12",
+      //   fields: [
+      //     { type: "text", name: "icon", label: "Icon" },
+      //     { type: "text", name: "number", label: "Number" },
+      //     { type: "text", name: "heading", label: "Heading" },
+      //   ],
+      // },
     ],
-    what_we_do: [
+    home_livings: [
       {
         type: "array",
         name: "title",
@@ -61,6 +51,70 @@ export const sectionsConfig = {
         col: "md:col-span-12",
         multiple: false,
         fields: [{ type: "text", name: "heading", label: "Heading" }],
+      },
+      {
+        type: "array",
+        name: "description",
+        label: "Description",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [{ type: "text", name: "description", label: "Description" }],
+      },
+    ],
+    home_properties: [
+      {
+        type: "array",
+        name: "title",
+        label: "Title",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [{ type: "text", name: "heading", label: "Heading" }],
+      },
+      {
+        type: "array",
+        name: "description",
+        label: "Description",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [{ type: "text", name: "description", label: "Description" }],
+      },
+    ],
+    home_awards: [
+      {
+        type: "array",
+        name: "title",
+        label: "Title",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [{ type: "text", name: "heading", label: "Heading" }],
+      },
+      {
+        type: "array",
+        name: "description",
+        label: "Description",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [{ type: "text", name: "description", label: "Description" }],
+      },
+    ],
+    home_why_kundli: [
+      {
+        type: "array",
+        name: "title",
+        label: "Title",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [{ type: "text", name: "heading", label: "Heading" }],
+      }
+    ],
+    home_brands: [
+      {
+        type: "array",
+        name: "title",
+        label: "Title",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [{ type: "text", name: "heading", label: "Heading" }, { type: "text", name: "sub_heading", label: "Sub Heading" }],
       },
       {
         type: "array",

@@ -27,11 +27,8 @@
       "@/*": [
         "src/*"
       ],
-      "@admin/*": [
-        "src/admin/*"
-      ],
       "@public/*": [
-        "public/*"
+        "src/public/*"
       ]
     }
   },

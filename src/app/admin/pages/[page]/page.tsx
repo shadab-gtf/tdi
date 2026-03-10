@@ -90,15 +90,15 @@ const PageSections: React.FC = () => {
     }));
 
     return [
-    {
-      type: "dropdown",
-      name: "type",
-      label: "Section Type",
-      options,
-      col: "md:col-span-6",
-    },
-    ...formFields,
-  ];
+      {
+        type: "dropdown",
+        name: "type",
+        label: "Section Type",
+        options,
+        col: "md:col-span-6",
+      },
+      ...formFields,
+    ];
   }, [availableTypes, formFields]);
 
   useEffect(() => {
@@ -109,7 +109,7 @@ const PageSections: React.FC = () => {
     setSelectedType("");
   }, [page, dispatch]);
 
- 
+
   const handleSearch = (term: string) => {
     dispatch(
       fetchSectionsByPage({
@@ -130,15 +130,15 @@ const PageSections: React.FC = () => {
 
     if (editingData?.id) dataObj.id = editingData.id;
 
-  //   const fileFieldNames = formFields
-  // .filter((f) =>
-  //   ["image", "file", "largefile"].includes(
-  //     String(f.type).toLowerCase()
-  //   )
-  // )
-  // .map((f) => f.name)
-  // .filter((name): name is string => Boolean(name));
-  const fileFieldNames = extractFileFieldNames(formFields);
+    //   const fileFieldNames = formFields
+    // .filter((f) =>
+    //   ["image", "file", "largefile"].includes(
+    //     String(f.type).toLowerCase()
+    //   )
+    // )
+    // .map((f) => f.name)
+    // .filter((name): name is string => Boolean(name));
+    const fileFieldNames = extractFileFieldNames(formFields);
     const payload = buildFormDataFromObject(dataObj, fileFieldNames);
 
     try {
@@ -166,7 +166,7 @@ const PageSections: React.FC = () => {
     try {
       const raw = await dispatch(fetchSectionById({ id: item.id })).unwrap();
       const resObj = raw;
-  
+
       if (!resObj) {
         toast.error("No data returned");
         return;
@@ -176,24 +176,24 @@ const PageSections: React.FC = () => {
 
       const fieldsForType = getSectionFields(page, sectionTypeFromApi);
       const mapped: Record<string, any> = {};
-  
+
       fieldsForType.forEach((f) => {
-  if (!f.name) return;   
+        if (!f.name) return;
 
-  const key = f.name;
-  const value = resObj[key];
+        const key = f.name;
+        const value = resObj[key];
 
-  if (f.type === "array" && Array.isArray(value)) {
-    mapped[key] = value;
-  } else if (value !== undefined) {
-    mapped[key] = value;
-  } else if (resObj.files && resObj.files[key] !== undefined) {
-    mapped[key] = resObj.files[key];
-  }
-});
+        if (f.type === "array" && Array.isArray(value)) {
+          mapped[key] = value;
+        } else if (value !== undefined) {
+          mapped[key] = value;
+        } else if (resObj.files && resObj.files[key] !== undefined) {
+          mapped[key] = resObj.files[key];
+        }
+      });
 
-          mapped.type = sectionTypeFromApi;
-          mapped.id = resObj.id;
+      mapped.type = sectionTypeFromApi;
+      mapped.id = resObj.id;
 
       setSelectedType(sectionTypeFromApi);
       setEditingData(mapped);
@@ -213,14 +213,14 @@ const PageSections: React.FC = () => {
     }
   };
 
-const defaultValues = useMemo<Record<string, any> | undefined>(() => {
-  if (editingData) return editingData;
-  if (selectedType) return { type: selectedType };
-  return undefined;
-}, [editingData, selectedType]);
+  const defaultValues = useMemo<Record<string, any> | undefined>(() => {
+    if (editingData) return editingData;
+    if (selectedType) return { type: selectedType };
+    return undefined;
+  }, [editingData, selectedType]);
 
-console.log("FINAL DEFAULT VALUES SENT TO FORM:", defaultValues);
- 
+  console.log("FINAL DEFAULT VALUES SENT TO FORM:", defaultValues);
+
   const SectionTable = TableContainer<SectionRow>;
 
   return (
@@ -244,67 +244,91 @@ console.log("FINAL DEFAULT VALUES SENT TO FORM:", defaultValues);
           <Card>
             <CardHeading>Sections for: {page}</CardHeading>
 
-           <SectionTable
-  head={[
-    { key: "type", label: "Section Type" },
+            <SectionTable
+              head={[
+                { key: "type", label: "Section Type" },
 
-    {
-      key: "title",
-      label: "Heading",
-      render: (row: any) => row?.title?.heading || "-"
-    },
-    {
-      key: "title",
-      label: "Sub Heading",
-      render: (row: any) => row?.title?.sub_heading || "-"
-    },
+                {
+                  key: "title",
+                  label: "Heading",
+                  render: (row: any) => row?.title?.heading || "-"
+                },
 
-    {
-      key: "description",
-      label: "Description",
-      render: (row: any) => row?.description?.description || "-"
-    },
-  ]}
 
-  data={sectionRows}
-  pagination={sectionPagination}
-  currentPage={sectionPagination.page}
+                {
+                  key: "description",
+                  label: "Description",
+                  render: (row: any) => row?.description?.description || "-"
+                },
+              ]}
 
-  handlePageChange={(p) =>
-    dispatch(
-      fetchSectionsByPage({
-        page,
-        params: {
-          page: p,
-          limit: sectionPagination.limit,
-        },
-      })
-    )
-  }
+              data={sectionRows}
+              pagination={sectionPagination}
+              currentPage={sectionPagination.page}
 
-  onEdit={handleEdit}
-  onDelete={handleDelete}
-  onSearch={handleSearch}
-  searchPlaceholder="Search sections..."
+              handlePageChange={(p) =>
+                dispatch(
+                  fetchSectionsByPage({
+                    page,
+                    params: {
+                      page: p,
+                      limit: sectionPagination.limit,
+                    },
+                  })
+                )
+              }
 
-  customActions={[
-  {
-    label: "Section Details",
-    render: (item) => {
-      const link =
-        item.type === "instagram_feed"
-          ? `/admin/instagram`
-          : `/admin/pages/${page}/${item.type}`;
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              onSearch={handleSearch}
+              searchPlaceholder="Search sections..."
 
-      return (
-        <a href={link} className="text-blue-500 underline">
-          More Details
-        </a>
-      );
-    },
-  },
-]}
-/>
+              customActions={[
+                {
+                  label: "Section Details",
+                  render: (item) => {
+                    if (item.type === "home_livings") {
+                      return (
+                        <a href={`/admin/livings?prev=pages`} className="text-blue-500 underline">
+                          More Details
+                        </a>
+                      );
+                    } else if (item.type === "home_awards") {
+                      return (
+                        <a href={`/admin/awards?prev=pages`} className="text-blue-500 underline">
+                          More Details
+                        </a>
+                      );
+                    } else if (item.type === "home_why_kundli") {
+                      return (
+                        <a href={`/admin/why-kundli?prev=pages`} className="text-blue-500 underline">
+                          More Details
+                        </a>
+                      );
+                    } else if (item.type === "home_brands") {
+                      return (
+                        <a href={`/admin/our-partners?prev=pages`} className="text-blue-500 underline">
+                          More Details
+                        </a>
+                      );
+                    } else {
+
+                      //      const link =
+                      //   item.type === "instagram_feed"
+                      //     ? `/admin/instagram`
+                      //     : `/admin/pages/${page}/${item.type}`;
+
+                      // return (
+                      //   <a href={link} className="text-blue-500 underline">
+                      //     More Details
+                      //   </a>
+                      // );
+                    }
+
+                  },
+                },
+              ]}
+            />
 
           </Card>
         </div>
