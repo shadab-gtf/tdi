@@ -61,7 +61,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             <HeroMedia type="image" src={blog.coverImage} />
             <GlobalAnimation />
             <BlogDetails blog={blog} />
-            <RelatedBlogs currentBlog={blog} allBlogs={allBlogs} />
+            {/* <RelatedBlogs currentBlog={blog} allBlogs={allBlogs} /> */}
         </main>
     );
 }

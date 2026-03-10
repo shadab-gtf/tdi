@@ -23,7 +23,7 @@ const BlogDetails: React.FC<BlogDetailsProps> = ({ blog }) => {
     return (
         <section className="py-20 bg-white">
             <div className="max-w-[1440px] mx-auto px-4">
-                <div className="max-w-[1000px] mx-auto">
+                <div className="w-full mx-auto">
                     {/* <motion.div
                         variants={fadeUp}
                         initial="hidden"
