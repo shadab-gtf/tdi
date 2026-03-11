@@ -125,122 +125,110 @@ export const sectionsConfig = {
         fields: [{ type: "text", name: "description", label: "Description" }],
       },
     ],
-    leadership: [
+    latest_updates: [
       {
         type: "array",
         name: "title",
         label: "Title",
         col: "md:col-span-12",
         multiple: false,
-        fields: [
-          { type: "text", name: "heading", label: "Heading" },
-          { type: "text", name: "sub_heading", label: "Sub Heading" },
-        ],
-      },
-      {
-        type: "array",
-        name: "description",
-        label: "Description",
-        col: "md:col-span-12",
-        multiple: false,
-        fields: [
-          { type: "text", name: "name", label: "Name" },
-          { type: "text", name: "description", label: "Description" },
-        ],
-      },
-      {
-        type: "image",
-        name: "desktop_file",
-        label: "Desktop File",
-        col: "md:col-span-12",
-      },
-      {
-        type: "image",
-        name: "mobile_file",
-        label: "Mobile File",
-        col: "md:col-span-12",
-      },
-    ],
-    home_press_release: [
-      {
-        type: "array",
-        name: "title",
-        label: "Title",
-        col: "md:col-span-12",
-        multiple: false,
-        fields: [{ type: "text", name: "heading", label: "Heading" }],
-      },
-      {
-        type: "array",
-        name: "description",
-        label: "Description",
-        col: "md:col-span-12",
-        multiple: false,
-        fields: [{ type: "text", name: "description", label: "Description" }],
-      },
-    ],
-    home_terra_grade: [
-      {
-        type: "array",
-        name: "title",
-        label: "Title",
-        col: "md:col-span-12",
-        multiple: false,
-        fields: [{ type: "text", name: "heading", label: "Heading" }],
-      },
-      {
-        type: "image",
-        name: "desktop_file",
-        label: "Desktop File",
-        col: "md:col-span-12",
-      },
-      {
-        type: "image",
-        name: "mobile_file",
-        label: "Mobile File",
-        col: "md:col-span-12",
-      },
-      {
-        type: "image",
-        name: "logo",
-        label: "Logo Image",
-        col: "md:col-span-12",
+        fields: [{ type: "text", name: "heading", label: "Heading" },],
       },
     ],
 
-    home_our_projects: [
-      {
-        type: "array",
-        name: "title",
-        label: "Title",
-        col: "md:col-span-12",
-        multiple: false,
-        fields: [
-          { type: "text", name: "heading", label: "Heading" },
-          { type: "text", name: "sub_heading", label: "Sub Heading" },
-        ],
-      },
-    ],
-    home_testimonial: [
-      {
-        type: "array",
-        name: "title",
-        label: "Title",
-        col: "md:col-span-12",
-        multiple: false,
-        fields: [{ type: "text", name: "heading", label: "Heading" }],
-      },
-    ],
+    // home_press_release: [
+    //   {
+    //     type: "array",
+    //     name: "title",
+    //     label: "Title",
+    //     col: "md:col-span-12",
+    //     multiple: false,
+    //     fields: [{ type: "text", name: "heading", label: "Heading" }],
+    //   },
+    //   {
+    //     type: "array",
+    //     name: "description",
+    //     label: "Description",
+    //     col: "md:col-span-12",
+    //     multiple: false,
+    //     fields: [{ type: "text", name: "description", label: "Description" }],
+    //   },
+    // ],
+    // home_terra_grade: [
+    //   {
+    //     type: "array",
+    //     name: "title",
+    //     label: "Title",
+    //     col: "md:col-span-12",
+    //     multiple: false,
+    //     fields: [{ type: "text", name: "heading", label: "Heading" }],
+    //   },
+    //   {
+    //     type: "image",
+    //     name: "desktop_file",
+    //     label: "Desktop File",
+    //     col: "md:col-span-12",
+    //   },
+    //   {
+    //     type: "image",
+    //     name: "mobile_file",
+    //     label: "Mobile File",
+    //     col: "md:col-span-12",
+    //   },
+    //   {
+    //     type: "image",
+    //     name: "logo",
+    //     label: "Logo Image",
+    //     col: "md:col-span-12",
+    //   },
+    // ],
+
+    // home_our_projects: [
+    //   {
+    //     type: "array",
+    //     name: "title",
+    //     label: "Title",
+    //     col: "md:col-span-12",
+    //     multiple: false,
+    //     fields: [
+    //       { type: "text", name: "heading", label: "Heading" },
+    //       { type: "text", name: "sub_heading", label: "Sub Heading" },
+    //     ],
+    //   },
+    // ],
+    // home_testimonial: [
+    //   {
+    //     type: "array",
+    //     name: "title",
+    //     label: "Title",
+    //     col: "md:col-span-12",
+    //     multiple: false,
+    //     fields: [{ type: "text", name: "heading", label: "Heading" }],
+    //   },
+    // ],
   },
-  "about-us": {
-    about_overview: [
+  "townships": {
+    township_overview: [
       {
         type: "array",
         name: "title",
         label: "Title",
-        col: "md:col-span-12",
+        col: "md:col-span-6",
         multiple: false,
         fields: [{ type: "text", name: "heading", label: "Heading" }],
+      },
+
+      {
+        type: "image",
+        name: "desktop_image",
+        label: "Desktop image",
+        col: "md:col-span-6",
+      },
+      {
+        type: "image",
+        name: "mobile_image",
+        label: "Mobile image",
+        col: "md:col-span-6",
       },
       {
         type: "array",
@@ -249,6 +237,17 @@ export const sectionsConfig = {
         col: "md:col-span-12",
         multiple: false,
         fields: [{ type: "text", name: "description", label: "Description" }],
+      },
+
+    ],
+    township_trust: [
+      {
+        type: "array",
+        name: "title",
+        label: "Title",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [{ type: "text", name: "year", label: "Year" }, { type: "text", name: "heading", label: "Title" }],
       },
       {
         type: "array",
@@ -256,21 +255,67 @@ export const sectionsConfig = {
         label: "List",
         col: "md:col-span-12",
         fields: [
-          { type: "text", name: "icon", label: "Icon" },
           { type: "text", name: "number", label: "Number" },
           { type: "text", name: "heading", label: "Heading" },
-          { type: "text", name: "description", label: "Description" },
+          { type: "text", name: "icon", label: "Icon" },
         ],
       },
     ],
-    about_cities: [
+    township_leadership: [
       {
         type: "array",
         name: "title",
         label: "Title",
         col: "md:col-span-12",
         multiple: false,
-        fields: [{ type: "text", name: "heading", label: "Heading" }],
+        fields: [
+          { type: "text", name: "heading", label: "Heading" },
+        ],
+      },
+    ],
+    township_ourstory: [
+      {
+        type: "array",
+        name: "title",
+        label: "Title",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [
+          { type: "text", name: "heading", label: "Small Heading" }, { type: "text", name: "sub_heading", label: "Heading" },
+        ],
+      },
+      {
+        type: "array",
+        name: "description",
+        label: "Description",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [{ type: "text", name: "description", label: "Description" }],
+      },
+      {
+        type: "image",
+        name: "desktop_image",
+        label: "Desktop image",
+        col: "md:col-span-6",
+      },
+      {
+        type: "image",
+        name: "mobile_image",
+        label: "Mobile image",
+        col: "md:col-span-6",
+      },
+
+    ],
+    township_city_kundli: [
+      {
+        type: "array",
+        name: "title",
+        label: "Title",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [
+          { type: "text", name: "heading", label: "Small Heading" }, { type: "text", name: "sub_heading", label: "Heading" },
+        ],
       },
     ],
     about_eldeco_group: [
@@ -350,7 +395,149 @@ export const sectionsConfig = {
       },
     ],
   },
-  csr: {
+  "media-center": {
+    media_overview: [
+      {
+        type: "array",
+        name: "title",
+        label: "Title",
+        col: "md:col-span-6",
+        multiple: false,
+        fields: [{ type: "text", name: "heading", label: "Heading" }],
+      },
+
+
+      {
+        type: "array",
+        name: "description",
+        label: "Description",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [{ type: "text", name: "description", label: "Description" }],
+      },
+
+    ],
+    media_coverage: [
+      {
+        type: "array",
+        name: "title",
+        label: "Title",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [{ type: "text", name: "heading", label: "Heading" },],
+      },
+
+    ]
+  },
+  "about-tdi": {
+    tdi_infrastructure: [
+      {
+        type: "array",
+        name: "title",
+        label: "Title",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [{ type: "text", name: "heading", label: "Heading" }],
+      },
+      {
+        type: "array",
+        name: "description",
+        label: "Description",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [{ type: "text", name: "description", label: "Description" }],
+      },
+      {
+        type: "image",
+        name: "desktop_image",
+        label: "Desktop image",
+        col: "md:col-span-4",
+      },
+      {
+        type: "image",
+        name: "mobile_image",
+        label: "Mobile image",
+        col: "md:col-span-4",
+      },
+      { type: "text", name: "alt", label: "Alt", col: "md:col-span-4" },
+      { type: "text", name: "external_links", label: "External Link", col: "md:col-span-4" },
+
+
+
+    ],
+    tdi_infratech: [
+      {
+        type: "array",
+        name: "title",
+        label: "Title",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [{ type: "text", name: "heading", label: "Heading" }],
+      },
+      {
+        type: "array",
+        name: "description",
+        label: "Description",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [{ type: "text", name: "description", label: "Description" }],
+      },
+      {
+        type: "image",
+        name: "desktop_image",
+        label: "Desktop image",
+        col: "md:col-span-4",
+      },
+      {
+        type: "image",
+        name: "mobile_image",
+        label: "Mobile image",
+        col: "md:col-span-4",
+      },
+      { type: "text", name: "alt", label: "Alt", col: "md:col-span-4" },
+      { type: "text", name: "external_links", label: "External Link", col: "md:col-span-4" },
+
+
+
+    ],
+    tdi_infracorp: [
+      {
+        type: "array",
+        name: "title",
+        label: "Title",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [{ type: "text", name: "heading", label: "Heading" }],
+      },
+      {
+        type: "array",
+        name: "description",
+        label: "Description",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [{ type: "text", name: "description", label: "Description" }],
+      },
+      {
+        type: "image",
+        name: "desktop_image",
+        label: "Desktop image",
+        col: "md:col-span-4",
+      },
+      {
+        type: "image",
+        name: "mobile_image",
+        label: "Mobile image",
+        col: "md:col-span-4",
+      },
+      { type: "text", name: "alt", label: "Alt", col: "md:col-span-4" },
+      { type: "text", name: "external_links", label: "External Link", col: "md:col-span-4" },
+
+
+
+    ],
+  },
+
+  "csr": {
     csr_overview: [
       {
         type: "array",
@@ -370,58 +557,11 @@ export const sectionsConfig = {
           {
             type: "text",
             name: "description",
-            label: "Short Description",
-          },
-          { type: "text", name: "long_description", label: "Long description" },
-        ],
-      },
-      {
-        type: "image",
-        name: "desktop_image",
-        label: "Desktop image",
-        col: "md:col-span-12",
-      },
-      {
-        type: "image",
-        name: "mobile_image",
-        label: "Mobile image",
-        col: "md:col-span-12",
-      },
-      { type: "text", name: "alt", label: "Alt", col: "md:col-span-12" },
-    ],
-    csr_community: [
-      {
-        type: "array",
-        name: "title",
-        label: "Title",
-        col: "md:col-span-12",
-        multiple: false,
-        fields: [{ type: "text", name: "heading", label: "Heading" }],
-      },
-    ],
-    csr_events: [
-      {
-        type: "array",
-        name: "title",
-        label: "Title",
-        col: "md:col-span-12",
-        multiple: false,
-        fields: [{ type: "text", name: "heading", label: "Heading" }],
-      },
-      {
-        type: "array",
-        name: "description",
-        label: "Description",
-        col: "md:col-span-12",
-        multiple: false,
-        fields: [
-          {
-            type: "text",
-            name: "description",
-            label: "Description",
+            label: " Description",
           },
         ],
-      },
+      }
+
     ],
     csr_activities: [
       {
@@ -432,23 +572,32 @@ export const sectionsConfig = {
         multiple: false,
         fields: [{ type: "text", name: "heading", label: "Heading" }],
       },
+    ],
+
+    csr_community: [
       {
         type: "array",
-        name: "description",
-        label: "Description",
+        name: "title",
+        label: "Title",
         col: "md:col-span-12",
         multiple: false,
-        fields: [
-          {
-            type: "text",
-            name: "description",
-            label: "Description",
-          },
-        ],
+        fields: [{ type: "text", name: "heading", label: "Heading" }],
       },
     ],
+    csr_impact_gallery: [
+      {
+        type: "array",
+        name: "title",
+        label: "Title",
+        col: "md:col-span-12",
+        multiple: false,
+        fields: [{ type: "text", name: "small_title", label: "Small Title" }, { type: "text", name: "heading", label: "Heading" }],
+      },
+
+    ],
+
   },
-  career: {
+  "career": {
     career_jobs: [
       {
         type: "array",
@@ -567,7 +716,7 @@ export const sectionsConfig = {
       },
     ],
   },
-  news: {
+  "news": {
     latest_updates: [
       {
         type: "array",
@@ -707,26 +856,6 @@ export const sectionsConfig = {
       },
     ],
   },
-  "media-center": {
-    general_faqs: [
-      {
-        type: "array",
-        name: "title",
-        label: "Title",
-        col: "md:col-span-12",
-        multiple: false,
-        fields: [{ type: "text", name: "heading", label: "Heading" }],
-      },
-      {
-        type: "array",
-        name: "description",
-        label: "Description",
-        col: "md:col-span-12",
-        multiple: false,
-        fields: [{ type: "text", name: "description", label: "Description" }],
-      },
-    ],
-  },
   awards: {
     awards: [
       {
@@ -786,7 +915,7 @@ export const sectionsConfig = {
         fields: [{ type: "text", name: "description", label: "Description" }],
       },
     ],
-    "media-kit": [
+    "press-kit": [
       {
         type: "array",
         name: "title",

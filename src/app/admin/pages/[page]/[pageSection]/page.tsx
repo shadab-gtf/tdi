@@ -178,10 +178,15 @@ const SectionDetailsPage: React.FC = () => {
       if (!developerId) return;
     }
 
+
     let baseFetchUrl = fetchendpoint || endpoint;
 
     if (endpoint === "/investor-tabs" && developerId) {
       baseFetchUrl = `/investor-tabs/${developerId}/list`;
+    }
+
+    if (endpoint === "/why-kundli") {
+      baseFetchUrl += '?kundli_type=city_kundli'
     }
 
     dispatch(
@@ -497,7 +502,6 @@ const SectionDetailsPage: React.FC = () => {
 
   const handleSearch = (term: string) => {
     const baseFetchUrl = fetchendpoint || endpoint!;
-
     dispatch(
       fetchList({
         url: baseFetchUrl,
@@ -658,13 +662,16 @@ const SectionDetailsPage: React.FC = () => {
                     ),
                   },
                 ]
-                : pageSection === "csr_events"
+
+
+
+                : pageSection === "awards"
                   ? [
                     {
                       label: "Add Gallery",
                       render: (item) => (
                         <Link
-                          href={`/admin/gallerylist/csr/${item.id}`}
+                          href={`/admin/livings/${item.id}`}
                           className="text-blue-500 underline"
                         >
                           Add Gallery
@@ -672,50 +679,7 @@ const SectionDetailsPage: React.FC = () => {
                       ),
                     },
                   ]
-                  : pageSection === "events"
-                    ? [
-                      {
-                        label: "Add Gallery",
-                        render: (item) => (
-                          <Link
-                            href={`/admin/gallerylist/mediaevent/${item.id}`}
-                            className="text-blue-500 underline"
-                          >
-                            Add Gallery
-                          </Link>
-                        ),
-                      },
-                    ]
-                    : pageSection === "ehil_overview" ||
-                      pageSection === "eipl_overview"
-                      ? [
-                        {
-                          label: "Add Categories",
-                          render: (item) => (
-                            <Link
-                              href={`/admin/investorCategories/${pageSection}/${item.id}`}
-                              className="text-blue-500 underline"
-                            >
-                              Add Categories
-                            </Link>
-                          ),
-                        },
-                      ]
-                      : pageSection === "awards"
-                        ? [
-                          {
-                            label: "Add Gallery",
-                            render: (item) => (
-                              <Link
-                                href={`/admin/livings/${item.id}`}
-                                className="text-blue-500 underline"
-                              >
-                                Add Gallery
-                              </Link>
-                            ),
-                          },
-                        ]
-                        : undefined
+                  : undefined
             }
           />
         </Card>

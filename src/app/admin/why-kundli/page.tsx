@@ -45,6 +45,7 @@ const BlogFaqPage: React.FC = () => {
     { type: "image", name: "mobile_file", label: "Mobile image" },
     { type: "text", name: "alt", label: "Alt" },
 
+
   ];
 
   const { rows: rawRows, pagination } = normalizeListResponse(

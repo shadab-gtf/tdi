@@ -32,35 +32,28 @@ export const sectionListConfig = {
         },
         {
           type: "image",
-          name: "icon",
-          label: "Icon",
-          col: "md:col-span-12",
+          name: "image",
+          label: "Image",
+          col: "md:col-span-6",
         },
         {
           type: "text",
           name: "alt",
           label: "alt",
-          col: "md:col-span-12",
-        },
-        {
-          type: "text",
-          name: "shortDescription",
-          label: "Short Description",
-          col: "md:col-span-12",
-        },
+          col: "md:col-span-6",
+        }
       ],
       table: {
         columns: [
           { key: "title", label: "Title" },
-          { key: "icon", label: "Icon" },
-          { key: "shortDescription", label: "Short Description" },
+          { key: "alt", label: "Alt" },
         ],
       },
       endpoint: "/csr-community",
     },
   },
-  csr_events: {
-    events: {
+  csr_impact_gallery: {
+    impact_gallery: {
       fields: [
         {
           type: "text",
@@ -69,41 +62,77 @@ export const sectionListConfig = {
           col: "md:col-span-12",
         },
         {
-          type: "date",
-          name: "dateAt",
-          label: "Date",
-          col: "md:col-span-12",
+          type: "image",
+          name: "desktop_file",
+          label: "Desktop File",
+          col: "md:col-span-4",
+        },
+        {
+          type: "image",
+          name: "mobile_file",
+          label: "Mobile File",
+          col: "md:col-span-4",
+        },
+        {
+          type: "text",
+          name: "alt",
+          label: "Alt",
+          col: "md:col-span-4",
         },
       ],
       table: {
         columns: [
-          { key: "title", label: "Title" },
-          { key: "dateAt", label: "Date" },
+          { key: "mobile_file", label: "Mobile File" },
+          { key: "desktop_file", label: "Desktop File" },
+          { key: "alt", label: "Alt" },
         ],
       },
-      endpoint: "/events",
+      endpoint: "/csr-impact-gallery",
     },
   },
   csr_activities: {
     "csr-activity": {
       fields: [
         {
+          type: "dropdown",
+          name: "type",
+          label: "Type",
+          options: [
+            { label: "Environmental Commitment", value: "environmental_commitment" },
+            { label: "Community Development", value: "community_development" },
+          ],
+
+        },
+        {
           type: "text",
-          name: "question",
-          label: "Question",
-          col: "md:col-span-12",
+          name: "title",
+          label: "Title",
+          col: "md:col-span-6",
+        },
+        {
+          type: "image",
+          name: "image",
+          label: "Image",
+          col: "md:col-span-6",
+        },
+        {
+          type: "text",
+          name: "alt",
+          label: "Alt ",
+          col: "md:col-span-6",
         },
         {
           type: "textarea",
-          name: "answer",
-          label: "Answer",
+          name: "description",
+          label: "Description",
           col: "md:col-span-12",
         },
       ],
       table: {
         columns: [
-          { key: "question", label: "Question" },
-          { key: "answer", label: "Answer" },
+          { key: "type", label: "Type" },
+          { key: "title", label: "Title" },
+          { key: "description", label: "Description" },
         ],
       },
       endpoint: "/csr-activity",
@@ -370,9 +399,26 @@ export const sectionListConfig = {
       endpoint: "/blogs",
     },
   },
+
   latest_updates: {
     news: {
       fields: [
+        {
+          type: "dropdown",
+          name: "news_mode",
+          label: "News Mode",
+          options: [
+            { label: "offline", value: "offline" },
+            { label: "online", value: "online" },
+          ],
+
+        },
+        {
+          type: "date",
+          name: "dateAt",
+          label: "Date At",
+          col: "md:col-span-6",
+        },
         {
           type: "text",
           name: "title",
@@ -383,23 +429,199 @@ export const sectionListConfig = {
           type: "text",
           name: "newsLink",
           label: "News Link",
-          col: "md:col-span-12",
+          col: "md:col-span-6",
+        },
+        {
+          type: "text",
+          name: "publish_by",
+          label: "Publish By",
+          col: "md:col-span-6",
+        },
+        {
+          type: "image",
+          name: "desktop_file",
+          label: "Desktop image",
+          col: "md:col-span-6",
+        },
+        {
+          type: "image",
+          name: "mobile_file",
+          label: "Mobile image",
+          col: "md:col-span-6",
+        },
+      ],
+      table: {
+        columns: [
+          { key: "news_mode", label: " Mode" },
+          { key: "title", label: "Title" },
+          { key: "newsLink", label: "News Link" },
+
+          { key: "dateAt", label: "Date At" },
+        ],
+      },
+      endpoint: "/news",
+    },
+  },
+
+  csr: {
+    news: {
+      fields: [
+        {
+          type: "dropdown",
+          name: "news_mode",
+          label: "News Mode",
+          options: [
+            { label: "offline", value: "offline" },
+            { label: "online", value: "online" },
+          ],
+
         },
         {
           type: "date",
           name: "dateAt",
           label: "Date At",
+          col: "md:col-span-6",
+        },
+        {
+          type: "text",
+          name: "title",
+          label: "Title",
           col: "md:col-span-12",
+        },
+        {
+          type: "text",
+          name: "newsLink",
+          label: "News Link",
+          col: "md:col-span-6",
+        },
+        {
+          type: "text",
+          name: "publish_by",
+          label: "Publish By",
+          col: "md:col-span-6",
+        },
+        {
+          type: "image",
+          name: "desktop_file",
+          label: "Desktop image",
+          col: "md:col-span-6",
+        },
+        {
+          type: "image",
+          name: "mobile_file",
+          label: "Mobile image",
+          col: "md:col-span-6",
+        },
+      ],
+      table: {
+        columns: [
+          { key: "news_mode", label: " Mode" },
+          { key: "title", label: "Title" },
+          { key: "newsLink", label: "News Link" },
+
+          { key: "dateAt", label: "Date At" },
+        ],
+      },
+      endpoint: "/news",
+    },
+  },
+  township_leadership: {
+    news: {
+      fields: [
+
+        {
+          type: "text",
+          name: "name",
+          label: "Name",
+          col: "md:col-span-6",
+        },
+        {
+          type: "image",
+          name: "image",
+          label: "Profile Image",
+          col: "md:col-span-6",
+        },
+        {
+          type: "text",
+          name: "alt",
+          label: "Alt ",
+          col: "md:col-span-6",
+        },
+        {
+          type: "text",
+          name: "description",
+          label: "Description",
+          col: "md:col-span-12",
+          stringArray: true,
+        },
+
+
+
+      ],
+      table: {
+        columns: [
+          { key: "name", label: " Name" },
+        ],
+      },
+      endpoint: "/leadership",
+    },
+  },
+  township_city_kundli: {
+    news: {
+      fields: [
+        {
+          type: "dropdown",
+          name: "kundli_type",
+          label: "Kundli Type",
+          options: [
+            {
+              label: "City Kundli",
+              value: "city_kundli",
+              default: 'city_kundli',
+            },
+          ],
+        },
+        {
+          type: "text",
+          name: "title",
+          label: "Title ",
+          col: "md:col-span-6",
+        },
+
+        {
+          type: "image",
+          name: "desktop_file",
+          label: "Desktop Image",
+          col: "md:col-span-4",
+        },
+
+        {
+          type: "image",
+          name: "mobile_file",
+          label: "Mobile Image",
+          col: "md:col-span-4",
+        },
+        {
+          type: "text",
+          name: "alt",
+          label: "Alt ",
+          col: "md:col-span-4",
+          stringArray: true,
+        },
+        {
+          type: "text",
+          name: "description",
+          label: "Description",
+          col: "md:col-span-12",
+          stringArray: true,
         },
       ],
       table: {
         columns: [
           { key: "title", label: "Title" },
-          { key: "newsLink", label: "News Link" },
-          { key: "dateAt", label: "Date At" },
         ],
       },
-      endpoint: "/news",
+      endpoint: "/why-kundli",
     },
   },
   purchase_faqs: {
@@ -859,21 +1081,20 @@ export const sectionListConfig = {
       endpoint: "/media-coverage",
     },
   },
-  "media-kit": {
-    "media-kit": {
+  "press-kit": {
+    "press-kit": {
       fields: [
         {
-          type: "image",
-          name: "logo",
-          label: "Logo",
-          col: "md:col-span-12",
+          type: "dropdown",
+          name: "type",
+          label: "Type",
+          options: [
+            { label: "Color Logo", value: "color-logo" },
+            { label: "Transparent Logo", value: "transparent-logo" },
+          ],
+
         },
-        {
-          type: "text",
-          name: "alt",
-          label: "Alt",
-          col: "md:col-span-12",
-        },
+
         {
           type: "array",
           name: "listKit",
@@ -881,17 +1102,17 @@ export const sectionListConfig = {
           col: "md:col-span-12",
           fields: [
             { type: "text", name: "key", label: "Key" },
-            { type: "file", name: "file", label: "File" },
+            { type: "image", name: "file", label: "File" },
           ],
         },
       ],
       table: {
         columns: [
-          { key: "logo", label: "Logo" },
+          { key: "type", label: "Type" },
           { key: "alt", label: "Alt" },
         ],
       },
-      endpoint: "/media-kit",
+      endpoint: "/press-kit",
     },
   },
   "media-file": {

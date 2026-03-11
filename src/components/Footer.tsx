@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 
 
 const Footer = () => {
@@ -128,10 +129,10 @@ const Footer = () => {
                         <h4 className="font-serif text-lg md:text-xl mb-4 text-white!">Social Media</h4>
                         <div className="flex gap-6 mt-1">
                             {/* Social links usually use external URLs, so active state is rare, but logic remains same */}
-                            <Link href="https://www.instagram.com/tdiinfrastructureltd/" className="hover:text-[var(--color-accent)] font-light  transition-colors">Instagram</Link>
-                            <Link href="https://www.facebook.com/TdiInfrastructureLimited" className="hover:text-[var(--color-accent)] font-light  transition-colors">Facebook</Link>
-                            <Link href="https://www.youtube.com/@TDIInfrastructure" className="hover:text-[var(--color-accent)]  font-light transition-colors">Youtube</Link>
-                            <Link href="https://www.linkedin.com/company/tdi-infrastructure/?viewAsMember=true" className="hover:text-[var(--color-accent)] font-light  transition-colors">Linkedin</Link>
+                            <Link href="https://www.instagram.com/tdiinfrastructureltd/" className="hover:text-[var(--color-accent)] font-light  transition-colors"><Instagram /></Link>
+                            <Link href="https://www.facebook.com/TdiInfrastructureLimited" className="hover:text-[var(--color-accent)] font-light  transition-colors"><Facebook /></Link>
+                            <Link href="https://www.youtube.com/@TDIInfrastructure" className="hover:text-[var(--color-accent)]  font-light transition-colors"><Youtube /></Link>
+                            <Link href="https://www.linkedin.com/company/tdi-infrastructure/?viewAsMember=true" className="hover:text-[var(--color-accent)] font-light  transition-colors"><Linkedin /></Link>
                         </div>
                     </div>
                 </div>

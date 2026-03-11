@@ -255,11 +255,11 @@ const PageSections: React.FC = () => {
                 },
 
 
-                {
-                  key: "description",
-                  label: "Description",
-                  render: (row: any) => row?.description?.description || "-"
-                },
+                // {
+                //   key: "description",
+                //   label: "Description",
+                //   render: (row: any) => row?.description?.description || "-"
+                // },
               ]}
 
               data={sectionRows}
@@ -311,8 +311,31 @@ const PageSections: React.FC = () => {
                           More Details
                         </a>
                       );
-                    } else {
-
+                    }
+                    else if (item.type === "csr_community" || item.type === "csr_activities" || item.type === "latest_updates" || item.type === "csr_impact_gallery" || item.type === "township_leadership" || item.type === "township_city_kundli") {
+                      const link = `/admin/pages/${page}/${item.type}`;
+                      return (
+                        <a href={link} className="text-blue-500 underline">
+                          More Details
+                        </a>
+                      );
+                    }
+                    else if (item.type === "media_coverage") {
+                      const link = `/admin/pages/${page}/press-kit`;
+                      return (<>
+                        <a href={link} className="text-blue-500 underline">
+                          Press Kits
+                        </a><br></br>
+                        <a href={`/admin/news`} className="text-blue-500 underline">
+                          News
+                        </a>
+                      </>
+                      );
+                    }
+                    else {
+                      return (
+                        'N/A'
+                      );
                       //      const link =
                       //   item.type === "instagram_feed"
                       //     ? `/admin/instagram`

@@ -22,14 +22,14 @@ export default function RootLayout({
       <body
         className={`${sourceSerif.variable} font-serif antialiased bg-[#F8FBFF]`}
       >
-        <SmoothScroll>
-          <Header />
-          <main className="">
-            {children}
-          </main>
-          <WhatsAppFloating />
+        {/* <SmoothScroll>
+          <Header /> */}
+        <main className="">
+          {children}
+        </main>
+        {/* <WhatsAppFloating />
           <Footer />
-        </SmoothScroll>
+        </SmoothScroll> */}
       </body>
     </html>
   );
