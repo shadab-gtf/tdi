@@ -24,10 +24,10 @@ interface Subtypology {
 
 const SubtypologyMappingPage: React.FC = () => {
   const params = useParams();
-  const typologyId = Array.isArray(params.mapping) 
-    ? params.mapping[0] 
+  const typologyId = Array.isArray(params.mapping)
+    ? params.mapping[0]
     : params.mapping || "";
-  
+
   const dispatch = useAppDispatch();
 
   const {
@@ -41,7 +41,7 @@ const SubtypologyMappingPage: React.FC = () => {
   console.log(unassignedSubtypes, "unassignedSubtypes");
 
   const PAGE_LIMIT = 10;
-  
+
   const tablePagination = {
     page: pagination.page,
     limit: pagination.limit,
@@ -55,6 +55,7 @@ const SubtypologyMappingPage: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
+    debugger;
     if (!typologyId) return;
 
     dispatch(fetchUnassignedSubtypes({ typologyId }));

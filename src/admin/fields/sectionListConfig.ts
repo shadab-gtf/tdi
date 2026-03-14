@@ -624,44 +624,7 @@ export const sectionListConfig = {
       endpoint: "/why-kundli",
     },
   },
-  purchase_faqs: {
-    "buying-desk": {
-      fields: [
-        {
-          type: "dropdown",
-          name: "type",
-          label: "Type",
-          options: [
-            {
-              label: "per_post_purchase_faqs",
-              value: "per_post_purchase_faqs",
-              default: true,
-            },
-          ],
-        },
-        {
-          type: "text",
-          name: "question",
-          label: "Question",
-          col: "md:col-span-12",
-        },
-        {
-          type: "richtext",
-          name: "answer",
-          label: "Answer",
-          col: "md:col-span-12",
-        },
-      ],
-      table: {
-        columns: [
-          { key: "question", label: "Question" },
-          { key: "answer", label: "Answer" },
-        ],
-      },
-      endpoint: "/buying-desk",
-      fetchendpoint: `/buying-desk/per_post_purchase_faqs/list`,
-    },
-  },
+
   nri_overview: {
     "buying-desk": {
       fields: [
@@ -738,59 +701,10 @@ export const sectionListConfig = {
       fetchendpoint: `/buying-desk/why_eldeco/list`,
     },
   },
-  buying_guide: {
-    "buying-desk": {
+
+  faq: {
+    "faq": {
       fields: [
-        {
-          type: "dropdown",
-          name: "type",
-          label: "Type",
-          options: [
-            {
-              label: "buying_guide",
-              value: "buying_guide",
-              default: true,
-            },
-          ],
-        },
-        {
-          type: "text",
-          name: "question",
-          label: "Title",
-          col: "md:col-span-12",
-        },
-        {
-          type: "richtext",
-          name: "answer",
-          label: "Description",
-          col: "md:col-span-12",
-        },
-      ],
-      table: {
-        columns: [
-          { key: "question", label: "Title" },
-          { key: "answer", label: "Description" },
-        ],
-      },
-      endpoint: "/buying-desk",
-      fetchendpoint: `/buying-desk/buying_guide/list`,
-    },
-  },
-  general_faqs: {
-    "buying-desk": {
-      fields: [
-        {
-          type: "dropdown",
-          name: "type",
-          label: "Type",
-          options: [
-            {
-              label: "general_faqs",
-              value: "general_faqs",
-              default: true,
-            },
-          ],
-        },
         {
           type: "text",
           name: "question",
@@ -798,10 +712,32 @@ export const sectionListConfig = {
           col: "md:col-span-12",
         },
         {
-          type: "richtext",
+          type: "text",
           name: "answer",
           label: "Answer",
           col: "md:col-span-12",
+        },
+        {
+          type: "dropdown",
+          name: "status",
+          label: "Status",
+          options: [
+            {
+              label: "Active",
+              value: "true",
+            },
+            {
+              label: "Inactive",
+              value: "false",
+            }
+          ],
+          col: "md:col-span-6",
+        },
+        {
+          type: "number",
+          name: "seq",
+          label: "seq",
+          col: "md:col-span-6",
         },
       ],
       table: {
@@ -810,8 +746,49 @@ export const sectionListConfig = {
           { key: "answer", label: "Answer" },
         ],
       },
-      endpoint: "/buying-desk",
-      fetchendpoint: `/buying-desk/general_faqs/list`,
+      endpoint: "/faqs"
+    },
+  },
+  gallery: {
+    "gallery": {
+      fields: [
+
+        {
+          type: "text",
+          name: "title",
+          label: "Title",
+          col: "md:col-span-4",
+        },
+        {
+          type: "number",
+          name: "seq",
+          label: "Seq",
+          col: "md:col-span-4",
+        },
+        {
+          type: "dropdown",
+          name: "status",
+          label: "Status",
+          options: [
+            {
+              label: "Active",
+              value: "true",
+            },
+            {
+              label: "Inactive",
+              value: "false",
+            }
+          ],
+          col: "md:col-span-4",
+        }
+      ],
+      table: {
+        columns: [
+          { key: "title", label: "Title" },
+        ],
+      },
+      endpoint: "/gallery-category",
+      // fetchendpoint: `/gallery-category`,
     },
   },
   events: {
@@ -872,33 +849,32 @@ export const sectionListConfig = {
           type: "text",
           name: "title",
           label: "Title",
-          col: "md:col-span-12",
+          col: "md:col-span-6",
+        },
+        {
+          type: "text",
+          name: "awarded_by",
+          label: "Awards BY",
+          col: "md:col-span-6",
         },
         {
           type: "text",
           name: "year",
           label: "Year",
-          col: "md:col-span-12",
+          col: "md:col-span-6",
         },
         {
-          type: "text",
-          name: "projectName",
-          label: "Project Name",
-          col: "md:col-span-12",
-        },
-        {
-          type: "text",
-          name: "eventName",
-          label: "Event Name",
-          col: "md:col-span-12",
+          type: "image",
+          name: "desktop_file",
+          label: "Image",
+          col: "md:col-span-6",
         },
       ],
       table: {
         columns: [
           { key: "title", label: "Title" },
           { key: "year", label: "Year" },
-          { key: "projectName", label: "Project Name" },
-          { key: "eventName", label: "Event Name" },
+          { key: "awarded_by", label: "Awarded By" },
         ],
       },
       endpoint: "/awards",

@@ -35,6 +35,8 @@ import {
   TableColumn,
 } from "@/types/admin";
 import Link from "next/link";
+import Image from "next/image";
+
 
 
 const developerSlugMap: Record<string, string> = {
@@ -566,34 +568,33 @@ const SectionDetailsPage: React.FC = () => {
     if (!table?.columns) return [];
 
     return table.columns.map((col) => {
-      if (col.key === "feature") {
+      const field = fields?.find((f) => f.name === col.key);
+      if (field?.type === "image" && !col.render) {
         return {
           ...col,
-          render: (row: Record<string, any>) => (
-            <label className="inline-flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                checked={Boolean(row.isFeature)}
-                onChange={() => handleFeatureToggle(row)}
-                className="sr-only"
-              />
-              <div
-                className={`w-10 h-5 rounded-full transition ${row.isFeature ? "bg-green-500" : "bg-gray-300"
-                  }`}
-              >
-                <div
-                  className={`w-4 h-4 bg-white rounded-full shadow transform transition ${row.isFeature ? "translate-x-5" : "translate-x-1"
-                    }`}
+          render: (row: Record<string, any>) => {
+            const val = row[col.key] || row.files?.[col.key];
+            if (!val) return "-";
+            return (
+              <div className="flex justify-center">
+                <Image
+                  src={typeof val === "string" ? val : ""}
+                  alt={row.alt || "preview"}
+                  width={64}
+                  height={64}
+                  className="w-16 h-16 object-cover rounded shadow-sm border border-gray-700/50"
                 />
               </div>
-            </label>
-          ),
+            );
+          },
         };
       }
+
+
       if (col.key === "dateAt") {
         return {
           ...col,
-          render: (row) => formatDateForInput(row.dateAt),
+          render: (row: Record<string, any>) => formatDateForInput(row.dateAt),
         };
       }
       if (col.key === "is_home" && endpoint === "/media-coverage") {
@@ -617,7 +618,7 @@ const SectionDetailsPage: React.FC = () => {
 
       return col;
     });
-  }, [table]);
+  }, [table, fields]);
 
   return (
     <section className="p-6 grid grid-cols-12 gap-6">
@@ -665,13 +666,13 @@ const SectionDetailsPage: React.FC = () => {
 
 
 
-                : pageSection === "awards"
+                : pageSection === "gallery"
                   ? [
                     {
                       label: "Add Gallery",
                       render: (item) => (
                         <Link
-                          href={`/admin/livings/${item.id}`}
+                          href={`/admin/gallery/${item.id}`}
                           className="text-blue-500 underline"
                         >
                           Add Gallery

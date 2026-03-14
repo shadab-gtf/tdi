@@ -11,7 +11,7 @@ import projectDetailsReducer from "@/features/slices/projectDetailsSlice";
 import blogFaqReducer from "@/features/slices/blogFaqSlice";
 import csrGalleryReducer from "@/features/slices/csrGallerySlice";
 import investorCategoriesReducer from "@/features/slices/investorCategoriesSlice";
-import awardGalleryReducer from "@/features/slices/awardSlice";
+import GalleryReducer from "@/features/slices/gallerySlice";
 import whyKundliReducer from "@/features/slices/whyKundliSlice";
 import livingReducer from "@/features/slices/livingSlice";
 import ourPartnersReducer from "@/features/slices/ourPartnersSlice";
@@ -27,7 +27,7 @@ const rootReducer = combineReducers({
   projectList: projectDetailsReducer,
   blogFaq: blogFaqReducer,
   csrGallery: csrGalleryReducer,
-  awardGallery: awardGalleryReducer,
+  Gallery: GalleryReducer,
   whyKundli: whyKundliReducer,
   living: livingReducer,
   ourPartners: ourPartnersReducer,

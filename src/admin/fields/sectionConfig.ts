@@ -736,26 +736,7 @@ export const sectionsConfig = {
       },
     ],
   },
-  "purchase-faqs": {
-    purchase_faqs: [
-      {
-        type: "array",
-        name: "title",
-        label: "Title",
-        col: "md:col-span-12",
-        multiple: false,
-        fields: [{ type: "text", name: "heading", label: "Heading" }],
-      },
-      {
-        type: "array",
-        name: "description",
-        label: "Description",
-        col: "md:col-span-12",
-        multiple: false,
-        fields: [{ type: "text", name: "description", label: "Description" }],
-      },
-    ],
-  },
+
   "nri-overview": {
     nri_overview: [
       {
@@ -836,13 +817,25 @@ export const sectionsConfig = {
       },
     ],
   },
-  "general-faqs": {
-    general_faqs: [
+  "faq": {
+    faq: [
       {
         type: "array",
         name: "title",
         label: "Title",
         col: "md:col-span-12",
+        multiple: false,
+        fields: [{ type: "text", name: "heading", label: "Heading" }],
+      }
+    ],
+  },
+  awards: {
+    awards_overview: [
+      {
+        type: "array",
+        name: "title",
+        label: "Title",
+        col: "md:col-span-6",
         multiple: false,
         fields: [{ type: "text", name: "heading", label: "Heading" }],
       },
@@ -855,8 +848,6 @@ export const sectionsConfig = {
         fields: [{ type: "text", name: "description", label: "Description" }],
       },
     ],
-  },
-  awards: {
     awards: [
       {
         type: "array",
@@ -866,14 +857,7 @@ export const sectionsConfig = {
         multiple: false,
         fields: [{ type: "text", name: "heading", label: "Heading" }],
       },
-      {
-        type: "array",
-        name: "description",
-        label: "Description",
-        col: "md:col-span-12",
-        multiple: false,
-        fields: [{ type: "text", name: "description", label: "Description" }],
-      },
+
     ],
   },
   testimonial: {
@@ -1153,7 +1137,7 @@ export const sectionsConfig = {
     ],
   },
   gallery: {
-    instagram_feed: [
+    gallery: [
       {
         type: "array",
         name: "title",

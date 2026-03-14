@@ -48,6 +48,7 @@ export const COMMON_ENTITY_CONFIG: Record<string, EntityConfig> = {
       { key: "alt", label: "Alt" },
     ],
   },
+
   platter: {
     fields: [
       { type: "text", name: "name", label: "Name", col: "md:col-span-12" },
